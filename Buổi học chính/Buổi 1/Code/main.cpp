@@ -3,7 +3,7 @@ using namespace std;
 
 using ll = long long;
 
-bool checkNT (ll n) {
+bool isPrime (ll n) {
     for(int i = 2; i <= sqrt(n); i++){
         if(n % i == 0) return false;
     }
@@ -15,15 +15,14 @@ int main() {
     freopen ("input.txt", "r", stdin);
     freopen ("output.txt", "w", stdout);
     #endif
-    
-    int n; 
-    cin >> n;
+
+    int n; cin >> n;
     int a[n];
-    for (int i = 0; i<n; i++) {
-        cin >> a[i];
-    }
+
+    // Range base for loop
+    for (int &x : a) cin >> x;
     
-    for (int i=0; i<n; i++) {
-        if (checkNT(a[i])) cout << a[i] << ' ';
+    for (int x : a) {
+        if (isPrime(x)) cout << x << ' ';
     }
 }
