@@ -1,6 +1,8 @@
 # Data structures - Algorithms
 ## Độ phức tạp thuật toán (algorithm complexity)
 > https://topdev.vn/blog/on-lai-ve-big-o-notation-va-do-phuc-tap/
+>
+> https://howkteam.vn/course/cau-truc-du-lieu-va-giai-thuat/do-phuc-tap-thoi-gian-bigo-la-gi-4270
 ### 1. Độ phức tạp thuật toán là gì?
 - Nói ngắn gọn thì, mỗi một bài toán có giới hạn/kích thước của đầu vào. Độ phức tạp thuật toán là 1 khái niệm/định nghĩa/định lượng tương đối thể hiện số phép toán của giải thuật so với kích thước của đầu vào.
 - Ví dụ cho dễ hiểu:
