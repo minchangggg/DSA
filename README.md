@@ -1,11 +1,43 @@
-# Data structures - Algorithms
-## Độ phức tạp thuật toán (algorithm complexity)
+# Độ phức tạp thuật toán (algorithm complexity)
 > https://topdev.vn/blog/on-lai-ve-big-o-notation-va-do-phuc-tap/
 >
 > https://howkteam.vn/course/cau-truc-du-lieu-va-giai-thuat/do-phuc-tap-thoi-gian-bigo-la-gi-4270
-### 1. Độ phức tạp thuật toán là gì?
-- Nói ngắn gọn thì, mỗi một bài toán có giới hạn/kích thước của đầu vào. Độ phức tạp thuật toán là 1 khái niệm/định nghĩa/định lượng tương đối thể hiện số phép toán của giải thuật so với kích thước của đầu vào.
-- Ví dụ cho dễ hiểu:
+
+Đánh giá một thuật toán
+Độ phức tạp về thời gian (time complexity) và độ phức tạp về không gian (space complexity) là 2 yếu tố để quyết định một thuật toán có thích hợp để giải quyết một bài toán nào đó hay không.
+Trong đó độ phức tạp về thời gian được quan tâm nhiều hơn khi các bạn tham gia vào các contest về lập trình.
+Độ phức tạp thời gian là thời gian mà thuật toán của bạn cần để thực thi, nó là một hàm của input, tức là dựa vào đầu vào ta sẽ tính toán số lượng thao tác mà thuật toán cần thực thi từ đó tính ra được thời gian thực thi của thuật toán.
+
+## TÍNH TOÁN ĐỘ PHỨC TẠP VÀ KÍ HIỆU BIG O
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/ba7be9e2-9d28-457c-9f68-d63dd3e8356f)
+
+Ví dụ mô tả độ phức tạp của thuật toán là O(f(n)): O(n), O(1), O(log(n)), O(nlog(n)), O(n2), O(n!)...
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/b7a06d77-1e09-4fd4-a001-30f22c6a85b6)
+
+Trong trường hợp hàm f(n) có chứa hằng số và các bậc khác nhau của n thì ta chọn bậc cao nhất để đại diện cho hàm f(n) => O(n2 +2n +3) được thay bằng O(n2)
+
+### Độ phức tạp của các phép toán và nhập xuất là 1 
+![image](https://github.com/minchangggg/DSA/assets/125820144/d3cea0f3-213f-4ee4-8d91-230d5b4e71d2)
+
+### Độ phức tạp của vòng lặp chính là số lượng của lặp của vòng lặp nhân với độ phức tạp của code bên trong vòng lặp.
+
+`Các code sau đều có độ phức tạp là O(n)`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/eaa1dcb2-ddde-4da8-843c-932284a3295c)
+
+`Code sau có độ phức tạp là O(nlogn)`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/f8e2b1fe-2060-4960-86ee-e6210920a9fc)
+
+
+
+
+
+
+
+
   
       a. Một mảng có n phần tử. Hãy tìm phần tử lớn nhất trong mảng
       Bài này tất nhiên chẳng có cách nào khác, bạn sẽ duyệt toàn bộ phần tử trong mảng (duyêt qua mảng n lần) để tìm ra phần tử lớn nhất. Độ phức tạp thuật toán ở đây có thể hiểu là O(n) (chạy qua n phần tử để tìm kiếm)
