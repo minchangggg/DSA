@@ -7,7 +7,7 @@
 
 `Constraints`
 
-    1<=N<=1000; 0<=A[i], X<=10^3;
+    1<=N<=1000; -10^3<=A[i]<=10^3
 
 `Output Format`
 
