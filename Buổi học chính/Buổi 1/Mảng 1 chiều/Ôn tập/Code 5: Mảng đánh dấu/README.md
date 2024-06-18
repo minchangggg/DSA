@@ -37,7 +37,3 @@ Code
 Output : 
 
 > So luong phan tu khac nhau : 6
-
-Output : 
-
-> So luong phan tu khac nhau : 6
