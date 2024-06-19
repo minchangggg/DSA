@@ -1,6 +1,6 @@
 # Lý Thuyết Mảng Đánh Dấu
 
-## Bài Toán : Cho mảng A[] gồm N phần tử là các số nguyên trong đoạn [0, 106]. Hãy đếm các giá trị khác nhau trong mảng ? 
+## Bài Toán : Cho mảng A[] gồm N phần tử là các số nguyên trong đoạn [0, 10^6]. Hãy đếm các giá trị khác nhau trong mảng ? 
 - Để giải quyết bài toán trên bạn có thể dùng 1 mảng đánh dấu đủ lớn để đánh dấu sự xuất các giá trị trong mảng, vì các phần tử trong mảng đều nằm trong đoạn từ [0, 10^6] nên chỉ cần dùng một mảng số nguyên mà chỉ số của nó có thể đánh dấu được hết các giá trị [0, 106] là giải quyết được bài toán.
 - Ý tưởng ở đây đó là bạn sẽ sử dụng chỉ số của mảng đánh dấu để đánh dấu giá trị tương ứng với chỉ số đó đã xuất hiện trong mảng. Ban đầu tất cả các phần tử trong mảng đánh dấu có giá trị là 0, khi bạn gặp một giá trị trong mảng thì sẽ chuyển phần tử trong mảng đánh dấu tại chỉ số đó thành 1.
 - Ví dụ mảng đánh dấu là mark[] và khi gặp phần tử trong mảng A[] là 3 thì mark[3] = 1
