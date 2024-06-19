@@ -4,11 +4,6 @@ using namespace std;
 int mark[1000001]; 
 
 int main() {
-    #ifndef HAHA
-    freopen ("input.txt", "r", stdin);
-    freopen ("output.txt", "w", stdout);
-    #endif
-
     int n = 10;
     int a[10] = {3, 1, 3, 0, 2, 4, 1, 14, 12, 7};
 
