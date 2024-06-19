@@ -37,3 +37,10 @@ Code
 Output : 
 
 > So luong phan tu khac nhau : 6
+
+# Chú ý khi sử dụng mảng đánh dấu
+
+- Mảng đánh dấu không thể sử dụng được với số âm, vì chỉ số trong mảng không thể là số âm
+- Mảng đánh dấu không sử dụng được khi giá trị cần đánh dấu vượt chỉ số của mảng mà bạn có thể khai báo
+- Thông thường bạn chỉ áp dụng được kỹ thuật này khi các phần tử trong mảng có giá trị trong đoạn [0, 107]
+- Chú ý sử dụng mảng đánh dấu đủ lớn để không lỗi bộ nhớ, ví dụ bạn cần đánh dấu các phần tử trong đoạn [0, 103] thì mảng cỡ 1001 là đủ rồi, hoặc có thể lớn hơn
