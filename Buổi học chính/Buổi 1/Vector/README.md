@@ -1,4 +1,4 @@
-# [STL]. Vector Trong C++
+# I. [STL] Vector Trong C++
 Vector trong C++ là một container kiểu mảng động, tương tự như mảng nhưng linh hoạt và hỗ trợ nhiều hàm có sẵn. 
 ## 1. Vector Và Khai Báo Vector
 - Vector là một container có tính chất tương tự như 1 mảng động, nó tự thay đổi kích thước khi bạn thêm hay xóa các phần tử trong mảng.
@@ -217,3 +217,147 @@ Mỗi vector có thể sử dụng như mảng 1 chiều, nếu muốn sử dụ
             }
             return 0;
         }
+
+# II. Iterator
+## 1. Iterator Và Vector 
+- Có 4 iterator chính trong vector mà bạn cần nắm được : 
+        + begin() : Iterator trỏ tới phần tử đầu tiên trong vector
+        + end() : Iterator trỏ tới phần tử sau phần tử cuối cùng trong vector
+        + rbegin() : Iterator ngược trỏ tới phần tử cuối cùng trong vector
+        + rend() : Iterator ngược trỏ tới phần tử trước phần tử đầu tiên trong vector
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/9513bef9-a178-499f-9eb0-b1a1c3c901fd)
+
+- Cú pháp khai báo iterator : 
+
+`vector<data_type>::iterator iterator_name;`
+
+`vector<data_type>reverse_iterator iterator_name;`
+
+- Tương tự như con trỏ thì khi bạn muốn truy cập vào phần tử mà iterator trong vector đang trỏ tới bạn cần giải tham chiếu bằng toán tử * 
+
+- Ví dụ 1 : 
+
+                #include <iostream>
+                #include <vector>
+                
+                using namespace std;
+                
+                int main(){
+                    vector<int> v = {28, 100, 30, 20, 15};
+                    vector<int>::iterator it1 = v.begin();
+                    cout << "v[0] = " << *it1 << endl;
+                    vector<int>::reverse_iterator it2 = v.rbegin();
+                    cout << "v[4] = " << *it2 << endl;
+                    return 0;
+                }
+  
+> Output : 
+>
+> v[0] = 28
+> v[4] = 15
+
+- Ví dụ 2 : Duyệt vector bằng iterator 
+
+                #include <iostream>
+                #include <vector>
+                
+                using namespace std;
+                
+                int main(){
+                    vector<int> v = {28, 100, 30, 20, 15};
+                    cout << "Duyet vector bang iterator : \n";
+                    for(vector<int>::iterator it = v.begin(); it != v.end(); it++){
+                        cout << *it << " ";
+                    }
+                    cout << "\nDuyet nguoc vector bang iterator nguoc : \n";
+                    for(vector<int>::reverse_iterator it = v.rbegin(); it != v.rend(); ++it){
+                        cout << *it << ' ';
+                    }
+                    return 0;
+                }
+  
+> Output : 
+> 
+> Duyet vector bang iterator : 
+>
+> 28 100 30 20 15 
+>
+> Duyet nguoc vector bang iterator nguoc : 
+>
+> 15 20 30 100 28
+
+Chú ý : Bạn có thể thay vector::iterator hay vector::reverse_iterator bằng kiểu auto, bạn có thể tham khảo thêm về kiểu auto C++ tại đây
+
+- Ví dụ 3 : Iterator trỏ tới phần tử có chỉ số x trong mảng là begin() + x
+
+                #include <iostream>
+                #include <vector>
+                
+                using namespace std;
+                
+                int main(){
+                    vector<int> v = {28, 100, 30, 20, 15};
+                    vector<int>::iterator it1 = v.begin() + 2;
+                    cout << "v[2] = " << *it1 << endl;
+                    auto it2 = v.begin() + 4;
+                    cout << "v[4] = " << *it2 << endl;
+                }
+  
+> Output : 
+> 
+> v[2] = 30
+>
+> v[4] = 15
+
+## 2. Các Toán Tử Với Iterator 
+- Iterator hỗ trợ các toán tử ++, -- hoặc toán tử toán học để bạn có thể di chuyển iterator qua lại các phần tử trong vector.
+- Ví dụ 1 : 
+
+                #include <iostream>
+                #include <vector>
+                
+                using namespace std;
+                
+                int main(){
+                    vector<int> v = {100, 200, 300, 400, 500};
+                    vector<int>::iterator it = v.begin();
+                    cout << "v[0] = " << *it << endl;
+                    ++it; // it1 => v[1]
+                    cout << "v[1] = " << *it << endl;
+                    it += 2; // it1 => v[3]
+                    cout << "v[3] = " << *it << endl;
+                    --it; // it1 => v[2]
+                    cout << "v[2] = " << *it << endl;
+                }
+  
+> Output : 
+> 
+> v[0] = 100
+>
+> v[1] = 200
+>
+> v[3] = 400
+>
+> v[2] = 300
+
+- Ví dụ 2 : Bạn cũng có thể tính khoảng cách giữa 2 iterator hoặc tìm ra chỉ số của phần tử mà iterator đang trỏ tới bằng cách sử dụng toán tử hoặc dùng hàm distance()
+
+                #include <iostream>
+                #include <vector>
+                
+                using namespace std;
+                
+                int main(){
+                    vector<int> v = {100, 200, 300, 400, 500};
+                    vector<int>::iterator it = v.begin();
+                    it += 3;
+                    cout << "Chi so cua phan tu ma it dang tro toi : " << it - v.begin() << endl;
+                    cout << "Chi so cua phan tu ma it dang tro toi : " << distance(v.begin(), it) << endl;
+                }
+  
+> Output : 
+>
+> Chi so cua phan tu ma it dang tro toi : 3
+>
+> Chi so cua phan tu ma it dang tro toi : 3
