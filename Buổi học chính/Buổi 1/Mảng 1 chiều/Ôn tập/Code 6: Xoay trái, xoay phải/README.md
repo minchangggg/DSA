@@ -32,3 +32,9 @@
 `Sample Output 0`
   
     99 82 16 66 96 73 11 13
+    
+![image](https://github.com/minchangggg/DSA/assets/125820144/89b4a1f8-6d99-469b-8cad-a61c920e131d)
+
+## Cho mảng A[] gồm N phần tử, hãy dịch các phần tử trong mảng sang K vị trí, khi dịch phải thì phần tử cuối cùng của mảng sẽ xoay vòng trở thành phần tử đầu tiên.
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/0b5034ea-e29e-48c5-aaed-d22f663ceacb)
