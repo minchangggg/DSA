@@ -29,11 +29,6 @@ Pair trong C++ là một kiểu container lưu trữ dữ liệu theo cặp đem
 - Thành phần first và second của pair có thể là các kiểu dữ liệu thường gặp như int, float, double, long long,char... hay cũng có thể chính là một pair khác. Ngoài ra nó còn có thể là các kiểu phức tạp hơn như string, vector<>, set, object... tuy nhiên nhưng kiến thức này bạn chưa gặp nên tạm thời bỏ qua.
 
 - Ví dụ 1: Các kiểu khai báo pair
-
-      #include <iostream>
-      #include <utility>
-      
-      using namespace std;
       
       int main(){
           pair<int, int> a = make_pair(28, 100);
@@ -52,13 +47,10 @@ Pair trong C++ là một kiểu container lưu trữ dữ liệu theo cặp đem
 > 28 100
 >
 > @ 28
+> 
 > % $
 
 - Ví dụ 2 : pair lồng nhau
-
-      #include <iostream>
-      #include <utility>
-      using namespace std;
       
       int main(){
           pair<int, pair<char, int> > p1 = make_pair(28, make_pair('@', 100));
@@ -85,11 +77,6 @@ Pair trong C++ là một kiểu container lưu trữ dữ liệu theo cặp đem
 - Bạn có thể sử dụng các toán tử so sánh, gán với kiểu pair này.
 - Ví dụ 1 . Toán gán sẽ gán giá trị của first và second của 2 pair cho nhau
 
-      #include <iostream>
-      #include <utility>
-      
-      using namespace std;
-      
       int main(){
           pair<string, int> p = make_pair("28tech", 28);
           pair<string, int> p1 = p;
