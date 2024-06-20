@@ -12,7 +12,9 @@ int main(){
     
     set <int> se;
     for (int x: a) {
-        if (se.find(x) != se.end()) cout << x << ' ';
-        se.insert(x);
+        if (se.find(x) == se.end()) {
+            cout << x << ' ';
+            se.insert(x);
+        }
     }
 }
