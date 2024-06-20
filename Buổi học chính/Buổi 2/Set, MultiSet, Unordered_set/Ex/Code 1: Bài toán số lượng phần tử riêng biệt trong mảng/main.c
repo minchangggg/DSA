@@ -8,13 +8,12 @@ int main(){
 
     int n; cin >> n; 
     int a[n];
-    for (int &x : a) cin >> x;
     
     set <int> se;
-    for (int x: a) {
-        if (se.find(x) == se.end()) {
-            cout << x << ' ';
-            se.insert(x);
-        }
+    for (int x : a) {
+        cin >> x;
+        se.insert(x);
     }
+
+    cout << se.size() << endl;
 }
