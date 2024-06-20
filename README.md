@@ -18,6 +18,8 @@ Ví dụ mô tả độ phức tạp của thuật toán là O(f(n)): O(n), O(1)
 
 Trong trường hợp hàm f(n) có chứa hằng số và các bậc khác nhau của n thì ta chọn bậc cao nhất để đại diện cho hàm f(n) => O(n2 +2n +3) được thay bằng O(n2)
 
+![image](https://github.com/minchangggg/DSA/assets/125820144/f0f42eb2-484d-4642-808b-ab38419bbf57)
+
 ### Độ phức tạp của các phép toán và nhập xuất là 1 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/d3cea0f3-213f-4ee4-8d91-230d5b4e71d2)
 
@@ -30,12 +32,6 @@ Trong trường hợp hàm f(n) có chứa hằng số và các bậc khác nhau
 `Code sau có độ phức tạp là O(nlogn)`
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/f8e2b1fe-2060-4960-86ee-e6210920a9fc)
-
-
-
-
-
-
 
 
   
