@@ -1,7 +1,8 @@
 > https://hackmd.io/@2SchoolGuideline/H1HY_VKbp#M%E1%BA%A3ng-c%E1%BB%99ng-d%E1%BB%93n-v%C3%A0-m%E1%BA%A3ng-hi%E1%BB%87u-Prefix-sum-array-and-difference-array
 
-![image](https://github.com/minchangggg/DSA/assets/125820144/33900f9e-bbe9-40ea-847c-d1176abe2d6e)
-# Mảng cộng dồn - Prefix sum array
+
+## I Mảng cộng dồn - Prefix sum array
+
 Mảng cộng dồn (tiền tố) là một mảng giúp các bạn có thể nhanh chóng tính toán tổng các phần tử trong các đoạn liên tiếp từ chỉ số left tới chỉ số right.
 
 ## 1. Mảng cộng dồn trên mảng một chiều
@@ -229,6 +230,7 @@ Trên Q dòng tiếp theo, mỗi dòng chứa hai số nguyên dương l v
 Đầu tiên ta tính giá trị của mảng 2 chiều 𝑝𝑟𝑒𝑓 kích thước 𝑁×𝑀 trong 𝑂(𝑁×𝑀) và sau đó với 𝑄 truy vấn ta tính mỗi truy vấn trong 𝑂(1) , từ đó có độ phức tạp của thuật toán là 𝑂(𝑁×𝑀 + 𝑄) .
  
 Code 1:
+       
                 void Calc(){
                     for (int i = 1; i <= n; ++i){
                         for (int j = 1; j <= m; ++j) {
@@ -244,3 +246,98 @@ Code 1:
 Code 2: 
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/c61e4574-a02f-4276-b4e4-e77523c78b49)
+
+### d. Ví dụ
+`Input`
+
+Dòng đầu tiên chứa ba số nguyên dương m,n và Q - kích thước ma trận và số truy vấn. 
+
+Trên m dòng tiếp theo, dòng thứ i chứa n số nguyên 𝑎(𝑖,1), 𝑎(𝑖,2), … ,𝑎(𝑖,𝑛) phân tách nhau bởi dấu cách - thể hiện hàng i của ma trận. 
+
+Trên Q dòng tiếp theo, mỗi dòng chứa bốn số nguyên dương 𝑥1, 𝑦1, 𝑥2, 𝑦2 thể hiện một truy vấn.
+
+`Constraints`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/51c422f1-277e-48a6-bf7e-d72c09801747)
+
+`Sample Input`
+
+5 4 3
+
+1 3 2 4
+
+5 7 8 9
+
+1 4 2 5
+
+2 4 -8 9
+
+-5 -1 -2 -3
+
+1 1 3 3
+
+2 3 5 4
+
+1 1 5 4
+
+`Sample Output`
+
+33
+
+20
+
+47
+
+**Code 1: dùng vecto**
+
+                #include <bits/stdc++.h>
+                using namespace std;
+                using ll = long long;
+                
+                ll query(int x1, int y1, int x2, int y2, vector < vector < long long > >& sum) {
+                    return sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1];
+                }
+                
+                int main(){
+                    #ifndef HAHA
+                    freopen ("input.txt", "r", stdin);
+                    freopen ("output.txt", "w", stdout);
+                    #endif
+                    
+                    int m, n, q; cin >> m >> n >> q;
+                    vector <vector<ll>> sum(m + 1, vector <ll> (n + 1, 0));
+                
+                    for (int i = 1; i <= m; ++i) {
+                        for (int j = 1; j <= n; ++j) {
+                            int x; cin >> x;
+                            sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i - 1][j - 1] + x;
+                        }
+                    }
+                
+                    while (q--) {
+                        int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
+                        cout << query(x1, y1, x2, y2, sum) << endl;
+                    }
+                    
+                    return 0;
+                }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/48d5ff1b-ed95-4dde-bef0-17ff9495b170)
+
+**Code 2: dùng mảng 2 chiều**
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/865b7888-5083-4a7b-bc0e-f1bf1269d78e)
+
+## II Mảng hiệu - difference array
+### Đặt vấn đề
+Cho mảng A[ ] có N phần tử, có Q thao tác mỗi thao tác sẽ tăng các phần tử trong đoạn từ chỉ số L tới R của mảng A[ ] lên K đơn vị. Hãy xác định mảng A[ ] sau Q thao tác.
+
+### Cách tiếp cận 1:
+![image](https://github.com/minchangggg/DSA/assets/125820144/d981aaab-53f1-4240-ba57-479efeb4544d)
+
+### Cách tiếp cận 2:
+Cũng với mảng 𝐴, ta có thể xây dựng thêm một mảng 𝑑𝑖ff(𝐴) theo quy tắc như sau:
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/025f0bfe-5414-4746-bee7-e3e1a50c2c08)
+
+Mảng diff(A) được gọi là mảng hiệu (difference array) của A.
