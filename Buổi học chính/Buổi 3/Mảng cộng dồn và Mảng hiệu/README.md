@@ -53,7 +53,7 @@ Mảng cộng dồn (tiền tố) là một mảng giúp các bạn có thể nh
 
 Đầu tiên ta tính giá trị của mảng 1 chiều 𝑝𝑟𝑒[i] kích thước 𝑁 trong 𝑂(𝑁) và sau đó với 𝑄 truy vấn ta tính mỗi truy vấn trong 𝑂(1), từ đó có độ phức tạp của thuật toán là 𝑂(𝑁+𝑄) .
 
-### d. Code 
+### d. Ví dụ  
 Cho một dãy số A gồm 𝑛 phần tử 𝑎1, 𝑎2, … , 𝑎𝑛. Cần trả lời 𝑄 truy vấn, mỗi truy vấn có dạng (l,r), yêu cầu đưa ra tổng của các số có vị trí thuộc đoạn [l,r] của dãy số.
 
 `Input Format`
@@ -165,3 +165,82 @@ Trên Q dòng tiếp theo, mỗi dòng chứa hai số nguyên dương l v
 
 ## 2. Mảng cộng dồn trên mảng hai chiều
 ### a. Bài toán ví dụ
+![image](https://github.com/minchangggg/DSA/assets/125820144/0a385746-a7a5-4233-95af-f9e153d55ab7)
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/fa71d66e-4506-4fda-811e-9d1967b1e68e)
+
+`Input mẫu`
+
+3 4
+
+4 2 1 0
+
+6 9 7 1
+
+9 6 7 3
+
+3
+
+1 1 2 3
+
+1 4 3 4
+
+2 2 3 2
+
+`Output mẫu:`
+
+29
+
+4
+
+15
+
+### b. Cách tiếp cận 1: Duyệt trâu 
+- Ta duyệt từ vị trí 𝑥1 𝑦1 đến vị trí 𝑥2 𝑦2 để tính 𝑆 cho mỗi truy vấn và in ra kết quả. 
+- Độ phức tạp của thuật toán: Với mỗi truy vấn trong 𝑄 truy vấn, ta duyệt qua mảng 2 chiều 𝐴 kích thước 𝑁 × 𝑀 , từ đó có độ phức tạp của thuật toán là 𝑂 ( 𝑁 × 𝑀 × 𝑄 ) .
+- VD:
+  
+                long long Solve(int x1, int x2, int y1, int y2){
+                    long long sum = 0;
+                    for (int i = x1; i <= x2; ++i){
+                        for (int j = y1; j <= y2; ++j) sum += A[i][j];
+                    }
+                    return sum;
+                }
+
+### c. Cách tiếp cận 2: Mảng cộng dồn 2 chiều
+![image](https://github.com/minchangggg/DSA/assets/125820144/27e41268-2cb2-46f2-aeb8-78607fcc5c59)
+
+`Xây dựng mảng cộng dồn 2 chiều`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/4736c1eb-20f1-4d88-91c1-defcc8adcd0c)
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/0920212d-a825-479f-804f-d112d75a9d86)
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/360339a6-88ff-4d07-abd2-0363a4b200a1)
+
+`Sử dụng mảng cộng dồn 2 chiều để tính truy vấn`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/30ce7276-5e32-4b23-a418-1b3d14bce7ac)
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/44f52ff8-9ba3-4c8b-8e2d-983acd87da56)
+
+`Độ phức tạp của thuật toán`
+Đầu tiên ta tính giá trị của mảng 2 chiều 𝑝𝑟𝑒𝑓 kích thước 𝑁×𝑀 trong 𝑂(𝑁×𝑀) và sau đó với 𝑄 truy vấn ta tính mỗi truy vấn trong 𝑂(1) , từ đó có độ phức tạp của thuật toán là 𝑂(𝑁×𝑀 + 𝑄) .
+ 
+Code 1:
+                void Calc(){
+                    for (int i = 1; i <= n; ++i){
+                        for (int j = 1; j <= m; ++j) {
+                            pref[i][j] = pref[i - 1][j] + pref[i][j - 1] - pref[i - 1][j - 1] + A[i][j];
+                        }
+                    }
+                }
+                
+                long long Solve(int x1, int x2, int y1, int y2){
+                    return pref[x2][y2] - pref[x1 - 1][y2] - pref[x2][y1 - 1] + pref[x1 - 1][y1 - 1];
+                }
+                
+Code 2: 
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/c61e4574-a02f-4276-b4e4-e77523c78b49)
