@@ -288,7 +288,7 @@ Trên Q dòng tiếp theo, mỗi dòng chứa bốn số nguyên dương 
 
 47
 
-**Code 1: dùng vecto**
+**Code 1: dùng vector**
 
                 #include <bits/stdc++.h>
                 using namespace std;
@@ -332,12 +332,92 @@ Trên Q dòng tiếp theo, mỗi dòng chứa bốn số nguyên dương 
 ### Đặt vấn đề
 Cho mảng A[ ] có N phần tử, có Q thao tác mỗi thao tác sẽ tăng các phần tử trong đoạn từ chỉ số L tới R của mảng A[ ] lên K đơn vị. Hãy xác định mảng A[ ] sau Q thao tác.
 
+`Input Format`
+
+Dòng đầu tiên là N và Q (số truy vấn)
+
+Dòng thứ hai chứa N phần tử trong mảng A[]
+
+Trên Q dòng tiếp theo, mỗi dòng là 3 số L, R, K
+
+`Constraints`
+
+1 <= N <= 10^6
+
+1 <= Q <= 10^5
+
+0 <= L <= R <= N-1; 0 <= A[i], K <= 1000
+
+`Output Format`
+
+In ra mảng sau Q thao tác
+
+`Sample Input`
+
+5 3
+
+1 2 3 4 5
+
+1 5
+
+2 4
+
+3 3
+
+`Sample Output`
+
+15
+
+9
+
+3
+
 ### Cách tiếp cận 1:
 ![image](https://github.com/minchangggg/DSA/assets/125820144/d981aaab-53f1-4240-ba57-479efeb4544d)
 
 ### Cách tiếp cận 2:
-Cũng với mảng 𝐴, ta có thể xây dựng thêm một mảng 𝑑𝑖ff(𝐴) theo quy tắc như sau:
+![image](https://github.com/minchangggg/DSA/assets/125820144/307494d6-9d4a-40c6-8734-b6c5b4af864e)
 
-![image](https://github.com/minchangggg/DSA/assets/125820144/025f0bfe-5414-4746-bee7-e3e1a50c2c08)
+![image](https://github.com/minchangggg/DSA/assets/125820144/4208beaa-a01f-4884-a1c2-7cf5dc2905c6)
 
-Mảng diff(A) được gọi là mảng hiệu (difference array) của A.
+![image](https://github.com/minchangggg/DSA/assets/125820144/d677176a-671d-4e4c-b1e5-7c8a3d6b078d)
+
+### Code
+
+                #include <bits/stdc++.h>
+                using namespace std;
+                using ll = long long;
+                
+                int main(){
+                    #ifndef HAHA
+                    freopen ("input.txt", "r", stdin);
+                    freopen ("output.txt", "w", stdout);
+                    #endif
+                    
+                    int n, q; cin >> n >> q;
+                    int a[n]; for(int &x : a) cin >> x;
+                
+                    int D[n + 2]; D[0] = a[0];
+                    for(int i = 1; i < n; i++){
+                        D[i] = a[i] - a[i - 1];
+                    }
+                
+                    while(q--){
+                        int l, r, k; cin >> l >> r >> k;
+                        D[l] += k;
+                        D[r + 1] -= k;
+                    }
+                
+                    ll F[n]; F[0] = D[0];
+                    for(int i = 1; i < n; i++){
+                        F[i] = F[i-1] + D[i];
+                    }
+                
+                    for(int i = 0; i < n; i++){
+                        cout << F[i] << ' ';
+                    }
+                    
+                    return 0;
+                }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/0fff332e-bc5a-4bf4-9061-ae26b2eb5198)
