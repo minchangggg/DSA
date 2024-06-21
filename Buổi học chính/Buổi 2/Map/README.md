@@ -35,27 +35,12 @@ Map là một container lưu trữ dữ liệu tương tự như một từ đi�
 
 Lưu ý là khi thêm 1 phần tử vào trong map thì bạn cần thêm 1 cặp (pair) key - value vào map. Và nếu bạn thêm các cặp mà key đã tồn tại trong map thì map sẽ không thêm vào nữa để đảm bảo tính chất.
 
-**Ví dụ 1:** 
-
-        #include <iostream>
-        #include <algorithm>
-        #include <map>
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2)); // ok
-            mp.insert(make_pair(1, 5)); // not ok
-            mp.insert(make_pair(2, 4)); // ok
-            mp.insert(make_pair(2, 5)); // not ok
-            mp.insert(make_pair(2, 1)); // not ok
-            mp.insert(make_pair(3, 1)); // ok
-            cout << mp.size() << endl; // 3
-        }
-        
+### Hàm insert
 Ngoài cách sử dụng hàm insert bạn còn có thể sử dụng cú pháp map[key] = value để thêm cặp key, value vào trong map. Tuy nhiên nếu key đã xuất hiện trong map thì câu lệnh này sẽ thay đổi giá trị value của key đó, bạn cũng có thể truy xuất giá tri của value thông qua key bằng cú pháp map[key].
 
-**Ví dụ 2:**
+![image](https://github.com/minchangggg/DSA/assets/125820144/2c88e948-6ff4-4f67-ad11-240e3a8e0639)
+
+**Ví dụ:**
 
       #include <iostream>
       #include <algorithm>
@@ -85,58 +70,20 @@ Ngoài cách sử dụng hàm insert bạn còn có thể sử dụng cú pháp 
 >
 > Value tuong ung cua key 5 : 10
 
+### Hàm size
+![image](https://github.com/minchangggg/DSA/assets/125820144/c5e41c07-39e2-4d80-b463-8bff39c3c100)
+
+### Hàm empty và clear
+![image](https://github.com/minchangggg/DSA/assets/125820144/ff44ef98-c3a0-466e-bea8-bdc48488de13)
+
 ## 3. Duyệt map
 ### Cách 1 : Duyệt map bằng range based for loop
 
-        #include <iostream>
-        #include <algorithm>
-        #include <map>
-        
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2)); // ok
-            mp.insert(make_pair(2, 4)); // ok
-            mp.insert(make_pair(3, 5)); // ok
-            for(pair<int, int> it : mp){
-                cout << "key = " << it.first << ", value = " << it.second << endl;
-            }
-        }
-
-> Output : 
-> 
-> key = 1, value = 2
->
-> key = 2, value = 4
->
-> key = 3, value = 5
+![image](https://github.com/minchangggg/DSA/assets/125820144/26499fed-1e76-46e4-a772-6578dbdebd76)
 
 ### Cách 2 : Duyệt map bằng iterator
 
-        #include <iostream>
-        #include <algorithm>
-        #include <map>
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2)); // ok
-            mp.insert(make_pair(2, 4)); // ok
-            mp.insert(make_pair(3, 5)); // ok
-            map<int,int>::iterator it;
-            for(it = mp.begin(); it != mp.end(); it++){
-                cout << "key = " << (*it).first << ", value = " << (*it).second << endl; 
-            }
-        }
-
-> Output : 
-> 
-> key = 1, value = 2
->
-> key = 2, value = 4
->
-> key = 3, value = 5
+![image](https://github.com/minchangggg/DSA/assets/125820144/81fb7866-9e00-4e63-886c-20c6f874c5bd)
 
 ### Duyệt ngược map : 
 Khi duyệt ngược từ cuối của map bạn có 2 cách đó là sử dụng reverse_iterator hoặc bạn có thể đưa các phần tử trong map lưu vào 1 vector rồi sau đó in ngược lại từ cuối của vector.
@@ -192,141 +139,29 @@ Nếu bạn muốn truy cập vào **phần tử đầu tiên** trong map thì t
 > 3 5
 
 # II. [STL] Các Hàm Thông Dụng Của Map Trong C++
-Hàm find()
-Hàm count()
-Hàm erase()
-Hàm lower_bound()
-Hàm upper_bound()
+`Hàm find()`
+
+`Hàm count()`
+
+`Hàm erase()`
+
+`Hàm lower_bound()`
+
+`Hàm upper_bound()`
 
 ## 1. Hàm find()
-- Hàm find() được sử dụng để tìm giá trị key trong map, độ phức tạp của hàm này là O(logN). 
-- Giá trị trả về của hàm find() là iterator, nếu giá trị mà bạn tìm kiếm xuất hiện trong danh sách tập key của map thì hàm này sẽ trả về iterator tới cặp phần tử có key tương ứng, trường hợp key bạn tìm kiếm không xuất hiện trong map thì hàm trả về iterator end() của map.
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/bc4bb43d-755a-49e0-9ff3-deb9b4e77279)
+
 - Hàm này có độ phức tạp rất tốt nên bạn có thể sử dụng map trong các bài toán tìm kiếm nhanh.
-- Ví dụ: 
-
-        #include <iostream>
-        #include <map>
-        
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2));
-            mp.insert(make_pair(2, 3));
-            mp.insert(make_pair(3, 5));
-            map<int, int>::iterator it1 = mp.find(2);
-            map<int, int>::iterator it2 = mp.find(5);
-            if(it1 != mp.end()){
-                cout << "FOUND\n";
-            }
-            else cout << "NOT FOUND\n";
-            if(it2 != mp.end()){
-                cout << "FOUND\n";
-            }
-            else cout << "NOT FOUND\n";
-            return 0;
-        }
-  
-> Output : 
-> 
-> FOUND
->
-> NOT FOUND
-
 ## 2. Hàm count()
-- Hàm count() trả về số lần xuất hiện của 1 giá trị mà bạn tìm kiếm trong tập các key. Và vì mỗi key trong map chỉ xuất hiện 1 lần nên hàm này trả về 1 nếu key bạn tìm kiếm xuất hiện trong map, ngược lại trả về 0.
+![image](https://github.com/minchangggg/DSA/assets/125820144/b5531939-90a6-46dc-8371-c6602fab8967)
+
 - Độ phức tạp là O(logN) và dễ dùng hơn hàm find() nên bạn có thể sử dụng hàm này để thay thế cho hàm find() trong việc tìm kiếm.
-- Ví dụ:
-
-        #include <iostream>
-        #include <map>
-        
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2));
-            mp.insert(make_pair(2, 3));
-            mp.insert(make_pair(3, 5));
-            if(mp.count(2) != 0){
-                cout << "FOUND\n";
-            }
-            else cout << "NOT FOUND\n";
-            if(mp.count(4) == 1){
-                cout << "FOUND\n";
-            }
-            else cout << "NOT FOUND\n";
-            return 0;
-        }
-
-> Output : 
-> 
-> FOUND
->
-> NOT FOUND
-
 ## 3. Hàm erase()
-- Hàm erase() có chức năng xóa 1 cặp phần tử trong map thông qua key, có 2 cách sử dụng hàm này là xóa thông qua giá trị hoặc xóa thông qua iterator.
-- Độ phức tạp của hàm này là O(logN) nhưng khi sử dụng bạn cần hết sức lưu ý nếu bạn xóa 1 key không xuất hiện trong map sẽ gây lỗi.
-- Ví dụ 1 : Xóa thông qua giá trị
-        
-        #include <iostream>
-        #include <map>
-        
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2));
-            mp.insert(make_pair(2, 3));
-            mp.insert(make_pair(3, 5));
-            if(mp.count(2)){
-                mp.erase(2);
-            }
-            cout << "Map sau khi xoa key 2 : \n";
-            for(pair<int, int> it : mp){
-                cout << it.first << " " << it.second << endl;
-            }
-            return 0;
-        }
+![image](https://github.com/minchangggg/DSA/assets/125820144/562f5171-af01-41c7-a0e5-d2188c79748e)
 
-> Output :
-> 
-> Map sau khi xoa key 2 : 
->
-> 1 2
->
-> 3 5
-
-- Ví dụ 2: Xóa thông qua iterator
-
-        #include <iostream>
-        #include <map>
-        using namespace std;
-        
-        int main(){
-            map<int, int> mp;
-            mp.insert(make_pair(1, 2));
-            mp.insert(make_pair(2, 3));
-            mp.insert(make_pair(3, 5));
-            map<int, int>::iterator it = mp.find(2);
-            if(it != mp.end()){
-                mp.erase(it);
-            }
-            cout << "Map sau khi xoa key 2 : \n";
-            for(pair<int, int> it : mp){
-                cout << it.first << " " << it.second << endl;
-            }
-            return 0;
-        }
-
-> Output : 
-> 
-> Map sau khi xoa key 2 : 
->
-> 1 2
->
-> 3 5
+![image](https://github.com/minchangggg/DSA/assets/125820144/4920b440-2af3-4adf-b90d-1d1ce60dd0f0)
 
 ## 4. Hàm lower_bound()
 - Hàm lower_bound() ngoài sử dụng với mảng hay vector đã được sắp xếp thì còn có thể áp dụng với set & map. Hàm này trả về iterator tới giá trị nhỏ nhất trong map có key lớn hơn hoặc bằng giá trị tìm kiếm. 
