@@ -92,7 +92,76 @@ Trên Q dòng tiếp theo, mỗi dòng chứa hai số nguyên dương l v
 
 3
 
+**Code 1:** đối với `1 <= l < r <=n`
+
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        using ll = long long;
+        
+        ll query(int l, int r, vector <long long> sum) {
+            return sum[r] - sum[l - 1];
+        }
+        
+        int main(){
+            #ifndef HAHA
+            freopen ("input.txt", "r", stdin);
+            freopen ("output.txt", "w", stdout);
+            #endif
+            
+            int n, q; cin >> n >> q;
+            ll A[n]; vector <ll> sum(n + 1, 0);
+            
+            for (int i = 1; i <= n; ++i) {
+                cin >> A[i];
+                sum[i] = sum[i - 1] + A[i];
+            }
+        	
+            while (q--) {
+                int l, r; cin >> l >> r;
+                cout << query(l, r, sum) << endl;
+            }
+        
+            return 0;
+        }
+
 ![image](https://github.com/minchangggg/DSA/assets/125820144/dacdac94-ffa0-49ac-a745-6ef8f5d66ba0)
 
-## 2. Mảng cộng dồn trên mảng một chiều
+**Code 2:** đối với `0 <= l < r <n`
+
+        #include <bits/stdc++.h>
+        #define query( l, r, sum) sum[r] - sum[l - 1]
+    
+        using namespace std;
+        using ll = long long;
+        
+        int main(){
+            #ifndef HAHA
+            freopen ("input.txt", "r", stdin);
+            freopen ("output.txt", "w", stdout);
+            #endif
+            
+            int n, q; cin >> n >> q; 
+            ll a[n], sum[n]; 
+            
+            for (int i = 0; i < n; i++) {
+                cin >> a[i];
+                if (i==0) sum[0] = a[0]; 
+                else sum[i] = sum[i-1] + a[i];
+            }
+        	
+            while (q--) { 
+                int l, r; // 0 <= l < r < n
+                cin >> l >> r;
+                
+                if (l == 0) cout << sum[r] << endl;
+                else cout << query(l, r, sum) << endl;
+            }
+            
+            return 0;
+        }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/40343308-7bb0-4d25-bbd4-8084d76edb30)
+
+## 2. Mảng cộng dồn trên mảng hai chiều
 ### a. Bài toán ví dụ
