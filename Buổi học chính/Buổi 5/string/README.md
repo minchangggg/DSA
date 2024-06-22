@@ -585,13 +585,37 @@
 ![image](https://github.com/minchangggg/DSA/assets/125820144/5007b202-4f86-4561-b7c8-43755571cbb7)
 
 - Chủ yếu sử dụng 3 hàm : stoi(), stoll() và stod()
+- `Xây dựng hàm stoll()`
+  
+            long long my_stoll (string s) {
+                long long res = 0;
+                for (int i = 0; i < s.size(); i++) {
+                    res = res * 10 + ( s[i] - '0' );
+                }
+                return res;
+            }
+
+- Ví dụ:
   
 ![image](https://github.com/minchangggg/DSA/assets/125820144/0bca561a-ffd4-420c-a67d-23ff8aaba1c5)
 
 ## 2. Chuyển Đổi Số Thành Xâu
 - Hàm to_string() trong C++ sẽ giúp bạn chuyển đối số thành xâu.
 - Lưu ý hàm này chỉ hỗ trợ từ C++11 trở lên, nếu bạn làm việc với các chuẩn C++11 hoặc mới hơn hay làm bài trên các website chấm bài online thì có thể dùng hàm này một cách thoải mái.
+- `Xây dựng hàm to_string()`
 
+            string my_to_string (long long n) {
+                string res = "";
+                while (n!=0) {
+                    res += n % 10 + '0';
+                    n /= 10;
+                }
+                reverse(res.begin(), res.end());
+                return res;
+            }
+  
+- Ví dụ:
+  
 ![image](https://github.com/minchangggg/DSA/assets/125820144/3021fdf4-6d86-4050-bf60-3d4812b8d4f4)
 
 # V. Stringstream Trong C++ Và Ứng Dụng
