@@ -844,3 +844,108 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
 > Output : 
 
         Xau chuan hoa : Nguyen Van Tech28
+
+# VI. Bài tập ví dụ 
+## 1. Bài toán số lớn
+![image](https://github.com/minchangggg/DSA/assets/125820144/58b54fc7-3c9e-47fc-9554-a317d478e632)
+## 2. Các bài toán liên quan tới tần suất xuất hiện của kí tự trong xâu
+### Cách 1: Sử dụng mảng đếm
+            #include <bits/stdc++.h>
+            using namespace std;
+            
+            int main(){
+                string s = "abcdabcdzzzza";
+                int cnt[256] = {0};
+                for(char x : s){
+                    cnt[x]++;
+                }
+                for(int i = 0; i < 256; i++){
+                    if(cnt[i]) cout << (char)i << ' ' << cnt[i] << endl;
+                }
+            }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/83e504d4-87df-4e09-a379-2c75c58be254)
+### Cách 2: Sử dụng map
+
+            #include <bits/stdc++.h>
+            using namespace std;
+            
+            int main(){
+                string s = "abcdabcdzzzza";
+                map<char, int> mp;
+                for(char x : s) mp[x]++;
+                for(auto it : mp) cout << it.first << ' ' << it.second << endl;
+                
+            }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/dd6c92f0-7ec2-4114-bd63-95cdb92f4390)
+## 3. String với mảng, vector, set, map:
+### a. Sắp xếp các tử trong mảng hoặc vector theo thứ tự từ điển tăng dần, giảm dần
+            #include <bits/stdc++.h>
+            using namespace std;
+            
+            int main(){
+                string a[] = {"28tech", "dev", "dsa", "c++", "python"};
+                sort(a, a + 5);
+                for(string x : a) cout << x << ' ';
+                
+                cout << endl;
+            
+                vector<string> v = {"28tech", "dev", "dsa", "c++", "python"};
+                sort(begin(v), end(v), greater<string>());
+                for(string x : v) cout << x << ' ';   
+                cout << endl;
+                sort(begin(v), end(v), less<string>());
+                for(string x : v) cout << x << ' ';  
+            }
+
+> Output:
+
+            28tech c++ dev dsa python 
+            python dsa dev c++ 28tech 
+            28tech c++ dev dsa python 
+                        
+![image](https://github.com/minchangggg/DSA/assets/125820144/0d030fb9-6625-48bd-be7b-7ba3486420dc)
+### b. Lọc ra số lượng từ khác nhau trong mảng
+            #include <bits/stdc++.h>
+            using namespace std;
+            
+            int main(){
+                string a[] = {"28tech", "dev", "dsa", "c++", "python", "c++", "dev", "Python"};
+                set<string> se;
+                for(string x : a) se.insert(x);
+                
+                cout << se.size() << endl;
+                for(string x : se) cout << x << ' ';
+            }
+
+> Output:
+
+            6
+            28tech Python c++ dev dsa python
+            
+![image](https://github.com/minchangggg/DSA/assets/125820144/40ab6db5-6aa5-42f0-9fee-48e647945b7a)
+### Đếm số lần xuất hiện các từ trong mảng
+            #include <bits/stdc++.h>
+            using namespace std;
+            
+            int main(){
+                string a[] = {"28tech", "dev", "dsa", "c++", "python", "c++", "dev", "Python"};
+                map<string, int> mp;
+                for(string x : a) mp[x]++;
+                
+                for(auto it : mp) cout << it.first << ' ' << it.second << endl;
+                
+            }
+
+> Output:
+
+            28tech 1
+            Python 1
+            c++ 2
+            dev 2
+            dsa 1
+            python 1
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/aec2cfc2-167c-4872-bc8b-18929973e334)
+
