@@ -1,3 +1,8 @@
+> https://www.youtube.com/watch?v=O0loDVOxx-M&list=PLux-_phi0Rz0Hq9fDP4TlOulBl8APKp79&index=15
+
+> https://www.youtube.com/watch?v=XKxByfH9ci4
+
+> https://www.youtube.com/watch?v=y-ndOttz_Sk
 # I. Lý Thuyết Mảng 2 Chiều C++
 Mảng 2 chiều là một mảng kiến thức quan trọng trong các ngôn ngữ lập trình, bài học này các bạn sẽ học cách sử dụng mảng 2 chiều trong C++
 ## 1. Mảng 2 Chiều
