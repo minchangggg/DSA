@@ -19,3 +19,6 @@ In ra chữ số đứng giữa của N hoặc in ra NOT FOUND nếu N không c�
 
 `Sample Output 0`
 
+9
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/d1f33e4a-33dc-4986-866e-6e676aa2004b)
