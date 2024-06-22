@@ -589,49 +589,53 @@
 ![image](https://github.com/minchangggg/DSA/assets/125820144/0bca561a-ffd4-420c-a67d-23ff8aaba1c5)
 
 ## 2. Chuyển Đổi Số Thành Xâu
-Hàm to_string() trong C++ sẽ giúp bạn chuyển đối số thành xâu. Lưu ý hàm này chỉ hỗ trợ từ C++11 trở lên, nếu bạn làm việc với các chuẩn C++11 hoặc mới hơn hay làm bài trên các website chấm bài online thì có thể dùng hàm này một cách thoải mái.
+- Hàm to_string() trong C++ sẽ giúp bạn chuyển đối số thành xâu.
+- Lưu ý hàm này chỉ hỗ trợ từ C++11 trở lên, nếu bạn làm việc với các chuẩn C++11 hoặc mới hơn hay làm bài trên các website chấm bài online thì có thể dùng hàm này một cách thoải mái.
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/3021fdf4-6d86-4050-bf60-3d4812b8d4f4)
 
 # V. Stringstream Trong C++ Và Ứng Dụng
 Stringstream trong C++ là một công cụ hữu ích với các bài toán xử lý xâu ký tự, đặc biệt với các bài toán tách từ trong xâu.
-## 1. Stringstream và bài toán tách từ
+## 1. Tách các từ bằng stringstream theo dấu cách
+![image](https://github.com/minchangggg/DSA/assets/125820144/1d0de517-b00b-4db1-bbdb-1722e638526a)
+
 - Thông thường khi chuẩn hóa hay xử lý xâu ký tự thì bạn cần tách riêng lẻ các từ trong xâu theo dấu cách hoặc một ký tự khác ví dụ như dấu . , ! ... 
-- stringstream nằm trong thư viện sstream, nó có chức năng biến xâu string của bạn thành luồng (tương tự như luồng vào từ bàn phím là cin). Từ đó bạn có thể đọc từng từ trong luồng stringstream ra và xử lý.
+- **stringstream nằm trong thư viện sstream**, nó có chức năng **biến xâu string của bạn thành luồng** (tương tự như luồng vào từ bàn phím là **cin**). Từ đó bạn có thể đọc từng từ trong luồng stringstream ra và xử lý.
 - Ví dụ sau mình sẽ tách từng từ trong xâu ra, sau khi tách xong bạn có thể chuẩn hóa, đếm từ ... với từ bạn tách được.
 
-        #include <iostream>
-        #include <string>
-        #include <sstream>
-        
-        using namespace std;
-        
-        int main(){
-        	string s = "28tech    hoc  lap trinh";
-        	//Khai báo stringstream ss và gán cho nó nội dung của s
-        	stringstream ss(s);
-        	string word;
-        	int dem = 0;
-        	while(ss >> word){
-        		++dem;
-        		cout << "Tu thu " << dem << " tach duoc : " << word << endl;
-        	}
-        	return 0;
-        }
+            #include <iostream>
+            #include <string>
+            #include <sstream>
+            
+            using namespace std;
+            
+            int main(){
+                  string s = "28tech    hoc  lap trinh";
+                  stringstream ss(s); //Khai báo stringstream ss và gán cho nó nội dung của s
+  
+                  string word;
+                  int dem = 0;
+                  while(ss >> word){
+                        ++dem;
+                        cout << "Tu thu " << dem << " tach duoc : " << word << endl;
+                  }
+                  return 0;
+            }
   
 > Output : 
 
-        Tu thu 1 tach duoc : 28tech
-        Tu thu 2 tach duoc : hoc
-        Tu thu 3 tach duoc : lap
-        Tu thu 4 tach duoc : trinh
+            Tu thu 1 tach duoc : 28tech
+            Tu thu 2 tach duoc : hoc
+            Tu thu 3 tach duoc : lap
+            Tu thu 4 tach duoc : trinh
         
 - Giải thích mã nguồn : 
-+ Ban đầu bạn khai báo 1 biến stringstream và khởi tạo giá trị cho nó bằng nội dung xâu bạn muốn tách từ
-+ Dùng toán tử >> để nhập 1 từ trong luồng stringstream cho biến word, vòng lặp kia sẽ lặp cho tới khi luồng stringstream của bạn không còn từ nào nữa thì nó sẽ dừng lặp.
-+ Giữa các từ có nhiều dấu cách sẽ được bỏ qua hết, tương tự như bạn nhập cin từ bàn phím thì số lượng dấu cách giữa các từ không có ý nghĩa.
+      + Ban đầu bạn **khai báo 1 biến stringstream** và **khởi tạo giá trị cho nó bằng nội dung xâu bạn muốn tách từ**
+      + Dùng **toán tử >> để nhập 1 từ trong luồng stringstream cho biến word**, vòng lặp kia sẽ **lặp cho tới khi luồng stringstream của bạn không còn từ nào nữa thì nó sẽ dừng lặp**.
+      + Giữa các từ có nhiều dấu cách sẽ được bỏ qua hết, tương tự như bạn nhập cin từ bàn phím thì số lượng dấu cách giữa các từ không có ý nghĩa.
 
-- Trong trường hợp bạn muốn tách theo 1 ký tự khác, ví dụ như là dấu - thay vì dấu cách như mặc định bạn có thể sử dụng hàm getline(), hoặc bạn có thể thay cách dấu - thành dấu cách và xử lý như tách từ bằng dấu cách.
+## 2. Tách các từ bằng stringstream theo kí tự
+- Trong trường hợp bạn muốn **tách theo 1 ký tự khác, ví dụ như là dấu -** thay vì dấu cách như mặc định bạn có thể **sử dụng hàm getline()**, hoặc bạn có thể thay cách dấu - thành dấu cách và xử lý như tách từ bằng dấu cách.
 
         #include <iostream>
         #include <string>
@@ -641,8 +645,8 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
         
         int main(){
         	string s = "28tech-hoc-lap-trinh";
-        	//Khai báo stringstream ss và gán cho nó nội dung của s
-        	stringstream ss(s);
+        	stringstream ss(s); //Khai báo stringstream ss và gán cho nó nội dung của s
+  
         	string word;
         	int dem = 0;
         	while(getline(ss, word, '-')){
@@ -659,9 +663,9 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
         Tu thu 3 tach duoc : lap
         Tu thu 4 tach duoc : trinh
         
-## 2. Tách từ theo nhiều ký tự khác nhau
-- Giả sử bạn cần tách các xâu theo 1 loạt ký tự khác nhau (delimiter) thì bạn nên chuyển hết các ký tự này thành dấu cách rồi tách xâu bằng stringstream.
-- Ví dụ muốn tách xâu theo các ký tự : dấu chấm '.', dấu phẩy ',', dấu cách ' ', dấu hỏi chấm '?', và dấu chấm than '!' ta triển khai như sau
+## 3. Tách từ theo nhiều ký tự khác nhau
+- Giả sử bạn cần **tách các xâu theo 1 loạt ký tự khác nhau (delimiter)** thì bạn nên **chuyển hết các ký tự này thành dấu cách** rồi tách xâu bằng stringstream.
+- Muốn tách xâu theo các ký tự : dấu chấm '.', dấu phẩy ',', dấu cách ' ', dấu hỏi chấm '?', và dấu chấm than '!' ta triển khai như sau:
 
         #include <iostream>
         #include <string>
@@ -671,14 +675,16 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
         
         int main(){
         	string s = "28tech,hoc.lap!!trinh???C++ dsa";
+  
         	//Thay hết delimiter bằng dấu cách
         	for(int i = 0; i < s.size(); i++){
         		if(s[i] == '?' || s[i] == '!' || s[i] == '.' || s[i] == ','){
         			s[i] = ' ';
         		}
         	}
-        	//Khai báo stringstream ss và gán cho nó nội dung của s
-        	stringstream ss(s);
+
+        	stringstream ss(s); //Khai báo stringstream ss và gán cho nó nội dung của s
+  
         	string word;
         	int dem = 0;
         	while(ss >> word){
@@ -690,14 +696,36 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
   
 > Output : 
 
-        Tu thu 1 tach duoc : 28tech
-        Tu thu 2 tach duoc : hoc
-        Tu thu 3 tach duoc : lap
-        Tu thu 4 tach duoc : trinh
-        Tu thu 5 tach duoc : C++
-        Tu thu 6 tach duoc : dsa
-        
-## 3. Bài tập áp dụng stringstream
+            Tu thu 1 tach duoc : 28tech
+            Tu thu 2 tach duoc : hoc
+            Tu thu 3 tach duoc : lap
+            Tu thu 4 tach duoc : trinh
+            Tu thu 5 tach duoc : C++
+            Tu thu 6 tach duoc : dsa
+
+## 4. Tách các số từ xâu
+
+            #include <bits/stdc++.h>
+            using namespace std;
+            int main(){
+                string s = "abc123zzz28tech9992ac";
+                for(char &x : s){
+                    if(!isdigit(x)) x = ' ';
+                }
+                stringstream ss(s);
+                string word;
+                while(ss >> word){
+                    cout << word << endl;
+                }
+            }
+
+> Output :
+
+            123
+            28
+            9992
+
+## 5. Bài tập áp dụng stringstream
 ### Bài tập 1 : Đếm số lượng từ trong xâu ký tự, giữa các từ có thể có nhiều dấu cách
 - Đối với bài toán này bạn có thể xử lý xâu bằng cách gặp ký tự khác dấu cách thì đếm 1 từ và xử lý nốt các ký tự còn lại của từ đó hoặc dùng stringtream
 
@@ -710,8 +738,9 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
         int main(){
         	string s = "28tech 28tech com vn blog AI    python";
         	stringstream ss(s);
-        	int cnt = 0;
+  
         	string word;
+        	int cnt = 0;
         	while(ss >> word){
         		++cnt;
         	}
@@ -724,31 +753,66 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
         
 - Nếu bạn không muốn sử dụng stringstream thì có thể cài đặt như sau : 
 
-        #include <iostream>
-        #include <string>
-        #include <sstream>
-        
-        using namespace std;
-        
-        int main(){
-        	string s = "28tech 28tech com vn blog AI    python";
-        	int cnt = 0;
-        	for(int i = 0; i < s.size(); i++){
-        		if(s[i] != ' '){
-        			++cnt;
-        			//duyet not cac ki tu cua tu bat dau tu chi so i
-        			while(i < s.size() && s[i] != ' '){
-        				++i;
-        			}
-        			--i;
-        		}
-        	}
-        	cout << "So luong tu trong xau : " << cnt << endl;
-        }
+            #include <iostream>
+            #include <string>
+            #include <sstream>
+            
+            using namespace std;
+            
+            int main(){
+                string s = "28tech 28tech com vn blog AI    python";
+                int cnt = 0;
+                for(int i = 0; i < s.size(); i++){
+                    if(s[i] != ' '){
+                        ++cnt;
+                        //duyet not cac ki tu cua tu bat dau tu chi so i
+                        while(i < s.size() && s[i] != ' '){
+                            ++i;
+                        }
+                        --i;
+                    }
+                }
+                cout << "So luong tu trong xau : " << cnt << endl;
+            }
 
+> Output : 
+
+        So luong tu trong xau : 7
+        
 ### Bài tập 2 : Chuẩn hóa từ và loại bỏ dấu cách thừa giữa các từ trong xâu, ví dụ "  ngUYEN   VaN   tech28" thì chuẩn hóa thành "Nguyen Van Tech28"
 - Cách làm là bạn hãy tách các từ ra, chuẩn hóa từng từ rồi nối chung lại với nhau để tạo thành xâu chuẩn hóa. 
 - Thay vì bạn cứ loay hoay xét từ và xóa dấu cách thừa thì việc tách ra, chuẩn hóa và gộp lại sẽ dễ và nhanh hơn nhiều.
+
+`Cách 1: tự nghĩ`
+
+            #include <iostream>
+            #include <string>
+            #include <sstream>
+            
+            using namespace std;
+            
+            int main(){
+                string s = "  ngUYEN   VaN   tech28";
+                stringstream ss(s);
+            
+                string temp, word = "";
+                while (ss >> temp) {
+                    for (int i = 0; i < temp.size(); i++) { 
+                        if (i==0) temp[i] = toupper(temp[i]);
+                        else temp[i] = tolower(temp[i]);
+                    }
+                    word += temp;
+                    word += ' ';
+                }
+                word.pop_back(); 
+                cout << word;   
+            }
+
+> Output :
+
+            Nguyen Van Tech28
+
+`Cách 2: của web`
 
         #include <iostream>
         #include <string>
