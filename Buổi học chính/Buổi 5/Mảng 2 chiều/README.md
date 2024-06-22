@@ -203,15 +203,11 @@ Mảng 2 chiều là một mảng kiến thức quan trọng trong các ngôn ng
                 {3, 7, 4, 1},
                 {10, 2, 0, 3}
             };
-            int min_val = 1000000000, max_val = -1000000000;
+            int min_val = INT_MAX, max_val = INT_MIN;
             for(int i = 0; i < n; i++){
                 for(int j = 0; j < m; j++){
-                    if(a[i][j] > max_val){
-                        max_val = a[i][j];
-                    }
-                    if(a[i][j] < min_val){
-                        min_val = a[i][j];
-                    }
+                    if(a[i][j] > max_val) max_val = a[i][j];
+                    if(a[i][j] < min_val) min_val = a[i][j];
                 }
             }
             cout << "Gia tri nho nhat : " << min_val << endl;
@@ -787,8 +783,8 @@ Mảng 2 chiều thường được sử dụng để lưu trữ dữ liệu cho
         -2 1 -3 0 
 
 ## 2. Nhân 2 Ma Trận
-- Giả sử bạn cần nhân ma trận A[n][m] với ma trận B[p][q] thì điều kiện để xảy ra phép nhân ma trận đó là : Số cột của ma trận A bằng số hàng của ma trận B
-- Tức là m phải bằng p, khi đó ma trận tích sẽ có cỡ C[n][q]
+![image](https://github.com/minchangggg/DSA/assets/125820144/19305d8a-0ce4-4a96-bc82-fad061d3302b)
+
 - Ví dụ : 
   + A[3][4] x B[4][2] = C[3][2]
   + A[3][4] x B[4][5] = C[3][5]
@@ -843,7 +839,88 @@ Mảng 2 chiều thường được sử dụng để lưu trữ dữ liệu cho
         140 154 
         320 352 
 
-# V. Ma Trận Xoắn Ốc C++
+# V. Kĩ thuật duyệt các ô liền kề
+![image](https://github.com/minchangggg/DSA/assets/125820144/fc779a4e-0df6-404d-a482-2e5c68bf517e)
+## 1. Duyệt 4 ô chung cạnh với ô [i][j]
+
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int dx[4] = {-1, 0, 0, 1};
+        int dy[4] = {0, -1, 1, 0};
+        
+        int main(){
+          int a[3][3] = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+          };
+          int i = 1, j = 1;
+          for(int k = 0; k < 4; k++){
+            int i1 = i + dx[k], j1 = j + dy[k];
+            cout << a[i1][j1] << " ";
+          }
+        } 
+
+> OUTPUT:
+
+        2 4 6 8
+
+## 2. Duyệt 8 ô chung đỉnh với ô [i][j]
+        
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int dx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        
+        int main(){
+          int a[3][3] = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+          };
+          int i = 1, j = 1;
+          for(int k = 0; k < 8; k++){
+            int i1 = i + dx[k], j1 = j + dy[k];
+            cout << a[i1][j1] << " ";
+          }
+        } 
+
+> OUTPUT:
+
+        1 2 3 4 6 7 8 9
+
+## 3. Duyệt 8 ô xung quanh nước đi của quân mã
+![image](https://github.com/minchangggg/DSA/assets/125820144/98b9a35c-7630-4295-bf62-12c9e1661c97)
+
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int dx[8] = {-2, -2, -1, -1, +1, +1, +2, +2};
+        int dy[8] = {-1, +1, -2, +2, -2, +2, -1, +1};
+        
+        int main(){
+          int a[6][6] = {
+            {1, 2, 3, 4, 5, 6},
+            {7, 8, 9, 1, 2, 5},
+            {1, 2, 1, 0, 3, 5},
+            {1, 2, 1, 3, 4, 9},
+            {1, 2, 1, 3, 0, 4},
+            {1, 8, 7, 6, 2, 9}
+          };
+          int i = 2, j = 3;
+          for(int k = 0; k < 8; k++){
+            int i1 = i + dx[k], j1 = j + dy[k];
+            cout << a[i1][j1] << " ";
+          }
+        } 
+
+> OUTPUT:
+
+        3 5 8 5 2 9 1 0
+
+# VI. Ma Trận Xoắn Ốc C++
 ## 1. Ma Trận Xoắn Ốc
 - Ma trận xoáy ốc (Spiral matrix) là một ma trận vuông có N dòng và N cột, các số trong ma trận được sắp xếp như một xoáy ốc gồm các số từ 1 tới N2.
 - Ma trận xoáy ốc cũng có thể là một ma trận không vuông có N dòng và M cột, các số trong ma trận được đánh số từ 1 tới N * M theo hình xoáy ốc
