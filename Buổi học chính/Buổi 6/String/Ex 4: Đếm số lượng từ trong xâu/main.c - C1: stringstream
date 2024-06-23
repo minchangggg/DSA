@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-	freopen("input.TXT", "r", stdin);
+    freopen("input.TXT", "r", stdin);
     freopen("output.TXT", "w", stdout);
 
     string s, word; getline(cin, s);
