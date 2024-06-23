@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool cmp (string a, string b) {
+    // TH khác chiều dài, thì sort theo chìu dài
+    if (a.size() != b.size()) return a.size() < b.size();
+    // TH cùng chiều dài, thì sort theo từ điển
+    else return a < b;
+}
+
+int main() {
+	freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    string s; vector <string> v; 
+    while (cin >> s) {
+        v.push_back(s);
+    }
+
+    sort (v.begin(), v.end());
+    for (string x : v) cout << x << ' ';
+    cout << endl;
+
+    sort (v.begin(), v.end(), cmp);
+    for (string x : v) cout << x << ' ';
+}
