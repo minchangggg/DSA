@@ -17,10 +17,14 @@ Dòng 2 in ra các kí tự xuất hiện ở 1 trong 2 xâu theo thứ tự t�
 
 `Sample Input 0`
 
-5
+nTOhOGvRB
 
-2 1 2 1 3
+kbUJtZSoONh
 
 `Sample Output 0`
 
-3
+Oh
+
+BGJNORSTUZbhknotv
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/08c0e060-892a-4269-9774-7df85467210e)
