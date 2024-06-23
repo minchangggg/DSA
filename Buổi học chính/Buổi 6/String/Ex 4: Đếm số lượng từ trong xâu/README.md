@@ -18,3 +18,5 @@ ngon ngu lap trinh java, python
 `Sample Output 0`
 
 6
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/e0854a46-44c4-4695-abb7-e506eca8f196)
