@@ -973,3 +973,115 @@ Stringstream trong C++ là một công cụ hữu ích với các bài toán x�
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/aec2cfc2-167c-4872-bc8b-18929973e334)
 
+## 4. Chuẩn Hóa Tên Và Email
+### a. Bài toán chuẩn hóa tên 1
+- Bài toán này sẽ yêu cầu bạn chuẩn hóa tên bằng cách loại bỏ dấu cách thừa giữa các từ và viết hoa chữ cái đầu của từng từ.
+- Ví dụ "   nguYEN   Thuy  linH" => "Nguyen Thuy Linh"
+- Phương pháp làm những bài toán chuẩn hóa tên đó là bạn nên tách từng từ ra sau đó xử lý từng từ và gộp lại
+
+            #include <iostream>
+            #include <string>
+            #include <ctype.h>
+            #include <sstream>
+            
+            using namespace std;
+            
+            int main(){
+            	string name = "tran  VAn  TeCH28";
+            	stringstream ss(name);
+            	string res = "", word;
+            	while(ss >> word){
+            		res += toupper(word[0]);
+            		for(int j = 1; j < word.size(); j++){
+            			res += tolower(word[j]);
+            		}
+            		res += " ";
+            	}
+            	res.pop_back();
+            	cout << "Ten chuan hoa : " << res << endl;
+            }
+
+> Output : 
+
+            Ten chuan hoa : Tran Van Tech28
+            
+### b. Bài toán chuẩn hóa tên 2
+- Bài toán này yêu cần bạn in ra tên trước rồi mới tới họ và đệm 
+- Ví dụ "tran    VaN  TeCH28" => "Tech28 Tran Van"
+- Để dễ dàng đưa ra các từ theo thứ tự mong muốn thì bạn nên lưu lại các từ vào trong 1 vector hoặc mảng, nếu bạn chưa biết vector có thể tham khảo tại đây
+
+            #include <iostream>
+            #include <string>
+            #include <ctype.h>
+            #include <sstream>
+            #include <vector>
+            
+            using namespace std;
+            
+            //Ham nay chuan hoa 1 tu 
+            string convert(string s){
+            	s[0] = toupper(s[0]);
+            	for(int i = 1; i < s.size(); i++){
+            		s[i] = tolower(s[i]);
+            	}
+            	return s;
+            }
+            
+            int main(){
+            	string name = "tran  VAn  TeCH28";
+            	stringstream ss(name);
+            	vector<string> v;
+            	string word;
+            	while(ss >> word){
+            		v.push_back(convert(word));
+            	}
+            	cout << "Ten sau khi chuan hoa : ";
+            	cout << v[v.size() - 1] << " ";
+            	for(int i = 0; i < v.size() - 1; i++){
+            		cout << v[i];
+            		if(i != v.size() - 2){
+            			cout << " ";
+            		}
+            	}
+            }
+
+> Output : 
+
+            Ten sau khi chuan hoa : Tech28 Tran Van
+
+### c. Bài toán cấp email theo tên
+- Bài toán cấp email thường gặp khi bạn cần cung cấp email cho các nhân viên trong 1 công ty hay các sinh viên trong trường đại học dựa trên tên của họ. 
+- Ví dụ tên "Nguyen Van Nam" sẽ được cấp email là "namnv@28tech.com.vn" chẳng hạn
+- Tên email được cấp bằng cách lấy tên và ghép với các chữ cái đầu tiên của họ và đệm.
+- Có nhiều kiểu cấp email khác nhau nhưng bạn có thể làm tương tự kiểu chuẩn email này.
+
+            #include <iostream>
+            #include <string>
+            #include <ctype.h>
+            #include <sstream>
+            #include <vector>
+            
+            using namespace std;
+            
+            int main(){
+            	string name = "tran  VAn  loNG";
+            	for(int i = 0; i < name.size(); i++){
+            		name[i] = tolower(name[i]);
+            	}
+            	stringstream ss(name);
+            	vector<string> v;
+            	string word;
+            	while(ss >> word){
+            		v.push_back(word);
+            	}
+            	string email = v[v.size() - 1]; // ten
+            	for(int i = 0; i < v.size() - 1; i++){
+            		email += v[i][0]; // ki tu dau tien cua ho va dem
+            	}
+            	email += "@28tech.com.vn";
+            	cout << "Email duoc cap : " << email << endl;
+            }
+  
+> Output : 
+
+            Email duoc cap : longtv@28tech.com.vn
