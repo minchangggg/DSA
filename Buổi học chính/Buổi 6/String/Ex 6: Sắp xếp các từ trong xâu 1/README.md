@@ -21,5 +21,9 @@ hoc lap trinh php
 
 `Sample Output 0`
 
-hoc lap php trinhhoc lap php trinh
+hoc lap php trinh
+hoc lap php trinh
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/ca561400-8311-493e-8a70-99b6bb2aec61)
+
 
