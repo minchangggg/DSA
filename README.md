@@ -100,9 +100,9 @@ Trong trường hợp hàm f(n) có chứa hằng số và các bậc khác nhau
 
 ### 1. Sequence container
 ### a. std::vector
-Cũng giống như std::array, vectors lưu trữ các phần tử liên tiếp nhau trên bộ nhớ ảo. Điều này có nghĩa những phần tử trong std::vector có thể truy cập thông qua các con trỏ có cùng kiểu dữ liệu với kiểu của std::vector. Đặc điểm khiến std::vector khác với std::array là nó có thể thay đổi kích thước container tự động khi các phương thức, các toán tử được định nghĩa bên trong class std::vector được sử dụng.
+- Cũng giống như std::array, vectors lưu trữ các phần tử liên tiếp nhau trên bộ nhớ ảo. Điều này có nghĩa những phần tử trong std::vector có thể truy cập thông qua các con trỏ có cùng kiểu dữ liệu với kiểu của std::vector. Đặc điểm khiến std::vector khác với std::array là nó có thể thay đổi kích thước container tự động khi các phương thức, các toán tử được định nghĩa bên trong class std::vector được sử dụng.
 
-Khai báo một std::vector
+- Khai báo một std::vector
 Để sử dụng std::vector, chúng ta cần include thư viện vector vào file chương trình. Dưới đây là cú pháp khai báo cơ bản để tạo ra một đối tượng từ lớp std::vector:
 
 std::vector< <data_type> > <vector_name>;
@@ -443,45 +443,43 @@ http://www.cplusplus.com/reference/map/map/
 Các bạn lưu ý khi sử dụng std::map, mỗi khi thêm phần tử vào container thì phải thêm đủ một cặp giá trị . Ngôn ngữ C++ cung cấp cho chúng ta class std::pair giúp chúng ta nhóm 2 đối tượng có cùng (hoặc khác) kiểu dữ liệu thành một cặp tương ứng với cặp của std::map.
 
 std::pair< data_type, data_type > pair_name;
-Một ví dụ về sử dung std::map để quản lý thông tin nhân viên:
+- Một ví dụ về sử dung std::map để quản lý thông tin nhân viên:
 
-#include <iostream>
-#include <string>
-#include <map>
+		#include <iostream>
+		#include <string>
+		#include <map>
+		
+		struct Employee {
+			std::string name;
+			__int32 year_of_experience;
+		};
+		
+		int main() {
+			std::map<__int32, Employee> listEmployee;
+		
+			listEmployee.insert(std::pair<__int32, Employee>(1, { "Le Tran Dat", 5 }));
+			listEmployee.insert(std::pair<__int32, Employee>(2, { "Someone", 0 }));
+		
+			listEmployee[4] = { "new employee", 1 }; //operator[<key>] = <value>
+		
+			std::map<__int32, Employee>::iterator iter = listEmployee.find(3);
+			if (iter != listEmployee.end())
+			{
+				std::cout << "Employee ID:        " << iter->first << std::endl;
+				std::cout << "Employee name:      " << (iter->second).name << std::endl;
+				std::cout << "Year of experience: " << (iter->second).year_of_experience << std::endl;
+			}
+			else
+			{
+				std::cout << "ID 3 is not exist" << std::endl;
+			}
+		
+			return 0;
+		}
 
-struct Employee
-{
-	std::string name;
-	__int32 year_of_experience;
-};
-
-int main()
-{
-	std::map<__int32, Employee> listEmployee;
-
-	listEmployee.insert(std::pair<__int32, Employee>(1, { "Le Tran Dat", 5 }));
-	listEmployee.insert(std::pair<__int32, Employee>(2, { "Someone", 0 }));
-
-	listEmployee[4] = { "new employee", 1 }; //operator[<key>] = <value>
-
-	std::map<__int32, Employee>::iterator iter = listEmployee.find(3);
-	if (iter != listEmployee.end())
-	{
-		std::cout << "Employee ID:        " << iter->first << std::endl;
-		std::cout << "Employee name:      " << (iter->second).name << std::endl;
-		std::cout << "Year of experience: " << (iter->second).year_of_experience << std::endl;
-	}
-	else
-	{
-		std::cout << "ID 3 is not exist" << std::endl;
-	}
-
-	return 0;
-}
 Container adapter
 std::stack
 Stack (hay còn gọi là ngăn xếp) là một dạng container có cơ chế tổ chức lưu trữ dữ liệu đặc biệt: LIFO (Last In First Out).
-
 
 
 Phần tử được thêm vào sau cùng sẽ được lấy ra đầu tiên.
@@ -490,33 +488,33 @@ http://www.cplusplus.com/reference/stack/stack/
 
 Dưới đây là một ví dụ ứng dụng cách tổ chức lưu trữ của cấu trúc dữ liệu Stack để chuyển đổi một số từ hệ thập phân sang hệ nhị phân:
 
-#include <iostream>
-#include <stack>
+		#include <iostream>
+		#include <stack>
+		
+		int main() {
+			//input
+			__int32 decNumber;
+			std::cin >> decNumber;
+		
+			//converting
+			std::stack<bool> binary;
+			while (decNumber)
+			{
+				binary.push((decNumber % 2 == 1));
+				decNumber /= 2;
+			}
+		
+			//output
+			while (!binary.empty())
+			{
+				std::cout << binary.top();
+				binary.pop(); //remove an element of stack
+			}
+			std::cout << std::endl;
+		
+			return 0;
+		}
 
-int main()
-{
-	//input
-	__int32 decNumber;
-	std::cin >> decNumber;
-
-	//converting
-	std::stack<bool> binary;
-	while (decNumber)
-	{
-		binary.push((decNumber % 2 == 1));
-		decNumber /= 2;
-	}
-
-	//output
-	while (!binary.empty())
-	{
-		std::cout << binary.top();
-		binary.pop(); //remove an element of stack
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
 Cấu trúc dữ liệu Stack còn có nhiều ứng dụng thực tiễn, ví dụ tạo ra chuỗi trạng thái cho phép người dùng trở lại trạng thái trước đó (undo).
 
 std::queue
