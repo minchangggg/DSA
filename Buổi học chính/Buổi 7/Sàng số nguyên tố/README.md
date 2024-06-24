@@ -1,3 +1,4 @@
+> https://blog.28tech.com.vn/sang-so-nguyen-to
 # Sàng Số Nguyên Tố
 Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra nhanh các số nguyên tố trong đoạn từ 1 tới N hoặc trong khoảng giữa 2 số. Bài viết này mình sẽ hướng dẫn bạn một thuật toán rất hiệu quả trong lý thuyết số. Đây là một kiến thức cơ bản mà bạn cần nắm được khi làm việc với số nguyên tố.
 ## 1. Sàng Số Nguyên Tố
