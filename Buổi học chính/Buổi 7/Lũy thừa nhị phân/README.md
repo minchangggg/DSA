@@ -1,7 +1,7 @@
 # Lũy Thừa Nhị Phân
 Lũy thừa nhị phân là một thuật toán hiệu quả để tính lũy thừa với độ phức tạp O(logN). 
 ## 1. Lũy Thừa Nhị Phân Sử Dụng Đệ Quy
-- Lũy thừa nhị phân - Binary exponentiation là một thuật toán giúp bạn tính an với độ phức tạp là O(logN) thay vì duyệt vòng lặp từ 1 tới n. 
+- Lũy thừa nhị phân - Binary exponentiation là một thuật toán giúp bạn tính a^n với độ phức tạp là O(logN) thay vì duyệt vòng lặp từ 1 tới n. 
 - Dựa theo công thức sau (ảnh : CP-Algorithm) :
   
 ![image](https://github.com/minchangggg/DSA/assets/125820144/4c7fa873-9c0c-4316-a567-87d001b6f8ba)
@@ -16,10 +16,11 @@ Lũy thừa nhị phân là một thuật toán hiệu quả để tính lũy th
         
         ll binpow(int a, int n){
         	if(n == 0) return 1;
-        	ll X = binpow(a, n / 2); // a^(n/2)
   
-        	if(n % 2 == 1) return X * X * a;
-        	else return X * X;
+        	ll X = binpow(a, n/2); // a^(n/2)
+  
+        	if(n % 2 == 1) return X * X * a; // n lẻ
+        	else return X * X; // n chẵn
         }
         
         int main(){
