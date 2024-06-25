@@ -110,12 +110,13 @@
 
 ## 2. Sàng Số Nguyên Tố Trên Đoạn
 - Đôi khi bạn phải tìm tất cả các số không phải trên đoạn [1, N] mà là trên đoạn [L, R] với R lớn.
-- Điều kiện sử dụng phương pháp này là bạn có thể tạo mảng độ dài  phần tử.
-- Trong trường hợp bạn muốn sàng số nguyên tố trong đoạn giữa 2 số L, R thì yêu cầu bạn cũng cần xây dựng được mảng đánh dấu có cỡ R - L + 1. 
+- Điều kiện sử dụng phương pháp này là bạn có thể tạo mảng đánh dấu độ dài (R - L + 1) phần tử.
 - Khi đó để đánh dấu giá trị các số từ L tới R thì bạn đánh dấu các chỉ số từ 0 tới R - L
+
 - Ví dụ L = 10, R = 41 thì bạn sẽ đánh dấu các chỉ số tương ứng là 0 tới 31
 - Thuật toán sàng số nguyên tố trong đoạn tương tự như thuật toán sàng số nguyên tố từ 1 tới N
-- Mã nguồn : 
+  
+### Mã nguồn : 
 
         #include <bits/stdc++.h>
         using namespace std;
