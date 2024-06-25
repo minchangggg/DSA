@@ -16,3 +16,5 @@ In ra kết quả mỗi test case trên 1 dòng. In YES nếu n là số nguyên
         3            YES
         20           NO
         188          NO
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/44868bd8-dfa7-44b4-8fb9-858998931540)
