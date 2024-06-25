@@ -9,7 +9,7 @@ Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra
 ### Thuật toán :
     <1> Coi tất cả các số nguyên từ 0 tới N đều là số nguyên tố
     
-    <2> Sàng : Bước này sẽ loại bỏ các số nguyên không phải là số nguyên tố nếu nó là bội của một số nguyên tố khác
+    <2> Sàng : Bước này sẽ loại BỎ các SỐ NGUYÊN không phải là số nguyên tố nếu nó là BỘI CỦA 1 SỐ NGUYÊN TỐ KHÁC
 
 - Sàng số nguyên tố cần 1 mảng đánh dấu đủ lớn, tối thiểu thì chỉ số của mảng đánh dấu này phải lớn hơn hoặc bằng N. Ví dụ nếu bạn sàng tới N = 1000 thì mảng đánh dấu ít nhất cần 1001 phần tử.
 - Vì thế bạn cũng sẽ thấy thuật toán này sẽ không thể sàng nếu N quá lớn vì bạn không thể khai báo mảng đánh dấu quá lớn, việc này sẽ làm tràn bộ nhớ cho phép (thông thường là 256MB trên các Online Judge).
@@ -24,37 +24,35 @@ Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra
 
 ### Mã nguồn : 
         
-        #include <iostream>
-        #include <math.h>
+        #include <bits/stdc++.h>
         using namespace std;
         
-        int prime[10000001]; // N = 10^7
+        int N = 1e7;
+        int prime[10000001]; // N+1
         
         void sang(){
-          //Bước 1 : Coi tất cả các số từ 0 tới N là số nguyên tố
-          for(int i = 0; i <= 10000000; i++){
-            prime[i] = 1;
-          }
-          
-          //Bước 2 : Sàng
-          prime[0] = prime[1] = 0;
-          for(int i = 2; i <= sqrt(10000000); i++){
-            if(prime[i]){
-              for(int j = i * i; j <= 10000000; j += i){
-                prime[j] = 0;
-              }
+            //Bước 1 : Coi tất cả các số từ 0 tới N là số nguyên tố
+            for(int i = 0; i <= N; i++){
+                prime[i] = 1;
             }
-          }
+            
+            //Bước 2 : Sàng
+            prime[0] = prime[1] = 0;
+            for(int i = 2; i <= sqrt(N); i++){
+                if(prime[i]){
+                    for(int j = i * i; j <= N; j += i){
+                        prime[j] = 0;
+                    }
+                }
+            }
         }
-
+        
         int main(){
-        	sang();
-        	for(int i = 0; i <= 30; i++){
-        		if(prime[i]){
-        			cout << i << " ";
-        		}
-        	}
-        	return 0;
+            sang();
+            for(int i = 0; i <= 30; i++){
+                if(prime[i]) cout << i << " ";
+            }
+            return 0;
         }
 
 > Output : 
@@ -66,7 +64,7 @@ Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra
   + Mảng prime[] có thể là mảng int, bool, char tùy bạn và tùy ngôn ngữ lập trình bạn sử dụng
   + Kích cỡ mảng prime[] là bao nhiêu ? Như mình đã nói ở trên thì tối thiểu nó cần là N + 1 vì ta cần sử dụng tới chỉ số N của mảng này.
   + Vì sao lại duyệt từ 2 tới √N ? Ví dụ N = a * b thì bạn sẽ thấy nếu cả a và b đều lớn hơn √N thì điều này là không thể, chắc chắn sẽ có ít nhất a hoặc b ≤ √N. Vậy thì mình biết chắc chắn sẽ có 1 ước nguyên tố của N (nếu có) sẽ nằm trong đoạn từ 2 tới √N thì ta chỉ cần tìm số này thay vì quan tâm tới số còn lại. Ví dụ với N = 28 thì nhiều bạn thắc mắc là 28 sẽ có ước nguyên tố là 7 nằm ngoài khoảng [2, √N] nhưng rõ ràng thì nó cũng có 1 ước nguyên tố là 2 nằm trong đoạn này và 2 đã loại bỏ số 28 ra khỏi tập số nguyên tố. Vậy nên nếu N không phải là số nguyên tố thì chắc chắn nó sẽ có 1 ước nguyên tố thuộc đoạn [2, √N], ta sẽ dùng số này để loại bỏ N
-  + Tại sao bội của i là j lại bắt đầu từ i * i mà không phải là 2 * i ? Khi bạn đã biết i là số nguyên tố thì bạn sẽ nghĩ ngay bội số đầu tiên (khác i) là 2 * i, điều này là chính xác bạn cũng có thể cho j chạy từ 2 * i tuy nhiên để ý kỹ bạn sẽ thấy những bội số của i mà nhỏ hơn i * i đã bị loại rồi. Ví dụ khi bạn xét i = 5 thì bội đầu tiên của i sẽ là 10 nhưng số này bị loại bởi 2, bội tiếp theo là 15, 20 cũng bị loại bởi 2, 3. Vậy rõ ràng là các bội của i mà nhỏ hơn i * i sẽ bị loại bởi các số nguyên tố nhỏ hơn i nên bạn không cần loại nữa.
+  + Tại sao **bội của i là j lại bắt đầu từ i * i** mà không phải là 2 * i ? Khi bạn đã biết i là số nguyên tố thì bạn sẽ nghĩ ngay bội số đầu tiên (khác i) là 2 * i, điều này là chính xác bạn cũng có thể cho j chạy từ 2 * i tuy nhiên để ý kỹ bạn sẽ thấy những bội số của i mà nhỏ hơn i * i đã bị loại rồi. Ví dụ khi bạn xét i = 5 thì bội đầu tiên của i sẽ là 10 nhưng số này bị loại bởi 2, bội tiếp theo là 15, 20 cũng bị loại bởi 2, 3. Vậy rõ ràng là **các bội của i mà nhỏ hơn i * i sẽ bị loại bởi các số nguyên tố nhỏ hơn i** nên bạn không cần loại nữa.
   + Bước nhảy của vòng lặp khi xét bội của i sẽ là i, khi đó vòng lặp chỉ duyệt qua các bội của i mà thôi.
 ## 2. Sàng Số Nguyên Tố Trên Đoạn
 - Trong trường hợp bạn muốn sàng số nguyên tố trong đoạn giữa 2 số L, R thì yêu cầu bạn cũng cần xây dựng được mảng đánh dấu có cỡ R - L + 1. 
@@ -75,26 +73,27 @@ Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra
 - Thuật toán sàng số nguyên tố trong đoạn tương tự như thuật toán sàng số nguyên tố từ 1 tới N
 - Mã nguồn : 
 
-        #include <iostream>
-        #include <math.h>
+        #include <bits/stdc++.h>
         using namespace std;
         
         typedef long long ll;
         
         void sang(ll L, ll  R){
-        	int prime[R - L + 1];
+        	int prime[R - L + 1]; // từ L đến R gồm có (R-L+1) phần tử
+        
+            //Bước 1 : Coi tất cả các số từ 0 tới N là số ng/uyên tố
         	for(ll i = L; i <= R; i++){
         		prime[i - L] = 1;
         	}
+        
+            //Bước 2 : Sàng
         	for(ll i = 2; i <= sqrt(R); i++){
-        		for(ll j = max(i * i, (L + i - 1) / i * i); j <= R; j += i){
+        		for(ll j = max(i * i, (L + i - 1) / i * i); j <= R; j += i){  // (L + i - 1) / i * i là bội nhỏ nhất của L ≥ i * i
         			prime[j - L] = 0;
         		}
         	}
-        	for(ll i = max(2ll, L); i <= R; i++){
-        		if(prime[i - L]){
-        			cout << i << ' ';
-        		}
+        	for(ll i = max(2ll, L); i <= R; i++){ // 2LL is a 2 of type long long. Without the LL, the literal would only be of type int.
+        		if(prime[i - L]) cout << i << ' ';
         	}
         }
         
@@ -105,7 +104,9 @@ Sàng số nguyên tố là một thuật toán giúp bạn có thể kiểm tra
 > Output : 
 
         11 13 17 19 23 29 31 37 41
-        
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/03186280-60c8-44eb-8eb4-0f1ed82fbf97)
+
 - Giải thích mã nguồn : 
   + Vì sao không dùng mảng cỡ R + 1 ? Ở đây L và R có thể rất lớn (lên tới long long) và bạn chỉ sàng được khi L và R của bạn không cách nhau quá xa nên không thể dùng mảng cỡ R mà cần dùng mảng cỡ R - L + 1. Ví dụ L = 1000000000 và R = 1000800000 thì bạn chỉ cần dùng mảng cỡ R - L + 1 = 800001 thay vì cỡ 1000800000 ( điều này là không thể)
   + Vì sao lại duyệt bội đầu tiên của i là max(i * i, (L + i - 1) / i * i), giá trị (L + i - 1) / i * i là gì ? (L + i - 1) / i * i là bội nhỏ nhất của L ≥ i * i, công thức này dựa trên phép chia nguyên trong lập trình, bạn có thể nháp ra để hiểu rõ hơn. Khi duyệt bội của i ta không nên duyệt từ i * i ví dụ i = 2 và L = 1000000000 thì thay vì phải duyệt từ 4 bạn nên duyệt từ 1000000000, thông thường bạn sẽ duyệt từ i * i nhưng trong trường hợp này có thể tìm max của i * i với số nhỏ nhất ≥ L mà chia hết cho i để giảm số vòng lặp không cần thiết
