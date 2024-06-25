@@ -31,7 +31,7 @@ In ra YES nếu n là số nguyên tố, ngược lại in NO
 
 `Nhận xét`
 
-   + Ta có một nhận xét sau về số nguyên tố: Nếu như n không phải là số nguyên tố thì tồn tại một ước nguyên tố của n nhỏ hơn hoặc bằng sqrt(n).
-   + Thật vậy, giả sử n không phải là số nguyên tố mà các ước của nó đều lớn hơn sqrt(n) thì tích của hai ước bất kì sẽ lớn hơn n (Vô lí).
+   + Ta có một nhận xét sau về số nguyên tố: **Nếu như n không phải là số nguyên tố thì tồn tại một ước nguyên tố của n nhỏ hơn hoặc bằng sqrt (n)**
+   + Thật vậy, giả sử n không phải là số nguyên tố mà các ước của nó đều lớn hơn sqrt (n) thì tích của hai ước bất kì sẽ lớn hơn n (Vô lí).
      
 - Khi này, độ phức tạp của thuật toán sẽ giảm xuống còn O(sqrt(n)).
