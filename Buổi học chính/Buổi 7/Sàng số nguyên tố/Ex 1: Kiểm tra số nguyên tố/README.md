@@ -1,4 +1,4 @@
-## Kiểm tra số nguyên tố 
+# Kiểm tra số nguyên tố 
 `Input`
 
 Số nguyên n (0 <= n <= 10^9)
