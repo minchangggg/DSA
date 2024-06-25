@@ -2,7 +2,6 @@
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/7a4d91b1-24b8-4e96-a8a7-b6fd32409a2d)
 
-# Hàm binary_search, lower_bound, upper_bound trong C++
 Trong C++ cũng cung cấp sẵn thuật toán tìm kiếm nhị phân cũng như biến thể của nó là lower_bound & upper_bound. Đây là hai hàm mà nếu biết sử dụng và ứng dụng nó bạn sẽ giải quyết được rất nhiều bài toán về tìm kiếm một cách tối ưu. 
 
 ## 1.Tìm kiếm tuyến tính (Linear Search):
