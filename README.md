@@ -1,4 +1,4 @@
-<img width="700" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/0b4ceb55-8ed5-4ad1-976b-d6158d9d9402">
+<img width="800" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/c093f34c-9c34-4a1e-b081-d5eb4e286f68">
 
 > https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/?ref=lbp#dsa-full-form
 
