@@ -1,12 +1,10 @@
 > https://github.com/dungbachviet/SortingAlgorithms
 # 12 THUẬT TOÁN SẮP XẾP CƠ BẢN
-Với mỗi giải thuật, tớ sẽ cố gắng trình bày và làm rõ chúng theo bố cục với những nội chính sau :
-+ Tư tưởng của giải thuật
-+ Mã nguồn ( được minh họa trên một vài ngôn ngữ lập trình)
-+ Độ phức tạp của thuật toán
-+ Đưa ra nhận xét và đánh giá thuật toán.
-+ So sánh với các giải thuật khác và Đưa ra giải pháp tối ưu cùng khả năng ứng dụng của bài toán trong thực tế cuộc sống.
-
+- Sắp xếp là quá trình bố trí lại các phần tử trong một tập hợp theo một trình tự nào đó nhằm mục đích giúp quản lý và tìm kiếm các phần tử dễ dàng và nhanh chóng hơn.
+- Tại sao phải sắp xếp?
+	+ Để có thể sử dụng thuật toán tìm nhị phân
+	+ Để thực hiện thao tác nào đó được nhanh hơn
+# Các phương pháp sắp xếp thông dụng
 ## 1. Thuật toán Selection Sort (Sắp xếp chọn)
 ### 1.1 Code minh họa
 
