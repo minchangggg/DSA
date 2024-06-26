@@ -1,5 +1,5 @@
 > https://viblo.asia/p/gioi-thieu-mot-so-ham-tim-kiem-co-san-trong-stl-c-Do754OvLlM6
-## Hàm soft() trong thư viện STL
+## I. Hàm soft() trong thư viện STL
 ![image](https://github.com/minchangggg/DSA/assets/125820144/f6da83cb-47ee-464e-9c36-ffab61d9dde9)
 ## 1. Khai báo thư viện
 - Để sử dụng hàm sort(), chúng ta cần khai báo thư viện algorithm: `#include<algorithm>`
@@ -54,10 +54,33 @@
                 0 1 2 3 4 5 
                 5 4 3 2 1 0 
                 5 4 1 2 3 0 
+
+- Ví dụ 3:
+  
+                #include <bits/stdc++.h>
+                using namespace std;
+                 
+                int main() {
+                    int arr[] = { 1, 5, 8, 9, 6, 7, 3, 4, 2, 0 };
+                    int n = sizeof(arr) / sizeof(arr[0]);
+                 
+                    sort(arr, arr + n, greater<int>());
+                 
+                    cout << "Array after sorting : \n";
+                    for (int i = 0; i < n; ++i)
+                        cout << arr[i] << " ";
+                 
+                    return 0;
+                }
+
+> Output:
+
+                Array after sorting : 
+                9 8 7 6 5 4 3 2 1 0 
                 
 **Nếu bạn có mảng string hay mảng char thì hàm sort() sẽ sắp xếp mặc định theo thứ tự từ điển tăng dần.**
 
-- Ví dụ 2 : 
+- Ví dụ 3 : 
 
                 #include <iostream>
                 #include <algorithm>
@@ -75,7 +98,7 @@
                     for(char x : a) cout << x << ' ';
                 }
 
-Output : 
+> Output : 
 
                 2 8 a c e h t z 
                 z t h e c a 8 2 
@@ -103,7 +126,83 @@ Output :
                 	for (int x : v) cout << x << ' ';
                 }
 
-# II. Xây Dựng Comparison Function Cho Hàm Sort Trong C++
+# II. Hàm stable_sort() Trong C++ 
+C++ có sẵn 2 hàm sắp xếp đó là sort() và stable_sort()
+## 1. Tính chất ổn định - stable của thuật toán sắp xếp
+- Các thuật toán sắp xếp chia thành 2 loại là ổn định và không ổn định
+   + Các thuật toán sắp xếp không ổn định có thể kể đến như : sắp xếp nhanh quicksort, sắp xếp vun đống heap sort, sắp xếp chọn selection sort.
+   + Các thuật toán sắp xếp ổn định bao gồm : sắp xếp trộn merge sort, sắp xếp chèn insertion sort, tim sort, sắp xếp đếm phân phối counting sort.
+- Vậy tính ổn định của thuật toán sắp xếp là gì ? 
+   + Tính ổn định của thuật toán sắp xếp có thể hiểu đơn giản là khi bạn sắp xếp các phần tử trong mảng mà có cùng giá trị sắp xếp (ví dụ như giá trị về độ lớn, tổng chữ số ..) thì những phần tử này sẽ đứng cạnh nhau và duy trì thứ tự giống như thứ tự giữa chúng trong mảng ban đầu.
+   + Ví dụ bạn có dãy số (111, 9, 3000, 18, 81, 1002, 2002) và muốn sắp xếp các phần tử này theo tổng chữ số tăng dần bằng thuật toán sắp xếp có tính chất stable thì mảng sẽ được sắp xếp theo thứ tự (111, 3000, 1002, 2002, 9, 18, 81) trong đó (111, 3000, 1002) có cùng tổng chữ số là 3 và chúng giữ đúng thứ tự ban đầu như thứ tự xuất hiện. Tương tự với cụm (9, 18, 81) có cùng tổng chữ số là 9.
+- Trong một số ngôn ngữ lập trình thì hàm sắp xếp được cài đặt bởi các thuật toán sắp xếp có tính ổn định, ví dụ như Java, Python, JS. Trong C++ thì hàm sort() mà bạn đã học ở bài trước không có tính ổn định, C++ cung cấp thêm hàm stable_sort() có tính chất stable, hàm này được cài đặt bởi thuật toán sắp xếp trộn Merge sort.
+## 2. Hàm stable_sort() trong C++
+- Khi làm bài tập về sắp xếp nếu đề bài có thêm yêu cầu trong trường hợp các phần tử trong mảng, danh sách có cùng giá trị sắp xếp thì cần giữ nguyên thứ tự xuất hiện giữa các phần tử này thì khi đó bạn cần nghĩ ngay tới hàm stable_sort()
+- Cách sử dụng hàm stable_sort() giống với hàm sort(), chỉ khác nhau ở thuật toán mà họ đã cài đặt chúng.
+- Ví dụ 1: Sắp xếp dãy số theo tổng chữ số tăng dần và giữ nguyên thứ tự xuất hiện giữa chúng nếu có cùng tổng chữ số
+
+                #include <iostream>
+                #include <algorithm>
+                
+                using namespace std;
+                
+                int tong(int n){
+                    int sum = 0;
+                    while(n){
+                        sum += n % 10;
+                        n /= 10;
+                    }
+                    return sum;
+                }
+                
+                bool cmp(int a, int b){
+                    return tong(a) < tong(b);
+                }
+                
+                int main(){
+                    int a[11] = {10002, 19, 3000, 111, 81, 45, 1002, 21, 10071, 203, 401};
+                    stable_sort(a, a + 11, cmp);
+                    for(int x : a) cout << x << " ";    
+                }
+                
+> Output : 
+                 
+                10002 3000 111 1002 21 203 401 81 45 10071 19
+
+-> Nhận xét : Bạn chỉ cần xây dựng hàm so sánh để sắp xếp theo tổng chữ số tăng dần còn khi các số trong mảng có cùng tổng chữ số thì hàm stable_sort() sẽ giữ thứ tự tương đối giữa chúng.
+
+- Ví dụ 2:
+
+                #include <bits/stdc++.h>
+                using namespace std;
+                 
+                struct Interval { // An interval has start time and end time
+                    int start, end; 
+                };
+                 
+                // Compares two intervals according to starting times.
+                bool compareInterval(Interval i1, Interval i2) {
+                    return (i1.start < i2.start);
+                }
+                 
+                int main() {
+                    // Given intervals are sorted according to end time
+                    Interval arr[] = { { 1, 3 }, { 2, 4 }, { 1, 7 }, { 2, 19 } };
+                    int n = sizeof(arr) / sizeof(arr[0]);
+                 
+                    // sort the intervals in increasing order of start time 
+                    // such that the start time intervals appear in same order as in input.
+                    stable_sort(arr, arr + n, compareInterval);
+                 
+                    cout << "Intervals sorted by start time : \n";
+                    for (auto x : arr) cout << "[" << x.start << ", " << x.end << "] ";
+                 
+                    return 0;
+                }
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/d55e6586-a944-41f8-9de5-71d996d1e53f)
+
+# III. Xây Dựng Comparison Function Cho Hàm Sort Trong C++
 ![image](https://github.com/minchangggg/DSA/assets/125820144/74431d15-eeb4-4088-a01a-282142e59eb2)
 ## 1. Xây dựng comparison function 
 - Hàm so sánh khi sử dụng hàm sort chính là tham số thứ 3 mà bạn sẽ truyền vào hàm khi sắp xếp mảng, vector. 
@@ -334,79 +433,48 @@ Output :
 
 > Output :
 
-                22 4 6 33 9 
-# III. Hàm stable_sort() Trong C++ 
-C++ có sẵn 2 hàm sắp xếp đó là sort() và stable_sort()
-## 1. Tính chất ổn định - stable của thuật toán sắp xếp
-- Các thuật toán sắp xếp chia thành 2 loại là ổn định và không ổn định
-   + Các thuật toán sắp xếp không ổn định có thể kể đến như : sắp xếp nhanh quicksort, sắp xếp vun đống heap sort, sắp xếp chọn selection sort.
-   + Các thuật toán sắp xếp ổn định bao gồm : sắp xếp trộn merge sort, sắp xếp chèn insertion sort, tim sort, sắp xếp đếm phân phối counting sort.
-- Vậy tính ổn định của thuật toán sắp xếp là gì ? 
-   + Tính ổn định của thuật toán sắp xếp có thể hiểu đơn giản là khi bạn sắp xếp các phần tử trong mảng mà có cùng giá trị sắp xếp (ví dụ như giá trị về độ lớn, tổng chữ số ..) thì những phần tử này sẽ đứng cạnh nhau và duy trì thứ tự giống như thứ tự giữa chúng trong mảng ban đầu.
-   + Ví dụ bạn có dãy số (111, 9, 3000, 18, 81, 1002, 2002) và muốn sắp xếp các phần tử này theo tổng chữ số tăng dần bằng thuật toán sắp xếp có tính chất stable thì mảng sẽ được sắp xếp theo thứ tự (111, 3000, 1002, 2002, 9, 18, 81) trong đó (111, 3000, 1002) có cùng tổng chữ số là 3 và chúng giữ đúng thứ tự ban đầu như thứ tự xuất hiện. Tương tự với cụm (9, 18, 81) có cùng tổng chữ số là 9.
-- Trong một số ngôn ngữ lập trình thì hàm sắp xếp được cài đặt bởi các thuật toán sắp xếp có tính ổn định, ví dụ như Java, Python, JS. Trong C++ thì hàm sort() mà bạn đã học ở bài trước không có tính ổn định, C++ cung cấp thêm hàm stable_sort() có tính chất stable, hàm này được cài đặt bởi thuật toán sắp xếp trộn Merge sort.
-## 2. Hàm stable_sort() trong C++
-- Khi làm bài tập về sắp xếp nếu đề bài có thêm yêu cầu trong trường hợp các phần tử trong mảng, danh sách có cùng giá trị sắp xếp thì cần giữ nguyên thứ tự xuất hiện giữa các phần tử này thì khi đó bạn cần nghĩ ngay tới hàm stable_sort()
-- Cách sử dụng hàm stable_sort() giống với hàm sort(), chỉ khác nhau ở thuật toán mà họ đã cài đặt chúng.
-- Ví dụ 1: Sắp xếp dãy số theo tổng chữ số tăng dần và giữ nguyên thứ tự xuất hiện giữa chúng nếu có cùng tổng chữ số
+                22 4 6 33 9
 
-                #include <iostream>
+# IV. Ví dụ
                 #include <algorithm>
-                
+                #include <iostream>
                 using namespace std;
-                
-                int tong(int n){
-                    int sum = 0;
-                    while(n){
-                        sum += n % 10;
-                        n /= 10;
+                 
+                template <class T>
+                class Comparator { // we pass an object of this class as third arg to sort function...
+                public:
+                    bool operator()(T x1, T x2) {
+                        return x1 < x2;
                     }
-                    return sum;
-                }
-                
-                bool cmp(int a, int b){
-                    return tong(a) < tong(b);
-                }
-                
-                int main(){
-                    int a[11] = {10002, 19, 3000, 111, 81, 45, 1002, 21, 10071, 203, 401};
-                    stable_sort(a, a + 11, cmp);
-                    for(int x : a) cout << x << " ";    
-                }
-                
-> Output : 
-                 
-                10002 3000 111 1002 21 203 401 81 45 10071 19
-
--> Nhận xét : Bạn chỉ cần xây dựng hàm so sánh để sắp xếp theo tổng chữ số tăng dần còn khi các số trong mảng có cùng tổng chữ số thì hàm stable_sort() sẽ giữ thứ tự tương đối giữa chúng.
-
-- Ví dụ 2:
-
-                #include <bits/stdc++.h>
-                using namespace std;
-                 
-                struct Interval { // An interval has start time and end time
-                    int start, end; 
                 };
                  
-                // Compares two intervals according to starting times.
-                bool compareInterval(Interval i1, Interval i2) {
-                    return (i1.start < i2.start);
+                template <class T> bool funComparator(T x1, T x2) { // return type is bool
+                    return x1 <= x2;
+                }
+                 
+                void show(int a[], int array_size) {
+                    for (int i = 0; i < array_size; i++) {
+                        cout << a[i] << " ";
+                    }
                 }
                  
                 int main() {
-                    // Given intervals are sorted according to end time
-                    Interval arr[] = { { 1, 3 }, { 2, 4 }, { 1, 7 }, { 2, 19 } };
-                    int n = sizeof(arr) / sizeof(arr[0]);
-                 
-                    // sort the intervals in increasing order of start time 
-                    // such that the start time intervals appear in same order as in input.
-                    stable_sort(arr, arr + n, compareInterval);
-                 
-                    cout << "Intervals sorted by start time : \n";
-                    for (auto x : arr) cout << "[" << x.start << ", " << x.end << "] ";
+                    int a[] = { 1, 5, 8, 9, 6, 7, 3, 4, 2, 0 };
+                    int asize = sizeof(a) / sizeof(int);
+                
+                    cout << "The array before sorting is : "; show(a, asize);
+                
+                    cout << "\nThe array after sorting is(asc) :"; 
+                    sort(a, a + asize); show(a, asize);
+                
+                    cout << "\nThe array after sorting is(desc) :";
+                    sort(a, a + asize, greater<int>()); show(a, asize);
+                    
+                    cout << "\nThe array after sorting is(asc but our comparator class) :";
+                    sort(a, a + asize, Comparator<int>()); show(a, asize);
+                
+                    cout << "\nThe array after sorting is(asc but our comparator function) :";
+                    sort(a, a + asize, funComparator<int>); show(a, asize);
                  
                     return 0;
                 }
-
-![image](https://github.com/minchangggg/DSA/assets/125820144/d55e6586-a944-41f8-9de5-71d996d1e53f)
