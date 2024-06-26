@@ -1,7 +1,6 @@
-<img width="800" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/0b4ceb55-8ed5-4ad1-976b-d6158d9d9402">
+<img width="700" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/0b4ceb55-8ed5-4ad1-976b-d6158d9d9402">
 
 > https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/?ref=lbp#dsa-full-form
-![image](https://github.com/minchangggg/DSA/assets/125820144/7edc0fc7-ec82-4112-92d3-5e207b81091a)
 
 # Độ phức tạp thuật toán (algorithm complexity)
 > https://topdev.vn/blog/on-lai-ve-big-o-notation-va-do-phuc-tap/
