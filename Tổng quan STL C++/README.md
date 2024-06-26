@@ -1,4 +1,4 @@
-![image](https://github.com/minchangggg/DSA/assets/125820144/d7993201-7d03-4a7f-9b37-bc080788bd63)
+![image](https://github.com/minchangggg/DSA/assets/125820144/34f16463-3f42-41e5-9ade-ab5d7396b5e6)
 
 # Giới thiệu về STL
 > https://www.geeksforgeeks.org/the-c-standard-template-library-stl/?ref=lbp
