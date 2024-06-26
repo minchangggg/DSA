@@ -69,6 +69,8 @@ Trong trường hợp hàm f(n) có chứa hằng số và các bậc khác nhau
       Đối với bài này, nếu bạn dùng sàng nguyên tố (ý tưởng là loại bỏ các hợp số), thì độ phức tạp thuật toán xấp xỉ O(nlogn). Chi tiết tham khảo ở đây nhé.
 
 # Giới thiệu về STL
+> https://www.geeksforgeeks.org/the-c-standard-template-library-stl/?ref=lbp
+> 
 > https://cpp.daynhauhoc.com/11/0-gioi-thieu-ve-stl/
 - Bắt đầu từ chương này trở đi, mình sẽ trình bày với bạn các các đặc trưng chỉ có riêng trong ngôn ngữ C++, hoàn toàn không liên quan gì đến ngôn ngữ C cả. Và đặc trưng đầu tiên mình muốn giới thiệu đến các bạn là bộ thư viện chuẩn (Standard Template Library).
 - **Standard Template Library** là một tập hợp các lớp (classes) cung cấp cho lập trình viên những khuôn mẫu về tổ chức dữ liệu, thuật toán, bộ lặp. Nó cung cấp rất nhiều thuật toán cơ bản và cấu trúc dữ liệu cơ bản trong ngành khoa học máy tính.
@@ -211,14 +213,14 @@ std::cout << myvector[4] << std::endl;
 Các bạn lưu ý chỉ số bắt đầu của container cũng là 0 giống với mảng một chiều.
 
 std::vector::at(size_type index)
+
 Tương tự operator[].
 
 std::vector<int> myvector(10); //10 zero-initialized elements
 
-for (int i = 0; i < myvector.size(); i++)
-	myvector[i] = i;
-	
+for (int i = 0; i < myvector.size(); i++) myvector[i] = i;
 std::cout << myvector.at(4) << std::endl;
+
 Capacity
 std::vector::size()
 Phương thức size trả về số lượng phần tử chứa trong container của vector.
