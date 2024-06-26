@@ -4,7 +4,7 @@
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-<img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/c9cbdc38-9c7e-4362-8dc4-1d3fd73787f7">
+<img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/a536f2c2-b290-4694-a4e3-30b0804afe0e">
 
 ## Array
 ## String
