@@ -1,4 +1,4 @@
-[Mảng 1 chiều](https://github.com/minchangggg/DSA/tree/main/Bu%E1%BB%95i%20h%E1%BB%8Dc%20ch%C3%ADnh/Bu%E1%BB%95i%201/M%E1%BA%A3ng%201%20chi%E1%BB%81u)
+![image](https://github.com/minchangggg/DSA/assets/125820144/d7993201-7d03-4a7f-9b37-bc080788bd63)
 
 # Giới thiệu về STL
 > https://www.geeksforgeeks.org/the-c-standard-template-library-stl/?ref=lbp
