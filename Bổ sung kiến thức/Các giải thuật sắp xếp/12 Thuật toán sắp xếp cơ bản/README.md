@@ -395,6 +395,9 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 		Sorted array is 5 6 7 11 12 13 
 
 # 5.Thuật toán Heap Sort (Sắp xếp vun đống)
+> https://www.geeksforgeeks.org/heap-sort/?ref=header_search
+>
+> https://www.youtube.com/watch?v=Dr6DdLDsE-4&list=PLoaAbmGPgTSNMAzkKBHkh2mLuBk54II5L&index=47
 ## a. Mã nguồn minh họa :
 		void updateHeapAt(double *heapedArray, int size, int updatedPosition) {
 			int largestIndex = updatedPosition; // index of the largest element
@@ -429,24 +432,90 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 				updateHeapAt(unsortedArray, sizeOfUpdatedHeap, 0);
 			}
 		}
-## b. Ý tưởng giải thuật
-Tư tưởng của giải thuật xuất phát từ cơ sở Cây vun đống Max ( hay Cây vun đống Min). Một cách tương tự nhau, ta sẽ lựa chọn cây vun đống Max để minh họa giải thuật Sắp xếp vun đống
-Cây vun đống Max ở đây được quan niệm là cây nhị phân hoàn chỉnh, tức với mỗi nút cha sẽ luôn bao gồm 2 con (trừ hàng ở độ sâu cuối cùng), và các con luôn được phân bố một cách trái nhất có thể. Do cây vun đống được đề xuất minh họa trong giải thuật này là Max Heap Tree, nên có thêm tính chất Maximum được thể hiện như sau : Nút cha phải lớn hơn hoặc bằng hai nút con ( còn các nút con cùng cấp thì không có ràng buộc với nhau). Như vậy, mỗi nhánh mà được đại diện bởi bất cứ nút nào đó trong cây cũng sẽ phải là một nhánh Max Heap.
-Cây vun đống có thể được cài đặt sử dụng Mảng hoặc Danh sách Liên kết. Để đơn giản trong sự minh họa, chúng ta sẽ lựa chọn Mảng cho quá trình cài đặt giải thuật
-Tiếp theo đó, ta sẽ làm gì với cây Max Heap Tree này, khi biết được một tính chất vô cùng quan trọng của nó : Giá trị của cha luôn lớn hơn hoặc bằng giá trị của mỗi con. Điều đó, cho thấy phần tử gốc sẽ là phần tử lớn nhất trong dãy. Ta tiến hành hoán đổi phần tử gốc với 1 phần tử cuối cùng của lá (nút cuối cùng), lúc này, nút lá (“thấp bé nhỏ con”) được đưa lên đầu (root, rễ cây), đồng thời tách biệt và cất giữ phần tử lớn nhất ở một nơi nào đó. Tại thời điểm này, cây hiện tại không còn mang tính chất Max Heap (bởi vì lá được đưa lên gốc có thể nhỏ hơn 2 con của nút cha bị thay thế). Tại đây ta cần phải tiến hành xây dựng một giải thuật mang tên updateHeapAt(...) giúp cập nhật lại cây trên để đưa nó trở về đúng dạng cây Max Heap Tree . Hàm này sẽ sử dụng tính chất quan trọng từ cây “bị sai lệch” trên, đó là : 2 nhánh con của phần tử gốc hiện tại vẫn mang tính chất Max Heap. Sau khi, đi qua hàm này, cây trên sẽ được cập nhật về đúng dạng Max Heap... Rồi ta lại hoán đổi gốc của cây với phần tử lá cuối cùng, đồng thời lại tách biệt phần tử lớn nhất ra khỏi cây, rồi lại cập nhật lại cây ... Các quá trình cứ diễn ra một cách tuần hoàn cho tới khi cây chỉ còn duy nhất một phần tử (đó cũng sẽ chính là phần tử nhỏ nhất trong dãy số ). .... Kết thúc giải thuật Heap Sort, chúng ta sẽ thu được một mảng dãy số đã được sắp xếp như ý muốn !
-Khi cài đặt cây Max Heap theo dạng mảng số, có một tính chất sau cần chú ý:
-LeftChildIndex = 2 * ParentIndex + 1
-RightChildIndex = 2 * ParentIndex + 2
-Vì input hay mỗi dãy số ban đầu (được lưu trữ dưới dạng mảng) là ngẫu nhiên, chưa được có tính chất Max Heap, vì thế ta cần có phải có một bước đầu để chuyển hóa cây trên thành một cây mang đặc điểm Max Heap ( thủ tục này được được tạo trong hàm heapSort(...) )
-Như vậy, hàm heapSort sẽ bao quát những công việc sau :
-Khởi tạo một cây Max Heap Tree từ một dãy ngẫu nhiên
-Từ cây Max Heap Tree, tiến hành trích lấy phần tử lớn nhất ở root, và thay thế vị trí root bởi nút lá cuối cùng. Sau đó, gọi hàm updateHeapAt(...) cập nhật lại cây trên tại root mới đó, rồi lại trích lấy phần tử root, và thay thế vị trí root bởi lá,...Quá trình diễn ra một cách tương tự, cho tới khi cây chỉ còn 1 phần tử. Và phần tử đó sẽ là phần tử nhỏ nhất trong mảng. Kết quả, ta thu được một mảng gồm các số đã được sắp xếp tăng dần !
+## b. Ý tưởng giải thuật và nguyên tắc hoạt động
+### Ý tưởng giải thuật
+- Tư tưởng của giải thuật xuất phát từ cơ sở Cây vun đống Max ( hay Cây vun đống Min). Một cách tương tự nhau, ta sẽ lựa chọn cây vun đống Max để minh họa giải thuật Sắp xếp vun đống
+- Cây vun đống Max ở đây được quan niệm là cây nhị phân hoàn chỉnh, tức với mỗi nút cha sẽ luôn bao gồm 2 con (trừ hàng ở độ sâu cuối cùng), và các con luôn được phân bố một cách trái nhất có thể. Do cây vun đống được đề xuất minh họa trong giải thuật này là Max Heap Tree, nên có thêm tính chất Maximum được thể hiện như sau : Nút cha phải lớn hơn hoặc bằng hai nút con ( còn các nút con cùng cấp thì không có ràng buộc với nhau). Như vậy, mỗi nhánh mà được đại diện bởi bất cứ nút nào đó trong cây cũng sẽ phải là một nhánh Max Heap.
+- Cây vun đống có thể được cài đặt sử dụng Mảng hoặc Danh sách Liên kết. Để đơn giản trong sự minh họa, chúng ta sẽ lựa chọn Mảng cho quá trình cài đặt giải thuật
+- Tiếp theo đó, ta sẽ làm gì với cây Max Heap Tree này, khi biết được một tính chất vô cùng quan trọng của nó : Giá trị của cha luôn lớn hơn hoặc bằng giá trị của mỗi con. Điều đó, cho thấy phần tử gốc sẽ là phần tử lớn nhất trong dãy. Ta tiến hành hoán đổi phần tử gốc với 1 phần tử cuối cùng của lá (nút cuối cùng), lúc này, nút lá (“thấp bé nhỏ con”) được đưa lên đầu (root, rễ cây), đồng thời tách biệt và cất giữ phần tử lớn nhất ở một nơi nào đó. Tại thời điểm này, cây hiện tại không còn mang tính chất Max Heap (bởi vì lá được đưa lên gốc có thể nhỏ hơn 2 con của nút cha bị thay thế). Tại đây ta cần phải tiến hành xây dựng một giải thuật mang tên updateHeapAt(...) giúp cập nhật lại cây trên để đưa nó trở về đúng dạng cây Max Heap Tree . Hàm này sẽ sử dụng tính chất quan trọng từ cây “bị sai lệch” trên, đó là : 2 nhánh con của phần tử gốc hiện tại vẫn mang tính chất Max Heap. Sau khi, đi qua hàm này, cây trên sẽ được cập nhật về đúng dạng Max Heap... Rồi ta lại hoán đổi gốc của cây với phần tử lá cuối cùng, đồng thời lại tách biệt phần tử lớn nhất ra khỏi cây, rồi lại cập nhật lại cây ... Các quá trình cứ diễn ra một cách tuần hoàn cho tới khi cây chỉ còn duy nhất một phần tử (đó cũng sẽ chính là phần tử nhỏ nhất trong dãy số ). .... Kết thúc giải thuật Heap Sort, chúng ta sẽ thu được một mảng dãy số đã được sắp xếp như ý muốn !
+- Khi cài đặt cây Max Heap theo dạng mảng số, có một tính chất sau cần chú ý:
+   + LeftChildIndex = 2 * ParentIndex + 1
+   + RightChildIndex = 2 * ParentIndex + 2
+- Vì input hay mỗi dãy số ban đầu (được lưu trữ dưới dạng mảng) là ngẫu nhiên, chưa được có tính chất Max Heap, vì thế ta cần có phải có một bước đầu để chuyển hóa cây trên thành một cây mang đặc điểm Max Heap ( thủ tục này được được tạo trong hàm heapSort(...) )
+- Như vậy, hàm heapSort sẽ bao quát những công việc sau :
+- Khởi tạo một cây Max Heap Tree từ một dãy ngẫu nhiên
+- Từ cây Max Heap Tree, tiến hành trích lấy phần tử lớn nhất ở root, và thay thế vị trí root bởi nút lá cuối cùng. Sau đó, gọi hàm updateHeapAt(...) cập nhật lại cây trên tại root mới đó, rồi lại trích lấy phần tử root, và thay thế vị trí root bởi lá,...Quá trình diễn ra một cách tương tự, cho tới khi cây chỉ còn 1 phần tử. Và phần tử đó sẽ là phần tử nhỏ nhất trong mảng. Kết quả, ta thu được một mảng gồm các số đã được sắp xếp tăng dần !
+### Nguyên tắc hoạt động 
+- Thuật toán Heap sort sẽ hoạt động dựa trên các nguyên tắc sau:
+   + Phần tử lớn nhất được đặt ở nút gốc theo thuộc tính Max Heap
+   + Loại bỏ phần tử gốc và đặt nó ở cuối mảng nhị phân. Đặt phần tử cuối cùng của cây nhị phân vào chỗ trống.
+   + Giảm kích thước của Heap đi 1 đơn vị
+   + Tạo cấu trúc dữ liệu Heap cho phần tử gốc để nút gốc chứa phần tử có giá trị lớn nhất.
+   + Lặp lại quá trình này cho đến khi tất cả các phần tử của danh sách được sắp xếp đúng.
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/d93cd487-0756-44f3-b666-959b94a75167)
+
+`Loại bỏ phần tử gốc 14 và đặt ở cuối mảng nhị phân.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/0e22c0bb-9669-4dcf-9e79-37fb328aa980)
+
+`Tạo cấu trúc dữ liệu Heap cho phần tử gốc 12.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/4ccd90ec-5b3a-480a-a94a-bb433a78e3f6)
+
+`Hoán đổi để loại bỏ phần tử gốc 12.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/c9d46e1e-1cbb-4360-8808-e86bfdfab1ed)
+
+`Xóa bỏ phần tử gốc 12.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/fda44de0-3005-4afc-b4bb-abdedd5c615a)
+
+`Tiếp tục tạo cấu trúc dữ liệu Heap.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/08bf00c4-dbf0-4669-b695-121ccefd9dd4)
+
+`Lại hoán đổi để loại bỏ nút gốc 11.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/be9135b5-30ad-4d31-8f20-7bf6434f754d)
+
+`Xóa bỏ nút gốc 11.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/e2cc880f-4c6a-4836-b454-46b1fb6653d5)
+
+`Lại tạo cấu trúc Heap`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/8f8c595a-5121-47a1-95f7-1bcb83d2f213)
+
+`Hoán đổi để loại bỏ nút gốc 8.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/d294c2c7-f9c5-4e84-810c-3729bd137649)
+
+`Xóa nút gốc 8.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/10aaf023-5831-4785-bd3b-e2cb9d557968)
+
+`Tạo Heap`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/7adeee6e-c25d-461e-b6c4-14dc390ba964)
+
+`Hoán đổi để loại bỏ nút gốc 7.`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/8ac6cad6-4951-43ef-9ad3-c2be2b1ba274)
+
+`Xóa nút gốc 7`
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/aade5954-1f54-47aa-8030-798c43b86d0a)
+
+`Các phần tử đã được sắp xếp đúng`
+
 ### c. Độ phức tạp của giải thuật :
-Thủ tục updateHeapAt (...) có độ phức tạp là O(log(n)) : Do số lần duyệt của thủ tục này cỡ bằng độ sâu của cây nhị phân
-Đối với thủ tục heapSort, ta có thể đánh giá độ phức tạp một cách tương đối như sau :
-Vòng for đầu tiên : O(log(n/2) + log(n/2 + 1) + ... + log(n)) <= O(n.log(n))
-Vòng for thứ hai : O(log(n) + log(n-1) + ... + log(1)) <= O(n.log(n))
-Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
+- Thủ tục updateHeapAt (...) có độ phức tạp là O(log(n)) : Do số lần duyệt của thủ tục này cỡ bằng độ sâu của cây nhị phân
+- Đối với thủ tục heapSort, ta có thể đánh giá độ phức tạp một cách tương đối như sau :
+   + Vòng for đầu tiên : O(log(n/2) + log(n/2 + 1) + ... + log(n)) <= O(n.log(n))
+   + Vòng for thứ hai : O(log(n) + log(n-1) + ... + log(1)) <= O(n.log(n))
+
+-> Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
 ## d. Nhận xét và đánh giá
 - Ưu điểm :
    + Khá nhanh (O(n.log(n)), tuy nhiên trong thực nghiệm lại kém hơn so với giải thuật QuickSort và MergeSort.
@@ -463,7 +532,56 @@ Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
 > K largest (or smallest) elements in an array : http://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
 >
 > Applications of Heap Data Structure : http://www.geeksforgeeks.org/applications-of-heap-data-structure/
+## e. Ví dụ
+		#include <iostream>
+		using namespace std;
+		
+		// To heapify a subtree rooted with node i which is an index in arr[]. 
+		// n is size of heap
+		void heapify(int arr[], int N, int i) {
+		    int largest = i; // Initialize largest as root
+		    int l = 2 * i + 1; // left = 2*i + 1
+		    int r = 2 * i + 2; // right = 2*i + 2
+		
+		    // If left child is larger than root
+		    if (l < N && arr[l] > arr[largest]) largest = l;
+		
+		    // If right child is larger than largest so far
+		    if (r < N && arr[r] > arr[largest]) largest = r;
+		
+		    // If largest is not root
+		    if (largest != i) {
+		        swap(arr[i], arr[largest]);
+		        // Recursively heapify the affected sub-tree
+		        heapify(arr, N, largest);
+		    }
+		}
+		
+		// Main function to do heap sort
+		void heapSort(int arr[], int N) {
+		    // Build heap (rearrange array)
+		    for (int i = N / 2 - 1; i >= 0; i--) heapify(arr, N, i);
+		
+		    // One by one extract an element from heap
+		    for (int i = N - 1; i > 0; i--) {
+		        swap(arr[0], arr[i]); // Move current root to end
+		
+		        heapify(arr, i, 0); // call max heapify on the reduced heap
+		    }
+		}
+		
+		int main() {
+		    int arr[] = { 12, 11, 13, 5, 6, 7 };
+		    int N = sizeof(arr) / sizeof(arr[0]);
+		    heapSort(arr, N);
+		
+		    cout << "Sorted array is ";
+		    for (int x : arr) cout << x << ' ';
+		}
 
+> Output
+
+		Sorted array is 5 6 7 11 12 13 
 # 6. Thuật toán Quick Sort (Sắp xếp nhanh)
 ## a. Mã nguồn minh họa :
     public static void swap(double[] unsortedArray, int index1, int index2) {
@@ -600,7 +718,7 @@ Giải thuật Quick Sort với tư tưởng chính :
 - Một số cài đặt Quick Sort sử dụng Danh sách liên kết :
    + Sử dụng danh sách liên kết đơn : http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
    + Sử dụng danh sách liên kết đôi: http://www.geeksforgeeks.org/quicksort-for-linked-list/
-# 7.Thuật toán Counting Sort (Sắp xếp đếm)
+# 7.Thuật toán Counting Sort (Sắp xếp đếm phân phối)
 ## a. Mã nguồn minh họa :
 		void countingSort(char *unsortedString) {
 			int lenOfString = strlen(unsortedString);
