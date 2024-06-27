@@ -1,13 +1,13 @@
 > https://github.com/dungbachviet/SortingAlgorithms
-# 12 THUẬT TOÁN SẮP XẾP CƠ BẢN
+
 - Sắp xếp là quá trình bố trí lại các phần tử trong một tập hợp theo một trình tự nào đó nhằm mục đích giúp quản lý và tìm kiếm các phần tử dễ dàng và nhanh chóng hơn.
 - Tại sao phải sắp xếp?
 	+ Để có thể sử dụng thuật toán tìm nhị phân
 	+ Để thực hiện thao tác nào đó được nhanh hơn
 # Các phương pháp sắp xếp thông dụng
-## 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
+# 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
-### a. Mã nguồn minh họa :
+## a. Mã nguồn minh họa :
 	void bubbleSort(int a[], int n){
 		for(int i = 0; i < n; i++){
 			for(int j = 0; j < n - i - 1; j++){
@@ -27,14 +27,14 @@
 		}
 	}
   
-### b. Ý tưởng của giải thuật :
+## b. Ý tưởng của giải thuật :
 ![Bản sao của Blue-Pink Cute Class Schedule (2)](https://github.com/minchangggg/DSA/assets/125820144/1fd8691e-c087-4e59-a304-423ff0042580)
 
 - Thuật toán này mang một tư tưởng lan truyền, có nghĩa là : với mỗi một quá trình lan truyền (quá trình duyệt và hoán vị các phần tử gần kề liên tiếp), giải thuật sẽ xác định được một phần từ lớn nhất rồi cố định nó ở cuối mảng.
 - Lúc này, phần tử ở cuối mảng sẽ không còn đóng bất kỳ một vai trò nào nữa trong quá trình sắp xếp tiếp theo. Khi đó, để dễ hiểu ta có thể giả định, mảng mới chỉ còn lại từ phần từ đầu tiên đến phần từ thứ n – 1 ( không xét phần tử cuối). Sau đó tiếp tục quá trình “lan truyền nổi bọt” trong mảng mới này để liên tục tìm ra phần tử lớn nhất và gắn nó cố định tại trí cuối cùng. Như vậy, sau mỗi quá trình lan truyền, số phần tử trong mảng liên tục giảm đi một, nhưng đồng thời ta cũng đã cố định được một phần tử lớn nhất nằm ở cuối mỗi mảng. Sau n – 1 quá trình lan truyền như vậy, chúng ta sẽ thu được một mảng đã được sắp xếp và quá trình lan truyền hoàn toàn kết thúc
-### c. Độ phức tạp của giải thuật :
+## c. Độ phức tạp của giải thuật :
 - Do phải trải qua (n-1) quá trình lan truyền, với mỗi quá trình lan truyền sẽ tương ứng với số lần duyệt tối đa qua các phần từ là : (n-1) + (n-2) + … + 1. Vì vậy độ phức tạp của giải thuật trên là : O(n^2)
-### d. Nhận xét và đánh giá :
+## d. Nhận xét và đánh giá :
 - Ưu điểm:
   + Thể hiện được tính ổn định và tại chỗ
   + Đơn giản, dễ hiểu… được sử dụng làm ví dụ minh họa trong quá trình giảng dạy
@@ -42,7 +42,7 @@
   + Hiệu suất chậm nhất trong các thuật toán sắp xếp.
   + Không hiệu quả với những dữ liệu lớn.
 - Tối ưu và so sánh: Giải pháp tối ưu cho giải thuật trên đó là sử dụng biến hasSwapped nằm bên ngay trong vòng lặp thứ 2. Nếu đầu vào là đã được sắp xếp thì độ phức tạp thời gian chỉ còn là O(n). Một cách tương tự, trong trường hợp dãy số đầu được sắp xếp giảm dần
-### e. Ví dụ
+## e. Ví dụ
 		#include <bits/stdc++.h>
 		using namespace std;
 		
@@ -103,7 +103,7 @@
         	}
         }  
 	
-### b. Ý tưởng của giải thuật :
+## b. Ý tưởng của giải thuật :
 ![image](https://github.com/minchangggg/DSA/assets/125820144/988bae3a-fc1c-4c31-bea3-0bba3774ee42)
 
 - Giải thuật này xuất phát từ các thao tác sắp xếp của những người chơi bài. Tư tưởng đó được thể hiện như sau :
@@ -111,11 +111,11 @@
     + Tiếp tục với việc xét quân bài thứ 3, ta tiến hành so sánh quân bài này với dãy các quân bài đã được sắp xếp ở phía trước nó. Sau đó tiến hành thực hiện thao tác chèn quân bài này vào ví trí thích hợp trong dãy các quân bài phía trước để tạo thành một dãy con được sắp xếp tăng dần.
     + Một cách hoàn toàn tương tự với các quân bài thứ 4, 5 … n.
     + Kết thúc quá trình này, ta sẽ thu được một dãy số được sắp xếp tăng dần
-### c. Độ phức tạp của thuật toán
+## c. Độ phức tạp của thuật toán
 - Trường hợp tốt nhất: O(n) , Nếu danh sách đã được sắp xếp, trong đó n là số phần tử trong danh sách.
 - Trường hợp trung bình: O(n^2) , Nếu danh sách được sắp xếp ngẫu nhiên
 - Trường hợp xấu nhất: O(n^2) , Nếu danh sách theo thứ tự ngược lại
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Ưu điểm :
   + Làm việc tốt trong trường hợp mảng có ít phần tử
   + Giải thuật có tính chất ổn định và tại chỗ
@@ -131,7 +131,7 @@
   + Trong tình huống này, việc sử dụng danh sách liên kết để cài đặt chỉ có lợi khi mà dữ liệu cần sắp xếp đến một cách liên tục (đó có thể là dữ liệu online). Vì vậy, với cách cài đặt Danh sách Liên kết, ta có thể chủ động cấp phát vùng nhớ tùy thích
   + Nhưng khi cài đặt bằng Danh sách liên kết cũng sẽ nảy sinh vài vấn đề : Do việc truy cập vào 1 phần tử trong danh sách liên kết không mang tính trực truy tức phải mất thời gian tuyến tính. Điều này, có thể làm giảm hiệu suất của giải thuật
   + Tuy nhiên, trong thực tế để cài đặt Danh sách Liên kết cho giải thuật này, mọi người có thể tham khảo tại đây : http://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
-### e. Ví dụ
+## e. Ví dụ
 	#include <bits/stdc++.h>
 	using namespace std;
 	
@@ -161,9 +161,9 @@
 
 	5 6 11 12 13 
  
-## 3. Thuật toán Selection Sort (Sắp xếp chọn)
+# 3. Thuật toán Selection Sort (Sắp xếp chọn)
 > https://www.geeksforgeeks.org/selection-sort-algorithm-2/
-### a. Code minh họa
+## a. Code minh họa
 	void selectionSort(int a[], int n){
 		for(int i = 0; i < n; i++){
 			int min_pos = i;
@@ -187,7 +187,7 @@
         	}
         }
         
-### b Ý tưởng giải thuật
+## b Ý tưởng giải thuật
 ![image](https://github.com/minchangggg/DSA/assets/125820144/a7fe03c5-17c2-4689-9494-86b02e8bb183)
 
 Với một mảng số ban đầu chưa được sắp xếp gồm size phần tử. Ý tưởng của thuật toán được mô tả thông qua các bước chính như sau :
@@ -195,12 +195,12 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
    + Duyệt để so sánh phần tử nhỏ nhất này với các phần tử còn lại (tức các phần tử tiếp theo của dãy số). Nếu phát hiện có bất kỳ phần tử nào nhỏ hơn phần tử cần so sánh, tiến hành thay đổi giá trị của chỉ số lưu trữ phần tử nhỏ nhất
    + Sau khi duyệt xong toàn bộ mảng, kết quả chúng ta tìm được đó là : vị trí (chỉ số) của phần tử nhỏ nhất trong mảng đó. Lúc này, thực hiện hoán đổi vị trí của : phần tử đầu tiên trong mảng và vị trí của phần tử nhỏ nhất (đã xác định tử bước trên)
    + Sau khi hoán đổi, phần tử nhỏ nhất sẽ luôn nằm “cố định” ở đầu mảng và phần tử này sẽ không còn đóng góp vai trò nào cho những lần sắp xếp tiếp theo. Do phần tử đầu tiên đã cố định, quá trình sắp xếp chỉ còn tác động lên size - 1 tiếp theo (không xét phần tử thứ nhất). Và thực hiện lặp lại một cách tương tự quá trình trên từ bước 1 tới bước cuối cùng … Sau mỗi quá trình lặp lại đó, ta sẽ lần lượt xác định và cố định ra được phần tử nhỏ thứ 2, phần tử nhỏ thứ 3 …, phần tử nhỏ thứ size – 1. Tới đây giải thuật kết thúc !
-### c Độ phức tạp của thuật toán :
+## c Độ phức tạp của thuật toán :
 - Thuật toán sử dụng 2 vòng for:
   + Vòng for thứ nhất chạy từ index = 0 tới size – 2.
   + Vòng for thứ hai chạy từ index + 1 tới cuối mảng Như vậy, đối với 1 dãy số gồm n phần tử , số lần duyệt qua từng phần tử trong mảng sẽ là : (n-1) + (n-2) + … + 1 .  
 - Vì vậy độ phức tạp của thuật toán trong tình huống tồi tệ nhất sẽ là : O(n^2)
-### d. Nhận xét thuật toán
+## d. Nhận xét thuật toán
 - Ưu điểm : 
   + Selection Sort là một giải thuật đã hạn chế được khá nhiều số hoán vị (đổi chỗ 2 phần tử trong mảng) so với giải thuật Sắp xếp Nổi bọt (do nó sử dụng biến chỉ số để lưu lại phần tử nhỏ nhất,… để đến cuối cùng mới tiến hành hoán vị)
   + Giải thuật này có tính chất ổn định : Tức vị trí tương đối của các phần tử "bằng nhau về giá trị" trong mảng vẫn được giữ nguyên trước và khi sắp xếp (nghĩa là nếu có 2 phần tử bằng nhau trong mảng, phần tử 1 nằm bên bên trái phần tử 2 thì sau khi sắp xếp thứ tự này vẫn không thay đổi)
@@ -210,7 +210,7 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
   + Độ phức tạp của giải thuật tuy đã được cải thiện nhưng nhìn chung vẫn còn khá lớn so với các thuật toán sắp xếp hiệu quả khác (như QuickSort, MergeSort)
   + Chưa giải quyết được vấn đề khi mà đầu vào của dãy số đã được sắp xếp (nghĩa là nếu đầu vào là một dãy số đã được sắp xếp thì thuật toán này vẫn cứ "máy móc" để sắp xếp lại)
 - Giải pháp tối ưu : Trong tình huống dãy số đầu vào đã được sắp xếp, giải pháp được đưa ra sẽ là : Sử dụng một biến hasSwapped để duyệt từ đầu tới cuối mảng, để phát hiện xem dãy số đã được sắp xếp tăng dần hay giảm dần hay chưa? Nếu hasSwapped = 0 khi duyệt theo chiều thuận tức dãy đã được sắp xếp tăng dần. Nếu hasSwapped = 0 khi duyệt theo chiều nghịch, tức dãy đã được sắp xếp giảm dần, vì thế chỉ cần đảo ngược lại dãy số đó để có một thứ tự đúng!
-### e. Ví dụ
+## e. Ví dụ
 	#include <bits/stdc++.h>
 	using namespace std;
 	
@@ -238,9 +238,9 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
 
 	Sorted array: 11 12 22 25 64 
 
-## 4.Thuật toán Merge Sort (Sắp xếp trộn)
+# 4.Thuật toán Merge Sort (Sắp xếp trộn)
 > https://www.geeksforgeeks.org/merge-sort/?ref=header_search
-### a. Mã nguồn minh họa (python)
+## a. Mã nguồn minh họa (python)
 `Thao tác trộn`
 
 		void merge(int a[], int l, int m, int r){
@@ -275,7 +275,7 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
 			for(int x : a) cout << x << ' ';
 		}
 
-### b Ý tưởng giải thuật
+## b Ý tưởng giải thuật
 ![Bản sao của Blue-Pink Cute Class Schedule (3)](https://github.com/minchangggg/DSA/assets/125820144/53f8474a-8452-461c-b539-9a78b6aa678b)
 
 		- Divide:
@@ -302,10 +302,10 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
    + Sắp xếp các dãy con.
    + Gộp các dãy con lại.
 - Thực hiện thuật toán: Đối với thuật toán Merge Sort - sắp xếp trộn, chúng ta sẽ thực hiện chia đôi liên tục dãy lớn thành các dãy con, cho đến khi ta thu được các các dãy chỉ bao gồm một phần tử. Sau đó sắp xếp lại các phần tử bắt đầu từ những dãy con nhỏ nhất. Cuối cùng thực hiện thao gộp lần lượt ngược lại các dãy con để trở về dãy với số phần tử như ban đầu đã được sắp xếp. 
-### c. Độ phức tạp của giải thuật 
+## c. Độ phức tạp của giải thuật 
 - Ta có độ phức tạp của thuật toán : T(n) = 2T(n/2) + O(n)
 - Từ công thức trên + áp dụng với Định lý Thợ rút gọn (Trang 48, Sách Cấu trúc dữ liệu và giải thuật, Nguyễn Đức Nghĩa), ta dễ dàng tìm được độ phức tạp của giải thuật trên là : O(n*log(n))
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Ưu điểm
    + Đơn giản và dễ hiểu, thời gian sắp xếp với độ phức tạp đã được giảm xuống một cách đáng kể (O(nlog(n)) so với các giải thuật Sắp xếp Chèn, Nổi bọt, Chọn
 Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đối của các phần tử
@@ -321,7 +321,7 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 > Bài toán đếm số đảo ngược : http://www.geeksforgeeks.org/counting-inversions/
 >
 > Bài toán liên quan tới lĩnh vực sắp xếp tại vùng nhớ ngoài (not sorting in RAM) : https://en.wikipedia.org/wiki/External_sorting
-### e. Ví dụ 
+## e. Ví dụ 
 		#include <bits/stdc++.h>
 		using namespace std;
 		
@@ -394,8 +394,8 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 		Given array is 12 11 13 5 6 7 
 		Sorted array is 5 6 7 11 12 13 
 
-## 5.Thuật toán Heap Sort (Sắp xếp vun đống)
-### a. Mã nguồn minh họa :
+# 5.Thuật toán Heap Sort (Sắp xếp vun đống)
+## a. Mã nguồn minh họa :
 		void updateHeapAt(double *heapedArray, int size, int updatedPosition) {
 			int largestIndex = updatedPosition; // index of the largest element
 			int leftChildIndex = largestIndex * 2 + 1;
@@ -429,7 +429,7 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 				updateHeapAt(unsortedArray, sizeOfUpdatedHeap, 0);
 			}
 		}
-### b. Ý tưởng giải thuật
+## b. Ý tưởng giải thuật
 Tư tưởng của giải thuật xuất phát từ cơ sở Cây vun đống Max ( hay Cây vun đống Min). Một cách tương tự nhau, ta sẽ lựa chọn cây vun đống Max để minh họa giải thuật Sắp xếp vun đống
 Cây vun đống Max ở đây được quan niệm là cây nhị phân hoàn chỉnh, tức với mỗi nút cha sẽ luôn bao gồm 2 con (trừ hàng ở độ sâu cuối cùng), và các con luôn được phân bố một cách trái nhất có thể. Do cây vun đống được đề xuất minh họa trong giải thuật này là Max Heap Tree, nên có thêm tính chất Maximum được thể hiện như sau : Nút cha phải lớn hơn hoặc bằng hai nút con ( còn các nút con cùng cấp thì không có ràng buộc với nhau). Như vậy, mỗi nhánh mà được đại diện bởi bất cứ nút nào đó trong cây cũng sẽ phải là một nhánh Max Heap.
 Cây vun đống có thể được cài đặt sử dụng Mảng hoặc Danh sách Liên kết. Để đơn giản trong sự minh họa, chúng ta sẽ lựa chọn Mảng cho quá trình cài đặt giải thuật
@@ -447,7 +447,7 @@ Thủ tục updateHeapAt (...) có độ phức tạp là O(log(n)) : Do số l�
 Vòng for đầu tiên : O(log(n/2) + log(n/2 + 1) + ... + log(n)) <= O(n.log(n))
 Vòng for thứ hai : O(log(n) + log(n-1) + ... + log(1)) <= O(n.log(n))
 Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Ưu điểm :
    + Khá nhanh (O(n.log(n)), tuy nhiên trong thực nghiệm lại kém hơn so với giải thuật QuickSort và MergeSort.
    + Cấu trúc dữ liệu dạng vun đống được sử dụng rộng rãi trong nhiều bài toán
@@ -464,8 +464,8 @@ Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
 >
 > Applications of Heap Data Structure : http://www.geeksforgeeks.org/applications-of-heap-data-structure/
 
-## 6. Thuật toán Quick Sort (Sắp xếp nhanh)
-### a. Mã nguồn minh họa :
+# 6. Thuật toán Quick Sort (Sắp xếp nhanh)
+## a. Mã nguồn minh họa :
     public static void swap(double[] unsortedArray, int index1, int index2) {
         double intermediate = unsortedArray[index1];
         unsortedArray[index1] = unsortedArray[index2];
@@ -568,7 +568,7 @@ Như vậy, độ phức tạp của giải thuật Heap Sort là : O(n.log(n))
             lastQuickSort(unsortedArray, pointOfPartition + 1, right);
         }
     }
-### b. Tư tưởng của giải thuật
+## b. Tư tưởng của giải thuật
 Giải thuật Quick Sort với tư tưởng chính :
 
 - Lựa chọn một phần tử trong mảng đóng vai trò như một pivot, sau đó từ giá trị pivot này tiến hành phân lớp mảng thành 2 phần với một phần chỉ toàn gồm các phần tử nhỏ hơn hoặc bằng pivot, trong khi phần còn lại chứa các phần tử lớn hơn pivot.
@@ -581,12 +581,12 @@ Giải thuật Quick Sort với tư tưởng chính :
 - Phía trên mình đã trình bày các cách cài đặt của từng sự lựa chọn Pivot thông qua ngôn ngữ Java, với một vài điểm chú ý có thể kể tới như sau :
    + Giải thuật lựa chọn Pivot nằm đầu và cuối mảng được xây dựng theo hai cách mang 2 tư tưởng khá khác biệt
    + Giải thuật lựa chọn pivot bất kỳ, hay lựa chọn pivot nằm ở chỉ số trung bình... được quy về cách lựa chọn pivot nằm ở đầu và cuối mảng ( chỉ với một thao tác đơn giản là hoán vị tương ứng pivot đó với phần tử ở đầu (hoặc cuối) mảng). Trong giải thuật này, mình xin để xuất đưa về cách cài đặt chọn pivot ở đầu mảng
-### c. Độ phức tạp của giải thuật
+## c. Độ phức tạp của giải thuật
 - Độ phức tạp của giải thuật QuickSort là : T(n) = T(k) + T(n-k-1) + O(n) , với k là số phần tử bên nửa trái. Từ đó, trong từng trường hợp :
    + Tồi tệ nhất, ứng với k = 0 : T(n) = T(0) + T(n-1) + O(n) = T(n-1) + O(n) = O(n^2)
    + Tốt nhất, ứng với k = n/2 T(n) = 2T(n/2) + O(n) = O(nlog(n))
    + Trung bình : T(n) = O(nlog(n))
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Mặc dù, thuật toán có độ phức tạp O(n^2) đối với trường hợp tồi tệ nhất. Tuy nhiên trong thực nghiệm, độ phức tạp trung bình của giải thuật ổn định ở mức O(n.log(n))
 - Là một trong số những giải thuật có tốc độ nhanh, hiệu quả và phổ biến top đầu lớp các giải thuật sắp xếp ( QuickSort, HeapSort, MergeSort)
 - Giải thuật có tính “tại chỗ”, nhưng không ổn định
@@ -600,8 +600,8 @@ Giải thuật Quick Sort với tư tưởng chính :
 - Một số cài đặt Quick Sort sử dụng Danh sách liên kết :
    + Sử dụng danh sách liên kết đơn : http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
    + Sử dụng danh sách liên kết đôi: http://www.geeksforgeeks.org/quicksort-for-linked-list/
-## 7.Thuật toán Counting Sort (Sắp xếp đếm)
-### a. Mã nguồn minh họa :
+# 7.Thuật toán Counting Sort (Sắp xếp đếm)
+## a. Mã nguồn minh họa :
 		void countingSort(char *unsortedString) {
 			int lenOfString = strlen(unsortedString);
 			// create a new array for couting the number of occurences of a character
@@ -635,16 +635,16 @@ Giải thuật Quick Sort với tư tưởng chính :
 			}
 			unsortedString[lenOfString] = '\0';
 		}
-### b. Ý tưởng của giải thuật
+## b. Ý tưởng của giải thuật
 Giải thuật được xuất phát từ ý tưởng “Đếm” áp dụng cho dãy số nguyên được thể hiện như sau :
 
 - Chọn một miền giá trị bao phủ được tất cả các giá trị của từng phần tử trong mảng, sau đó tạo mới một mảng trung gian có sức chứa bằng đúng số vạch chia đơn vị trong miền giá trị (được lựa chọn trên). Gán giá trị cho tất cả phần tử trong mảng bằng 0
 - Như vậy, giá trị của mỗi phần tử từ dãy số ban đầu sẽ được thể hiện bằng giá trị của chỉ số trong mảng trung gian. Tiếp theo, tiến hành duyệt từng phần tử của mảng gốc, ứng với mỗi phần tử xuất hiện trong mảng gốc này sẽ được cộng thêm 1 vào phần tử có chỉ số bằng với giá trị của phần tử trong mảng gốc. Sau khi duyệt xong toàn bộ mảng gốc, mảng trung gian lúc này sẽ chứa số lần xuất hiện của các phần tử trong mảng gốc trong dãy số ban đầu
 - Tiếp tục khai thác và chế biến mảng trung gian để nó trở nên hữu ích hơn bằng cách duyệt từng phần tử của mảng trung gian, từ phần tử thứ 2 trở đi. Sau đó cộng dồn phần tử hiện tại với phần tử trước đó và gán lại vào phần tử hiện tại. Cứ như vậy, tới khi duyệt hết mảng, ta sẽ thu được một mảng trung gian vô cũng hữu ích, lúc này giá trị của trong mỗi phần tử trung gian sẽ cho biết giá trị index thực sự của giá trị gốc đó trong mảng khi đã được sắp xếp
 - Thao tác cuối cùng, chỉ đơn giản là duyệt lại mảng gốc, kết hợp với mảng trung gian để lấy ra các phần tử tương ứng theo thứ tự đã được sắp xếp!!!
-### c. Độ phức tạp của giải thuật :
+## c. Độ phức tạp của giải thuật :
 Thủ tục countingSort yêu cầu duyệt qua n phần tử từ dãy số gốc, và m phần tử (số vạch chia trong miền giá trị bao phủ). Do vậy, độ phức tạp sẽ là : O(n+m)
-### d. Nhận xét và đánh giá :
+## d. Nhận xét và đánh giá :
 - Thuật toán chỉ hiệu quả khi mà miền giá trị của dữ liệu không lớn hơn quá nhiều so với tổng số phần tử trong mảng gốc. Nó sẽ không hiệu quả nếu miền giá trị là một hàm mũ, lũy thừa so với số phần tử cần phải sắp xếp. Vì vậy, cần phải cân nhắc kỹ
 Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, mà sử dụng chủ yếu vào bộ nhớ lưu trữ
 - Tối ưu và ứng dụng thực tế :
@@ -691,8 +691,8 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 
 
 
-## 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
-### a. Mã nguồn minh họa
+# 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
+## a. Mã nguồn minh họa
 		int maximum(int *unsortedArray, int size) {
 			int maximumValue = unsortedArray[0];
 			for (int index = 1; index < size; index++) {
@@ -741,17 +741,17 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 				countingSort(unsortedArray, size, divisionUnit);
 			}
 		}
-### b. Ý tưởng của giải thuật :
+## b. Ý tưởng của giải thuật :
 - Giải thuật sắp xếp theo cơ số 10 với tư tưởng chính sau:
 - Tiến hành sắp xếp tất cả các phần tử trong dãy số ban đầu lần lượt từ hàng đơn vị, hàng chục, hàng trăm,… như các so sánh của con người
 Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất định (đơn vị, chục, trăm…) và miền giá trị ở mỗi hàng là khá nhỏ (từ 0 đến 9), nên trong giải thuật trên tác giả lựa chọn Sắp xếp Đếm (Counting Sort) cho từng quá trình sắp xếp này.
 - Như vậy, quá trình trên sử dụng Counting Sort để sắp xếp dãy số từ hàng đơn vị, hàng chục, hàng trăm, … đến hàng cao nhất. Kết thúc quá trình sắp xếp, ta thu được dãy số đã được sắp xếp như mong đợi !
-### c. Độ phức tạp của thuật toán :
+## c. Độ phức tạp của thuật toán :
 - Gọi k là số lượng chữ số trong số lớn nhất của dãy số, do thuật toán áp dụng giải thuật Counting Sort để sắp xếp trên từng chữ số. Vì thế độ phức tạp của thuật toán là : d * O(n + b) = O(d * (n+ b)), với b là hệ số (trong giải thuật trên ta chọn hệ số là 10 tức miền giá trị từ 0 đến 9)
-### d. Nhận xét và đánh giá :
+## d. Nhận xét và đánh giá :
 - Mặc dù giải thuật trên khá nhanh. Tuy nhiên vẫn chưa thể đánh bại giải thuật sắp xếp dựa trên so sánh (như QuickSort, HeapSort, Merge Sort)
-## 9.Thuật toán Bucket Sort( Sắp xếp phân cụm)
-### a. Mã nguồn minh họa
+# 9.Thuật toán Bucket Sort( Sắp xếp phân cụm)
+## a. Mã nguồn minh họa
 		void bucketSort(double *unsortedArray, int size) {
 			vector<double> *buckets = new vector<double>[size];
 			
@@ -778,20 +778,20 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 				}
 			}
 		}
-### b. Ý tưởng của giải thuật
+## b. Ý tưởng của giải thuật
 - Giải thuật phân cụm được áp dụng cho lớp bài toán sắp xếp phần tử mà các phần tử trong dãy có sự phân bố đều đặn trong miền giá trị của nó. Giải thuật này được trình bày cụ thể trong bài toán sắp xếp dãy số có miền giá trị từ 0 đến 1, và các phần tử có sự phân bố đều đặn trên miền đó
 - Tạo ra n vector hay n mảng được gọi là bucket
 - Duyệt các phần tử trong mảng gốc, với mỗi phần tử này ta sẽ đưa nó vào trong một bucket phù hợp (như thế nào là phù hợp? nghĩa là : phần tử có giá trị x sẽ được đưa vào buckets (cụm) có chỉ số là (int) x * n . Như vậy có thể trong một buket có thể chứa nhiều hơn một phần tử (tư tưởng bảng băm)
 - Sử dụng ưu thế của giải thuật sắp xếp chèn cho một lượng nhỏ các phần tử. Ta tiến hành thực hiện giải thuật Insertion Sort trên từng cụm bucket. Quá trình này hoàn tất đồng nghĩa với việc tất cả các phần tử trong mỗi bucket đều đã được xếp thứ tự
 - Công việc đơn giản cuối cùng chỉ còn là : Duyệt từ bucket đầu tiên tới bucket cuối cùng để lấy ra các phần tử và ghi đè lần lượt vào mảng ban đầu. Kết quả : Mảng ban đầu đã được sắp xếp !
-### c. Độ phức tạp của giải thuật
+## c. Độ phức tạp của giải thuật
 - Trong thủ tục bucketSort, độ phức tạp của từng bước được thể hiện như sau :
 - Bước đưa các phần tử vào các bucket phù hợp : O(n)
 - Sắp xếp các phần tử trên từng cụm buckets sử dụng Insertion Sort : O(n) (trong trường hợp các phần tử trong dãy số phải được phân bố đều đặn ) Như vậy độ phức tạp của bài toán : O(n)
-### d. Nhận xét và đánh giá :
+## d. Nhận xét và đánh giá :
 - Giải thuật cho phép độ phức tạp thời gian sắp xếp dãy số theo thời gian tuyến tính trong trường hợp dãy số ban đầu phải được phân bố đều đặn trên miền giá trị của chúng
-## 10.Thuật toán Shell Sort (Tối ưu Insertion Sort)
-### a. Mã nguồn minh họa
+# 10.Thuật toán Shell Sort (Tối ưu Insertion Sort)
+## a. Mã nguồn minh họa
 		void shellSort(double *unsortedArray, int size) {
 			int interval = 1;
 			int comparingIndex, currentIndex;
@@ -815,17 +815,17 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 				interval = (interval - 1) / 3;
 			}
 		}
-### b. Ý tưởng của giải thuật :
+## b. Ý tưởng của giải thuật :
 - Đây là một giải thuật giúp tối ưu hơn giải thuật Insertion Sort. Ý tưởng của giải thuật được thể hiện như sau :
 - Bình thường trong giải thuật Insertion Sort (trong ví dụ Người chơi bài), người chơi bài sẽ so sánh quân bài hiện tại với lần lượt các quân bài phía trước. Một để xuất tối ưu được đưa ra đó là, thay vì cứ thao tác cứ "chăm chăm" so sánh với các phần từ liền kề phía trước, họ nảy sinh một ý tưởng : Tại sao không tiến hành so sánh ngắt quãng (interval) (tức phần tử hiện tại được so sánh với các phần tử phía trước (giống như Insertion sort) nhưng khoảng cách giữa chúng phải là bội của interval (quãng)). Mọi thao tác trong giải thuật này cơ bản sẽ giống hệt với giải thuật Insertion Sort. Tuy nhiên có một điểm khác đặc biệt, đó là bước interval sẽ liên tục giảm sau mỗi lần lặp (quy tắc giảm được tuân theo một công thức đã được thực nghiệm xác định), vậy interval sẽ giảm tới khi nào? Nó sẽ giảm tới khi interval = 1 (tức quãng nhỏ nhất có thể), lúc này bài toán thuần túy trở về nguyên gốc giải thuật insertion sort. Tuy nhiên, bước cuối cùng này chủ yếu mang tính kiểm nghiệm và rà soát một lần nữa, chứ ko làm tiêu tốn quá nhiều các thao tác hoán vị !!!
 - Chú ý : Ta cần phải khởi tạo giá trị interval theo công thức của Knuth nhằm đảm bảo thuật toán sẽ làm việc một cách hiệu quả (interval = interval * 3 + 1)
-### c. Độ phức tạp của giải thuật
+## c. Độ phức tạp của giải thuật
 - Dù đã có sự cải tiến tuy nhiên độ phức tạp của thuật toán trên vẫn cỡ O(n^2)
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Đây là giải thuật tối ưu hóa giải thuật Insertion Sort
 - Sử dụng công thức Knuth để tỉm ra interval phù hợp (interval = interval * 3 + 1)
-## 11. Thuật toán Comb Sort ( cải tiến giải thuật Bubble Sort)
-### a. Mã nguồn minh họa :
+# 11. Thuật toán Comb Sort ( cải tiến giải thuật Bubble Sort)
+## a. Mã nguồn minh họa :
 		void combSort(double *unsortedArray, int size) {
 			int startingPointOfGap = size; // means first point of sequences is compared
 			bool hasSwapped = true; // keep track of an array until it is sorted ascendingly (means have not any swapping in the array comparison process)
@@ -857,17 +857,17 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 			*num1 = *num2;
 			*num2 = intermediateValue;
 		}
-### b. Ý tưởng của giải thuật :
+## b. Ý tưởng của giải thuật :
 - Giải thuật này là một sự cải tiến cho giải thuật Sắp xếp Nổi bọt (Bubble Sort). Tư tưởng chủ đạo của giải thuật này được thể hiện một cách cụ thể như sau :
 - Đối với giải thuật sắp xếp nổi bọt, quá trình so sánh và hoán vị được thực hiện trên các phần tử liền kề, liên tiếp. Sự sáng tạo trong phương pháp tối ưu của giải thuật này được thể hiện bằng việc sử dụng phương pháp so sánh ngắt quãng (như trong giải thuật Shell Sort), ta gọi các quãng này là gap. Ban đầu gap được khởi tạo bằng kích cỡ của mảng, trong quá trình lặp ta cần phải thu nhỏ, hay làm giảm giá trị của gap bằng một hệ số đã được kiểm định là : 1.3 (tức là cứ sau mỗi lần lặp, giá trị của gap sẽ giảm đi 1.3 lần). Các thao tác lúc này diễn ra cơ bản rất giống với Insertion Sort. Nó cứ tiếp diễn, cho tới khi gap = 1, lúc này giải thuật đã thực sự “quy chụp” về đúng giải thuật Insertion Sort với quãng so sánh = 1.
 - Tuy nhiên, do việc giảm gap khá nhanh, nên tác giả giải thuật đã lồng ghép vào đó một biến hasSwapped. Biến này có ý nghĩa vô cùng quan trọng. Vậy nó quan trọng như thế nào? Nếu không có nó liệu kết quả có còn đúng đắn? Nhìn vào giải thuật trên, cụ thể điều kiện lặp trong vòng while, ta phát hiện thấy : Vòng while sẽ chỉ dừng khi phải thỏa mãn đồng thời cả 2 điều kiện sau : quãng gap phải giảm về 1 đồng thời không còn bất kỳ sự hoán đổi nào trong lần duyệt trước. Điều này là hoàn toàn đúng đắn ( do tính hội tụ nhanh của gap, nên bắt buộc phải có một biến hasSwapped để kiểm soát tính “đã sắp xếp” của dãy số ban đầu)
-### c. Độ phức tạp của giải thuật
+## c. Độ phức tạp của giải thuật
 - Dù có một sự cải tiến đáng kể, nhưng độ phức tạp của giải thuật vẫn cỡ O(n^2)
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Giải thuật là một sự cải tiến từ giải thuật Bubble Sort truyền thống với tư duy “so sánh theo quãng” khá hay
 - Hãy chú tới nhân tố giúp “hội tụ” hay co hẹp giá trị của gap (quãng) là : 1.3 (theo thực nghiệm)
-## 12. Thuật toán Pigeonhole Sort (Sắp xếp nhốt chim vào lồng)
-### a. Mã nguồn minh họa
+# 12. Thuật toán Pigeonhole Sort (Sắp xếp nhốt chim vào lồng)
+## a. Mã nguồn minh họa
 		void pigeonHoleSort(int *unsortedArray, int size) {
 			// Find the maximum and minimum in the original array
 			int maxValue = unsortedArray[0], minValue = unsortedArray[0];
@@ -900,13 +900,13 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 			delete[] holes;
 		
 		}
-### b. Ý tưởng của thuật toán :
+## b. Ý tưởng của thuật toán :
 - Thuật toán xuất phát từ ý tưởng nhốt chim vào lồng áp dụng cho các số nguyên được thể hiện như sau :
 - Đầu tiên, duyệt toàn bộ các phần tử trong mảng để tìm ra phần tử lớn nhất và nhỏ nhất trong mảng. Trừ hai giá trị này cho nhau, ta thu được một miền giá trị.
 - Từ miền giá trị này, ta tạo ra một tập các lồng chim, có số lượng bằng số vạch chia đơn vị trong miền giá trị đó
 - Duyệt dãy số ban đầu (tức tập các con chim bồ câu có gắn các số ngẫu nhiên ), với mỗi giá trị số trên từng con chim, ta sẽ tương ứng nhốt nó vào một chiếc lồng thích hợp (lồng thích hợp là chiếc lồng có chỉ số index bằng với giá trị số trên con chim đó). Sau khi duyệt xong toàn bộ, tất cả các chú chim đã được nhốt vào lồng. Như vậy, các con chim bồ câu có cùng giá trị sẽ nằm trong cùng một lồng. Từ các lồng trên, ta sẽ biết được vị trí chính xác của mỗi con chim bồ câu theo một thứ tự sắp xếp tăng dần
 - Công việc còn lại chỉ đơn giản là mở từ lồng thứ nhất đến lồng cuối cùng để đưa lần lượt từng chú chim bồ câu nối đuôi nhau đi ra ngoài. Thứ tự bước ra ngoài của các con chim bồ câu đó chính là thứ tự sắp xếp tăng dần mà ta cần tìm !!!
-### c. Độ phức tạp của giải thuật :
+## c. Độ phức tạp của giải thuật :
 - Do bài toán cần phải duyệt qua m chiếc lồng, và n chú chim. Nên độ phức tạp của giải thuật sẽ là : O(n+m)
-### d. Nhận xét và đánh giá
+## d. Nhận xét và đánh giá
 - Yêu cầu của giải thuật Nhốt chim vào lồng : Số lượng các phần tử và miền giá trị của chúng phải khá gần nhau
