@@ -5,47 +5,77 @@
 	+ Để có thể sử dụng thuật toán tìm nhị phân
 	+ Để thực hiện thao tác nào đó được nhanh hơn
 # Các phương pháp sắp xếp thông dụng
-## 1. Thuật toán Selection Sort (Sắp xếp chọn)
-### 1.1 Code minh họa
+## 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
+> https://www.geeksforgeeks.org/bubble-sort-algorithm/
+### a. Mã nguồn minh họa :
+	void bubbleSort(int a[], int n){
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n - i - 1; j++){
+				if (a[j] > a[j + 1]) swap(a[j], a[j + 1]);
+			}
+		}
+	}
 
-        // algorithm for Selection Sort
-        void selectionSort(double *unsortedArray, int size) {
-        	for (int index = 0; index < size - 1; index++) {
-        		int minIndex = index;
-        		for (int findMinIndex = index + 1; findMinIndex < size; findMinIndex++) {
-        			if (unsortedArray[findMinIndex] < unsortedArray[minIndex])
-        				minIndex = findMinIndex;
-        		}	
-        		swap(&unsortedArray[minIndex], &unsortedArray[index]);
+- Hoặc có thể cài đặt theo cách sau :
+  
+        void bubbleSort(double *unsortedArray, int size) {
+        	for (int turn = size-1; turn > 0; turn--) {
+        		for (int bubbleIndex = 0; bubbleIndex < turn; bubbleIndex++) {
+        			if (unsortedArray[bubbleIndex] > unsortedArray[bubbleIndex + 1])
+        				swap(&unsortedArray[bubbleIndex], &unsortedArray[bubbleIndex + 1]);
+        		}
         	}
         }
-        
-### 1.2 Ý tưởng giải thuật
-Với một mảng số ban đầu chưa được sắp xếp gồm size phần tử. Ý tưởng của thuật toán được mô tả thông qua các bước chính như sau :
-+ Chọn 1 phần tử đầu tiên của dãy số, giả sử phần tử này là nhỏ nhất, sau đó lưu lại chỉ số phần tử đó
-+ Duyệt để so sánh phần tử nhỏ nhất này với các phần tử còn lại (tức các phần tử tiếp theo của dãy số). Nếu phát hiện có bất kỳ phần tử nào nhỏ hơn phần tử cần so sánh, tiến hành thay đổi giá trị của chỉ số lưu trữ phần tử nhỏ nhất
-+ Sau khi duyệt xong toàn bộ mảng, kết quả chúng ta tìm được đó là : vị trí (chỉ số) của phần tử nhỏ nhất trong mảng đó. Lúc này, thực hiện hoán đổi vị trí của : phần tử đầu tiên trong mảng và vị trí của phần tử nhỏ nhất (đã xác định tử bước trên)
-+ Sau khi hoán đổi, phần tử nhỏ nhất sẽ luôn nằm “cố định” ở đầu mảng và phần tử này sẽ không còn đóng góp vai trò nào cho những lần sắp xếp tiếp theo. Do phần tử đầu tiên đã cố định, quá trình sắp xếp chỉ còn tác động lên size - 1 tiếp theo (không xét phần tử thứ nhất). Và thực hiện lặp lại một cách tương tự quá trình trên từ bước 1 tới bước cuối cùng … Sau mỗi quá trình lặp lại đó, ta sẽ lần lượt xác định và cố định ra được phần tử nhỏ thứ 2, phần tử nhỏ thứ 3 …, phần tử nhỏ thứ size – 1. Tới đây giải thuật kết thúc !
-### 1.3 Độ phức tạp của thuật toán :
-- Thuật toán sử dụng 2 vòng for:
-  + Vòng for thứ nhất chạy từ index = 0 tới size – 2.
-  + Vòng for thứ hai chạy từ index + 1 tới cuối mảng Như vậy, đối với 1 dãy số gồm n phần tử , số lần duyệt qua từng phần tử trong mảng sẽ là : (n-1) + (n-2) + … + 1 .
-    
-Vì vậy độ phức tạp của thuật toán trong tình huống tồi tệ nhất sẽ là : O(n^2)
-### 1.4. Nhận xét thuật toán
-- Ưu điểm : 
-  + Selection Sort là một giải thuật đã hạn chế được khá nhiều số hoán vị (đổi chỗ 2 phần tử trong mảng) so với giải thuật Sắp xếp Nổi bọt (do nó sử dụng biến chỉ số để lưu lại phần tử nhỏ nhất,… để đến cuối cùng mới tiến hành hoán vị)
-  + Giải thuật này có tính chất ổn định : Tức vị trí tương đối của các phần tử "bằng nhau về giá trị" trong mảng vẫn được giữ nguyên trước và khi sắp xếp (nghĩa là nếu có 2 phần tử bằng nhau trong mảng, phần tử 1 nằm bên bên trái phần tử 2 thì sau khi sắp xếp thứ tự này vẫn không thay đổi)
-  + Không đòi hỏi thêm không gian nhớ phụ, nên giải thuật mang tính chất “ Tại chỗ”
-  + Trong thực tế, giải thuật này có thể được sử dụng như một giải pháp hỗ trợ cho một giai đoạn nào đó trong những giải thuật sắp xếp khác
+  
+### b. Ý tưởng của giải thuật :
+![Bản sao của Blue-Pink Cute Class Schedule (2)](https://github.com/minchangggg/DSA/assets/125820144/1fd8691e-c087-4e59-a304-423ff0042580)
+
+- Thuật toán này mang một tư tưởng lan truyền, có nghĩa là : với mỗi một quá trình lan truyền (quá trình duyệt và hoán vị các phần tử gần kề liên tiếp), giải thuật sẽ xác định được một phần từ lớn nhất rồi cố định nó ở cuối mảng.
+- Lúc này, phần tử ở cuối mảng sẽ không còn đóng bất kỳ một vai trò nào nữa trong quá trình sắp xếp tiếp theo. Khi đó, để dễ hiểu ta có thể giả định, mảng mới chỉ còn lại từ phần từ đầu tiên đến phần từ thứ n – 1 ( không xét phần tử cuối). Sau đó tiếp tục quá trình “lan truyền nổi bọt” trong mảng mới này để liên tục tìm ra phần tử lớn nhất và gắn nó cố định tại trí cuối cùng. Như vậy, sau mỗi quá trình lan truyền, số phần tử trong mảng liên tục giảm đi một, nhưng đồng thời ta cũng đã cố định được một phần tử lớn nhất nằm ở cuối mỗi mảng. Sau n – 1 quá trình lan truyền như vậy, chúng ta sẽ thu được một mảng đã được sắp xếp và quá trình lan truyền hoàn toàn kết thúc
+### c. Độ phức tạp của giải thuật :
+- Do phải trải qua (n-1) quá trình lan truyền, với mỗi quá trình lan truyền sẽ tương ứng với số lần duyệt tối đa qua các phần từ là : (n-1) + (n-2) + … + 1. Vì vậy độ phức tạp của giải thuật trên là : O(n^2)
+### d. Nhận xét và đánh giá :
+- Ưu điểm:
+  + Thể hiện được tính ổn định và tại chỗ
+  + Đơn giản, dễ hiểu… được sử dụng làm ví dụ minh họa trong quá trình giảng dạy
 - Nhược điểm :
-  + Độ phức tạp của giải thuật tuy đã được cải thiện nhưng nhìn chung vẫn còn khá lớn so với các thuật toán sắp xếp hiệu quả khác (như QuickSort, MergeSort)
-  + Chưa giải quyết được vấn đề khi mà đầu vào của dãy số đã được sắp xếp (nghĩa là nếu đầu vào là một dãy số đã được sắp xếp thì thuật toán này vẫn cứ "máy móc" để sắp xếp lại)
-### 1.5. Giải pháp tối ưu :
-- Trong tình huống dãy số đầu vào đã được sắp xếp, giải pháp được đưa ra sẽ là : Sử dụng một biến hasSwapped để duyệt từ đầu tới cuối mảng, để phát hiện xem dãy số đã được sắp xếp tăng dần hay giảm dần hay chưa? Nếu hasSwapped = 0 khi duyệt theo chiều thuận tức dãy đã được sắp xếp tăng dần. Nếu hasSwapped = 0 khi duyệt theo chiều nghịch, tức dãy đã được sắp xếp giảm dần, vì thế chỉ cần đảo ngược lại dãy số đó để có một thứ tự đúng!
+  + Hiệu suất chậm nhất trong các thuật toán sắp xếp.
+  + Không hiệu quả với những dữ liệu lớn.
+- Tối ưu và so sánh: Giải pháp tối ưu cho giải thuật trên đó là sử dụng biến hasSwapped nằm bên ngay trong vòng lặp thứ 2. Nếu đầu vào là đã được sắp xếp thì độ phức tạp thời gian chỉ còn là O(n). Một cách tương tự, trong trường hợp dãy số đầu được sắp xếp giảm dần
+### e. Ví dụ
+		#include <bits/stdc++.h>
+		using namespace std;
+		
+		void bubbleSort(int arr[], int n) {
+		    bool swapped;
+		    for (int i = 0; i < n - 1; i++) {
+		        swapped = false;
+		        for (int j = 0; j < n - i - 1; j++) {
+		            if (arr[j] > arr[j + 1]) {
+		                swap(arr[j], arr[j + 1]);
+		                swapped = true;
+		            }
+		        }
+		        if (swapped == false) break;
+		    }
+		}
+		
+		int main() {
+		    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+		    int N = sizeof(arr) / sizeof(arr[0]);
+		    bubbleSort(arr, N);
+		    cout << "Sorted array:";
+		    for (int x : arr) cout << " " << x;
+		    return 0;
+		}
+
+> Output
+
+		Sorted array: 11 12 22 25 34 64 90
 
 # 2.Thuật toán Insertion Sort (Sắp xếp chèn)
-## 2.1. Mã nguồn minh họa :
+> https://www.geeksforgeeks.org/insertion-sort-algorithm/
+## a. Mã nguồn minh họa :
 
         // algorithm for Insertion Sort
         void insertionSort(double *unsortedArray, int size) {
@@ -61,15 +91,21 @@ Vì vậy độ phức tạp của thuật toán trong tình huống tồi tệ 
         
         	}
         }  
-### 2.2. Ý tưởng của giải thuật :
+### b. Ý tưởng của giải thuật :
+- Input: arr = {23, 1, 10, 5, 2}
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/771e0780-3d11-4202-b8cf-bd64f8588ea6)
+
 Giải thuật này xuất phát từ các thao tác sắp xếp của những người chơi bài. Tư tưởng đó được thể hiện như sau :
 - Từ một tập bài gồm n quân bài của người chơi, họ cần phải sắp xếp thứ tự các quân bài trên tay theo một thứ tự tăng dần. Lúc này, họ sẽ duyệt từ quân bài thứ 2 tới quân bài cuối cùng (thứ n). Đối với quân bài thứ 2, họ cần phải so sánh quân bài này với các quân bài phía trước nó, tức lúc này là quân bài thứ 1. Rõ ràng, các quân bài phía trước quân bài thứ 2 đều đã được sắp xếp ( do chỉ có 1 quân bài phía trước). Công việc của người chơi lúc này là chỉ cần chèn quân bài thứ 2 vào vị trí thích hợp trong số các quân bài phía trước sao cho sau thao tác chèn này, các quân bài phía trước cũng phải được sắp xếp theo một thứ tự tăng dần
 - Tiếp tục với việc xét quân bài thứ 3, ta tiến hành so sánh quân bài này với dãy các quân bài đã được sắp xếp ở phía trước nó. Sau đó tiến hành thực hiện thao tác chèn quân bài này vào ví trí thích hợp trong dãy các quân bài phía trước để tạo thành một dãy con được sắp xếp tăng dần.
 - Một cách hoàn toàn tương tự với các quân bài thứ 4, 5 … n.
 - Kết thúc quá trình này, ta sẽ thu được một dãy số được sắp xếp tăng dần
-### 2.3. Độ phức tạp của thuật toán
-Do đối với mỗi quân bài được lựa chọn, ta đều so sánh nó với các quân bài ở phía trước. Nhìn nhận một các thoải mái trong tình huống xấu nhất, số lần phần duyệt qua các phần tử trong mảng sẽ là : 1 + 2 + … + (n – 1). Có nghĩa độ phức tạp trong tình huống xấu nhất là : O(n^2)
-### 2.4. Nhận xét và đánh giá
+### c. Độ phức tạp của thuật toán
+- Trường hợp tốt nhất: O(n) , Nếu danh sách đã được sắp xếp, trong đó n là số phần tử trong danh sách.
+- Trường hợp trung bình: O(n 2 ) , Nếu danh sách được sắp xếp ngẫu nhiên
+- Trường hợp xấu nhất: O(n 2 ) , Nếu danh sách theo thứ tự ngược lại
+### d. Nhận xét và đánh giá
 - Ưu điểm :
   + Làm việc tốt trong trường hợp mảng có ít phần tử
   + Giải thuật có tính chất ổn định và tại chỗ
@@ -78,50 +114,107 @@ Do đối với mỗi quân bài được lựa chọn, ta đều so sánh nó v
   + Là thuật toán sắp xếp tốt nhất đối với dãy đã gần được sắp xếp , nghĩa là mỗi phần tử đã đứng ở vị trí rất gần vị trí trong thứ tự cần sắp xếp
 - Nhược điểm :
   + Độ phức tạp trung bình vẫn còn khá lớn O(n^2) so với các thuật toán sắp xếp nhanh nhất hiện nay như QuickSort
-### 2.5. Sự tối ưu, so sánh và mở rộng :
-- Thuật toán tuy đã giải quyết được tình huống dãy số đầu vào đã được sắp xếp tăng dần ( tức nó chỉ mất O(n) thời gian sắp xếp). Nhưng còn với trường hợp dãy số đầu vào lại được sắp xếp theo thứ tự giảm dần, trong tình huống này giải thuật vẫn sẽ mất thời gian O(n^2) (thậm chí đây được xếp vào tình huống đầu vào tồi nhất). Để tối ưu giải thuật, xin đề xuất một giải pháp với cách sử dụng biến hasSwapped (như giải pháp tối ưu trong Selection Sort) để phát hiện dãy đầu vào đã được sắp xếp giảm dần mất O(n) thời gian,sau đó tốn thêm O(n/2) thời gian để đảo ngược dãy số đầu vào đó.
-- Một giải pháp tối ưu khá hay được đề xuất tiếp theo đó là : Thay vì trong giai đoạn chèn 1 quân bài vào dãy các quân bài phía trước nó bằng giải pháp tìm kiếm tuần tự, ta sẽ sử dụng giải thuật tìm kiếm nhị phân trong chính quá trình chèn đó. Điều này sẽ giúp tiết kiệm được thời gian cho thao tác tìm kiếm và thao tác chèn một cách đáng kể từ O(i) xuống còn O(log(i)) với i là chỉ số cần chèn tại đó
-- Điều gì sẽ xảy ra nếu giải thuật này được cài bằng danh sách liên kết : Liệu nó sẽ bất lợi hay có lợi?
-- Trong tình huống này, việc sử dụng danh sách liên kết để cài đặt chỉ có lợi khi mà dữ liệu cần sắp xếp đến một cách liên tục (đó có thể là dữ liệu online). Vì vậy, với cách cài đặt Danh sách Liên kết, ta có thể chủ động cấp phát vùng nhớ tùy thích
-- Nhưng khi cài đặt bằng Danh sách liên kết cũng sẽ nảy sinh vài vấn đề : Do việc truy cập vào 1 phần tử trong danh sách liên kết không mang tính trực truy tức phải mất thời gian tuyến tính. Điều này, có thể làm giảm hiệu suất của giải thuật
-- Tuy nhiên, trong thực tế để cài đặt Danh sách Liên kết cho giải thuật này, mọi người có thể tham khảo tại đây : http://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
+- Sự tối ưu, so sánh và mở rộng :
+  + Thuật toán tuy đã giải quyết được tình huống dãy số đầu vào đã được sắp xếp tăng dần ( tức nó chỉ mất O(n) thời gian sắp xếp). Nhưng còn với trường hợp dãy số đầu vào lại được sắp xếp theo thứ tự giảm dần, trong tình huống này giải thuật vẫn sẽ mất thời gian O(n^2) (thậm chí đây được xếp vào tình huống đầu vào tồi nhất). Để tối ưu giải thuật, xin đề xuất một giải pháp với cách sử dụng biến hasSwapped (như giải pháp tối ưu trong Selection Sort) để phát hiện dãy đầu vào đã được sắp xếp giảm dần mất O(n) thời gian,sau đó tốn thêm O(n/2) thời gian để đảo ngược dãy số đầu vào đó.
+  + Một giải pháp tối ưu khá hay được đề xuất tiếp theo đó là : Thay vì trong giai đoạn chèn 1 quân bài vào dãy các quân bài phía trước nó bằng giải pháp tìm kiếm tuần tự, ta sẽ sử dụng giải thuật tìm kiếm nhị phân trong chính quá trình chèn đó. Điều này sẽ giúp tiết kiệm được thời gian cho thao tác tìm kiếm và thao tác chèn một cách đáng kể từ O(i) xuống còn O(log(i)) với i là chỉ số cần chèn tại đó
+  + Điều gì sẽ xảy ra nếu giải thuật này được cài bằng danh sách liên kết : Liệu nó sẽ bất lợi hay có lợi?
+  + Trong tình huống này, việc sử dụng danh sách liên kết để cài đặt chỉ có lợi khi mà dữ liệu cần sắp xếp đến một cách liên tục (đó có thể là dữ liệu online). Vì vậy, với cách cài đặt Danh sách Liên kết, ta có thể chủ động cấp phát vùng nhớ tùy thích
+  + Nhưng khi cài đặt bằng Danh sách liên kết cũng sẽ nảy sinh vài vấn đề : Do việc truy cập vào 1 phần tử trong danh sách liên kết không mang tính trực truy tức phải mất thời gian tuyến tính. Điều này, có thể làm giảm hiệu suất của giải thuật
+  + Tuy nhiên, trong thực tế để cài đặt Danh sách Liên kết cho giải thuật này, mọi người có thể tham khảo tại đây : http://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
 
-## 3.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
-### 3.1. Mã nguồn minh họa :
+### e. Ví dụ
+	#include <bits/stdc++.h>
+	using namespace std;
+	
+	void insertionSort(int arr[], int n) {
+	    for (int i = 1; i < n; i++) {
+		int key = arr[i]; int j = i - 1;
+		// Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position
+		while (j >= 0 && arr[j] > key) {
+		    arr[j + 1] = arr[j];
+		    --j;
+		}
+		arr[j + 1] = key;
+	    }
+	}
+	
+	int main() {
+	    int arr[] = { 12, 11, 13, 5, 6 };
+	    int N = sizeof(arr) / sizeof(arr[0]);
+	
+	    insertionSort(arr, N);
+	    for (int x : arr) cout << x << " ";
+	
+	    return 0;
+	}
+
+> Output
+
+	5 6 11 12 13 
+ 
+## 3. Thuật toán Selection Sort (Sắp xếp chọn)
+### a. Code minh họa
 
         // algorithm for Selection Sort
-        void bubbleSort(double *unsortedArray, int size) {
-        	for (int turn = 0; turn < size - 1; turn++) {
-        		for (int bubbleindex = 0; bubbleindex < size - 1 - turn; bubbleindex++) {
-        			if (unsortedArray[bubbleindex] > unsortedArray[bubbleindex + 1])
-        				swap(&unsortedArray[bubbleindex], &unsortedArray[bubbleindex + 1]);
-        		}
+        void selectionSort(double *unsortedArray, int size) {
+        	for (int index = 0; index < size - 1; index++) {
+        		int minIndex = index;
+        		for (int findMinIndex = index + 1; findMinIndex < size; findMinIndex++) {
+        			if (unsortedArray[findMinIndex] < unsortedArray[minIndex])
+        				minIndex = findMinIndex;
+        		}	
+        		swap(&unsortedArray[minIndex], &unsortedArray[index]);
         	}
         }
-
-- Hoặc có thể cài đặt theo cách sau :
-  
-        void bubbleSort(double *unsortedArray, int size) {
-        	for (int turn = size-1; turn > 0; turn--) {
-        		for (int bubbleIndex = 0; bubbleIndex < turn; bubbleIndex++) {
-        			if (unsortedArray[bubbleIndex] > unsortedArray[bubbleIndex + 1])
-        				swap(&unsortedArray[bubbleIndex], &unsortedArray[bubbleIndex + 1]);
-        		}
-        	}
-        }
-  
-### 3.2. Ý tưởng của giải thuật :
-Thuật toán này mang một tư tưởng lan truyền, có nghĩa là : với mỗi một quá trình lan truyền (quá trình duyệt và hoán vị các phần tử gần kề liên tiếp), giải thuật sẽ xác định được một phần từ lớn nhất rồi cố định nó ở cuối mảng. Lúc này, phần tử ở cuối mảng sẽ không còn đóng bất kỳ một vai trò nào nữa trong quá trình sắp xếp tiếp theo. Khi đó, để dễ hiểu ta có thể giả định, mảng mới chỉ còn lại từ phần từ đầu tiên đến phần từ thứ n – 1 ( không xét phần tử cuối). Sau đó tiếp tục quá trình “lan truyền nổi bọt” trong mảng mới này để liên tục tìm ra phần tử lớn nhất và gắn nó cố định tại trí cuối cùng,,, Như vậy, sau mỗi quá trình lan truyền, số phần tử trong mảng liên tục giảm đi một, nhưng đồng thời ta cũng đã cố định được một phần tử lớn nhất nằm ở cuối mỗi mảng. Sau n – 1 quá trình lan truyền như vậy, chúng ta sẽ thu được một mảng đã được sắp xếp và quá trình lan truyền hoàn toàn kết thúc
-### 3.3. Độ phức tạp của giải thuật :
-Do phải trải qua (n-1) quá trình lan truyền, với mỗi quá trình lan truyền sẽ tương ứng với số lần duyệt tối đa qua các phần từ là : (n-1) + (n-2) + … + 1. Vì vậy độ phức tạp của giải thuật trên là : O(n^2)
-### 3.4. Nhận xét và đánh giá :
-- Ưu điểm:
-  + Thể hiện được tính ổn định và tại chỗ
-  + Đơn giản, dễ hiểu… được sử dụng làm ví dụ minh họa trong quá trình giảng dạy
+        
+### b Ý tưởng giải thuật
+Với một mảng số ban đầu chưa được sắp xếp gồm size phần tử. Ý tưởng của thuật toán được mô tả thông qua các bước chính như sau :
++ Chọn 1 phần tử đầu tiên của dãy số, giả sử phần tử này là nhỏ nhất, sau đó lưu lại chỉ số phần tử đó
++ Duyệt để so sánh phần tử nhỏ nhất này với các phần tử còn lại (tức các phần tử tiếp theo của dãy số). Nếu phát hiện có bất kỳ phần tử nào nhỏ hơn phần tử cần so sánh, tiến hành thay đổi giá trị của chỉ số lưu trữ phần tử nhỏ nhất
++ Sau khi duyệt xong toàn bộ mảng, kết quả chúng ta tìm được đó là : vị trí (chỉ số) của phần tử nhỏ nhất trong mảng đó. Lúc này, thực hiện hoán đổi vị trí của : phần tử đầu tiên trong mảng và vị trí của phần tử nhỏ nhất (đã xác định tử bước trên)
++ Sau khi hoán đổi, phần tử nhỏ nhất sẽ luôn nằm “cố định” ở đầu mảng và phần tử này sẽ không còn đóng góp vai trò nào cho những lần sắp xếp tiếp theo. Do phần tử đầu tiên đã cố định, quá trình sắp xếp chỉ còn tác động lên size - 1 tiếp theo (không xét phần tử thứ nhất). Và thực hiện lặp lại một cách tương tự quá trình trên từ bước 1 tới bước cuối cùng … Sau mỗi quá trình lặp lại đó, ta sẽ lần lượt xác định và cố định ra được phần tử nhỏ thứ 2, phần tử nhỏ thứ 3 …, phần tử nhỏ thứ size – 1. Tới đây giải thuật kết thúc !
+### c Độ phức tạp của thuật toán :
+- Thuật toán sử dụng 2 vòng for:
+  + Vòng for thứ nhất chạy từ index = 0 tới size – 2.
+  + Vòng for thứ hai chạy từ index + 1 tới cuối mảng Như vậy, đối với 1 dãy số gồm n phần tử , số lần duyệt qua từng phần tử trong mảng sẽ là : (n-1) + (n-2) + … + 1 .
+    
+Vì vậy độ phức tạp của thuật toán trong tình huống tồi tệ nhất sẽ là : O(n^2)
+### d. Nhận xét thuật toán
+- Ưu điểm : 
+  + Selection Sort là một giải thuật đã hạn chế được khá nhiều số hoán vị (đổi chỗ 2 phần tử trong mảng) so với giải thuật Sắp xếp Nổi bọt (do nó sử dụng biến chỉ số để lưu lại phần tử nhỏ nhất,… để đến cuối cùng mới tiến hành hoán vị)
+  + Giải thuật này có tính chất ổn định : Tức vị trí tương đối của các phần tử "bằng nhau về giá trị" trong mảng vẫn được giữ nguyên trước và khi sắp xếp (nghĩa là nếu có 2 phần tử bằng nhau trong mảng, phần tử 1 nằm bên bên trái phần tử 2 thì sau khi sắp xếp thứ tự này vẫn không thay đổi)
+  + Không đòi hỏi thêm không gian nhớ phụ, nên giải thuật mang tính chất “ Tại chỗ”
+  + Trong thực tế, giải thuật này có thể được sử dụng như một giải pháp hỗ trợ cho một giai đoạn nào đó trong những giải thuật sắp xếp khác
 - Nhược điểm :
-  + Nhược điểm lớn nhất của giải thuật sắp xếp nổi bọt đó là số lần hoán vị quá nhiều so với các giải thuật đã trình bày phía trên. Trong thực tế, giải thuật này hiếm khi được ứng dụng trong các bài toán thực nghiệm (do tốn kém khá nhiều thao tác hoán vị)
-### 3.5. Tối ưu và so sánh :
-- Giải pháp tối ưu cho giải thuật trên đó là sử dụng biến hasSwapped nằm bên ngay trong vòng lặp thứ 2. Nếu đầu vào là đã được sắp xếp thì độ phức tạp thời gian chỉ còn là O(n). Một cách tương tự, trong trường hợp dãy số đầu được sắp xếp giảm dần
+  + Độ phức tạp của giải thuật tuy đã được cải thiện nhưng nhìn chung vẫn còn khá lớn so với các thuật toán sắp xếp hiệu quả khác (như QuickSort, MergeSort)
+  + Chưa giải quyết được vấn đề khi mà đầu vào của dãy số đã được sắp xếp (nghĩa là nếu đầu vào là một dãy số đã được sắp xếp thì thuật toán này vẫn cứ "máy móc" để sắp xếp lại)
+- Giải pháp tối ưu : Trong tình huống dãy số đầu vào đã được sắp xếp, giải pháp được đưa ra sẽ là : Sử dụng một biến hasSwapped để duyệt từ đầu tới cuối mảng, để phát hiện xem dãy số đã được sắp xếp tăng dần hay giảm dần hay chưa? Nếu hasSwapped = 0 khi duyệt theo chiều thuận tức dãy đã được sắp xếp tăng dần. Nếu hasSwapped = 0 khi duyệt theo chiều nghịch, tức dãy đã được sắp xếp giảm dần, vì thế chỉ cần đảo ngược lại dãy số đó để có một thứ tự đúng!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 4.Thuật toán Merge Sort (Sắp xếp trộn)
 ### 4.1. Mã nguồn minh họa (python)
