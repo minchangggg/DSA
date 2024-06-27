@@ -241,6 +241,7 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
 # 4.Thuật toán Merge Sort (Sắp xếp trộn)
 > https://www.geeksforgeeks.org/merge-sort/?ref=header_search
 ## a. Mã nguồn minh họa (python)
+### Source 1
 `Thao tác trộn`
 
 		void merge(int a[], int l, int m, int r){
@@ -275,6 +276,7 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
 			for(int x : a) cout << x << ' ';
 		}
 
+### Source 2
 ## b Ý tưởng giải thuật
 ![Bản sao của Blue-Pink Cute Class Schedule (3)](https://github.com/minchangggg/DSA/assets/125820144/53f8474a-8452-461c-b539-9a78b6aa678b)
 
@@ -583,7 +585,46 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 
 		Sorted array is 5 6 7 11 12 13 
 # 6. Thuật toán Quick Sort (Sắp xếp nhanh)
+> https://www.geeksforgeeks.org/quick-sort-algorithm/
+> 
+> https://www.youtube.com/watch?v=x1BMc7MEjnk&list=PLoaAbmGPgTSNMAzkKBHkh2mLuBk54II5L&index=44
 ## a. Mã nguồn minh họa :
+### Source 1
+`Thao tác phân hoạch bằng Lomuto partition:`
+
+int partition(int a[], int l, int r){
+	int pivot = a[r];
+	int i = l - 1;
+	for(int j = l; j < r; j++){
+		if(a[j] <= pivot){
+			++i;
+			swap(a[i], a[j]);
+		}
+	}
+	++i;
+	swap(a[i], a[r]);
+	return i;
+}
+
+`Hàm quick soft và main:`
+
+	void quicksort(int a[], int l, int r){
+		if(l < r){
+			int m = (l + r) / 2;
+			int p = partition(a, l, r);
+			quicksort(a, l, p - 1);
+			quicksort(a, p + 1, r);
+		}
+	}
+	int main(){
+		int n; cin >> n;
+		int a[n];
+		for(int &x : a) cin >> x;
+		quicksort(a, 0, n - 1);
+		for(int x : a) cout << x << ' ';
+	}
+
+### Source 2
     public static void swap(double[] unsortedArray, int index1, int index2) {
         double intermediate = unsortedArray[index1];
         unsortedArray[index1] = unsortedArray[index2];
@@ -615,7 +656,6 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
         return firstOfSecondPartitionIndex;
     }
     
-    
     // Partition with the middle element as the pivot
     public static int middlePivotPartition(double[] unsortedArray, int left, int right) {
         int middle = (left + right) / 2;
@@ -642,7 +682,6 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 
         return firstOfSecondPartitionIndex;
     }
-    
     
     // partition with the last element as the pivot
     public static int lastPivotPartition(double[] unsortedArray, int left, int right) {
@@ -718,8 +757,74 @@ Giải thuật Quick Sort với tư tưởng chính :
 - Một số cài đặt Quick Sort sử dụng Danh sách liên kết :
    + Sử dụng danh sách liên kết đơn : http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
    + Sử dụng danh sách liên kết đôi: http://www.geeksforgeeks.org/quicksort-for-linked-list/
+## e. Ví dụ
+		#include <bits/stdc++.h>
+		using namespace std;
+		
+		int partition(int arr[],int low,int high) {
+		    //choose the pivot
+		    int pivot=arr[high];
+		    //Index of smaller element and Indicate
+		    //the right position of pivot found so far
+		    int i=(low-1);
+		
+		    for(int j=low;j<=high-1;j++) {
+		        //If current element is smaller than the pivot
+		        if(arr[j]<pivot) {
+		            i++; //Increment index of smaller element
+		            swap(arr[i],arr[j]);
+		        }
+		    }
+		    swap(arr[i+1],arr[high]);
+		    return (i+1);
+		}
+		
+		// The Quicksort function Implement   
+		void quickSort(int arr[],int low,int high) {
+		    // when low is less than high
+		    if(low<high) {
+		        // pi is the partition return index of pivot
+		        int pi=partition(arr,low,high);
+		
+		        //Recursion Call smaller element than pivot goes left and higher element goes right
+		        quickSort(arr,low,pi-1);
+		        quickSort(arr,pi+1,high);
+		    }
+		}     
+		 
+		int main() {
+		    int arr[]={10,7,8,9,1,5};
+		    int n=sizeof(arr)/sizeof(arr[0]);
+		
+		    quickSort(arr,0,n-1);
+		    cout<<"Sorted Array: ";
+		    for(int x : arr) cout<< x << ' ';
+		
+		    return 0;
+		}
+
+> Output
+
+		Sorted Array: 1 5 7 8 9 10 
 # 7.Thuật toán Counting Sort (Sắp xếp đếm phân phối)
 ## a. Mã nguồn minh họa :
+### Source 1
+- Điều kiện áp dụng: Có thể khai báo được mảng đếm có số lượng phần tử lớn hơn giá trị lớn nhất của phần tử trong mảng
+
+		int dem[1000001]; // 0 <= a[i] <= 10^6
+			void countingSort(int a[], int n){
+			int K = -1e9;
+			for(int i = 0; i < n; i++){
+				dem[a[i]]++;
+				K = max(K, a[i]);
+			}
+			for(int i = 0; i <= K; i++){
+				if(dem[i]){
+					for(int j = 0; j < dem[i]; j++) cout << i << ' ';
+				}
+			}
+		}
+### Source 2
 		void countingSort(char *unsortedString) {
 			int lenOfString = strlen(unsortedString);
 			// create a new array for couting the number of occurences of a character
