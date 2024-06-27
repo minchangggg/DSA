@@ -8,6 +8,9 @@
 Trong đó độ phức tạp về thời gian được quan tâm nhiều hơn khi các bạn tham gia vào các contest về lập trình.
 Độ phức tạp thời gian là thời gian mà thuật toán của bạn cần để thực thi, nó là một hàm của input, tức là dựa vào đầu vào ta sẽ tính toán số lượng thao tác mà thuật toán cần thực thi từ đó tính ra được thời gian thực thi của thuật toán.
 
+> Cách tính độ phức tạp thuật toán
+>
+> https://www.youtube.com/watch?v=rytSoWVcWQQ
 ## I. TÍNH TOÁN ĐỘ PHỨC TẠP VÀ KÍ HIỆU BIG O
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/ba7be9e2-9d28-457c-9f68-d63dd3e8356f)
