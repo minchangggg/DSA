@@ -725,7 +725,8 @@ int partition(int a[], int l, int r){
             lastQuickSort(unsortedArray, pointOfPartition + 1, right);
         }
     }
-## b. Tư tưởng của giải thuật
+## b. Tư tưởng của giải thuật và nguyên tắc hoạt động
+### Tư tưởng của giải thuật 
 Giải thuật Quick Sort với tư tưởng chính :
 
 - Lựa chọn một phần tử trong mảng đóng vai trò như một pivot, sau đó từ giá trị pivot này tiến hành phân lớp mảng thành 2 phần với một phần chỉ toàn gồm các phần tử nhỏ hơn hoặc bằng pivot, trong khi phần còn lại chứa các phần tử lớn hơn pivot.
@@ -738,6 +739,9 @@ Giải thuật Quick Sort với tư tưởng chính :
 - Phía trên mình đã trình bày các cách cài đặt của từng sự lựa chọn Pivot thông qua ngôn ngữ Java, với một vài điểm chú ý có thể kể tới như sau :
    + Giải thuật lựa chọn Pivot nằm đầu và cuối mảng được xây dựng theo hai cách mang 2 tư tưởng khá khác biệt
    + Giải thuật lựa chọn pivot bất kỳ, hay lựa chọn pivot nằm ở chỉ số trung bình... được quy về cách lựa chọn pivot nằm ở đầu và cuối mảng ( chỉ với một thao tác đơn giản là hoán vị tương ứng pivot đó với phần tử ở đầu (hoặc cuối) mảng). Trong giải thuật này, mình xin để xuất đưa về cách cài đặt chọn pivot ở đầu mảng
+### Nguyên tắc hoạt động 
+![image](https://github.com/minchangggg/DSA/assets/125820144/b0d7aabb-c3ea-495f-9248-edb3370b064f)
+
 ## c. Độ phức tạp của giải thuật
 - Độ phức tạp của giải thuật QuickSort là : T(n) = T(k) + T(n-k-1) + O(n) , với k là số phần tử bên nửa trái. Từ đó, trong từng trường hợp :
    + Tồi tệ nhất, ứng với k = 0 : T(n) = T(0) + T(n-1) + O(n) = T(n-1) + O(n) = O(n^2)
