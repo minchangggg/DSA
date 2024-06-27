@@ -4,7 +4,7 @@
 - Tại sao phải sắp xếp?
 	+ Để có thể sử dụng thuật toán tìm nhị phân
 	+ Để thực hiện thao tác nào đó được nhanh hơn
-# Các phương pháp sắp xếp thông dụng
+# I. Các phương pháp sắp xếp thông dụng
 # 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
 ## a. Mã nguồn minh họa :
@@ -650,47 +650,8 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 - Tối ưu và ứng dụng thực tế :
    + Giải thuật được sử dụng như một giai đoạn trong giải thuật Radix Sort
    + Giải thuật cũng có thể được mở rộng để làm việc với các số nguyên âm, hay sắp xếp các chuỗi ký tự
- 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# II. Các phương pháp sắp xếp khác
 # 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
 ## a. Mã nguồn minh họa
 		int maximum(int *unsortedArray, int size) {
