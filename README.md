@@ -1,3 +1,5 @@
+> https://viblo.asia/p/chuong-1-introduction-1cac-khai-niem-co-ban-W13VM2n74Y7
+
 <img width="800" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/c093f34c-9c34-4a1e-b081-d5eb4e286f68">
 
 > https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/?ref=lbp#dsa-full-form
