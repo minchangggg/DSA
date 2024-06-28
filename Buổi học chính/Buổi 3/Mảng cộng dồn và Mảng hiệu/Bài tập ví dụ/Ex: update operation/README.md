@@ -33,7 +33,7 @@ In ra mảng sau Q thao tác
 
 `Sample Output 0`
 
-8 6 9 10 8 7 
+8 6 9 10 8 7 9
 
 
 
