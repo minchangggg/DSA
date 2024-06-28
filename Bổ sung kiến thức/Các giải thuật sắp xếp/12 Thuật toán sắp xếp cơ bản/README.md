@@ -6,7 +6,10 @@
 - Tại sao phải sắp xếp?
 	+ Để có thể sử dụng thuật toán tìm nhị phân
 	+ Để thực hiện thao tác nào đó được nhanh hơn
-# I. Các phương pháp sắp xếp thông dụng
+- Các phương pháp sắp xếp thông dụng
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/df435f56-0f1b-433d-804b-928712c0b2a9)
+
 # 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
 >
@@ -974,7 +977,7 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 > Output
 
 		eeeefggkkorss 
-# II. Các phương pháp sắp xếp khác
+
 # 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
 > https://www.geeksforgeeks.org/radix-sort/?ref=shm
 >
