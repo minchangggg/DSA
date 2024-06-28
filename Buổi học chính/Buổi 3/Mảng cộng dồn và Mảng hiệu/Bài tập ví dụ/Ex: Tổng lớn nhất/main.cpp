@@ -20,7 +20,7 @@ int main(){
         temp[r+1] -= 1;
     }
 
-    int F[n]; // xem tần suất phần tử được truy vấn 
+    int F[n]; // mảng cộng dồn của mảng hiệu tem[] -> xem tần suất phần tử được truy vấn 
     F[0] = temp[0];
     for(int i = 1; i < n; i++) F[i] = F[i-1] + temp[i]; // 0 2 2 2 1 0
    
