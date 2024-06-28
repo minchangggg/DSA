@@ -818,6 +818,7 @@ Giải thuật Quick Sort với tư tưởng chính :
 		int dem[1000001]; // 0 <= a[i] <= 10^6
 			void countingSort(int a[], int n){
 			int K = -1e9;
+  			for(int &x : dem) x = 0; 
 			for(int i = 0; i < n; i++){
 				dem[a[i]]++;
 				K = max(K, a[i]);
