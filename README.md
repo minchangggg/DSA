@@ -27,11 +27,10 @@
 ### Matrix/Grid
 ### Stack
 ### Queue
-### Heap
-### Hash
 
 ## [ Non-linear data structure ]
-Khác với cách lưu trữ của linear, nó sẽ tổ chức các dữ liệu theo dạng cấp bậc và không theo trình tự nhất định nào cả, mỗi phần tử sẽ liên kết với 1 hoặc nhiều phần tử khác. 2 cấu trúc điển hình là Tree và Graph.
+### Heap
+### Hash
 ### Tree
 ### Graph
 
