@@ -7,6 +7,8 @@
 # I. Các phương pháp sắp xếp thông dụng
 # 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
+>
+> https://www.w3schools.com/dsa/dsa_algo_bubblesort.php
 ## a. Mã nguồn minh họa :
 	void bubbleSort(int a[], int n){
 		for(int i = 0; i < n; i++){
@@ -75,6 +77,8 @@
 
 # 2.Thuật toán Insertion Sort (Sắp xếp chèn)
 > https://www.geeksforgeeks.org/insertion-sort-algorithm/
+>
+> https://www.w3schools.com/dsa/dsa_algo_insertionsort.php
 ## a. Mã nguồn minh họa :
 	void insertionSort(int a[], int n){
 		for(int i = 1; i < n; i++){
@@ -162,6 +166,8 @@
 	5 6 11 12 13 
  
 # 3. Thuật toán Selection Sort (Sắp xếp chọn)
+The Selection Sort algorithm finds the lowest value in an array and moves it to the front of the array.
+
 > https://www.geeksforgeeks.org/selection-sort-algorithm-2/
 ## a. Code minh họa
 	void selectionSort(int a[], int n){
@@ -811,6 +817,9 @@ Giải thuật Quick Sort với tư tưởng chính :
 
 		Sorted Array: 1 5 7 8 9 10 
 # 7.Thuật toán Counting Sort (Sắp xếp đếm phân phối)
+> https://www.geeksforgeeks.org/counting-sort/?ref=header_search
+> 
+> https://www.w3schools.com/dsa/dsa_algo_countingsort.php
 ## a. Mã nguồn minh họa :
 ### Source 1
 - Điều kiện áp dụng: Có thể khai báo được mảng đếm có số lượng phần tử lớn hơn giá trị lớn nhất của phần tử trong mảng
@@ -878,9 +887,94 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 - Tối ưu và ứng dụng thực tế :
    + Giải thuật được sử dụng như một giai đoạn trong giải thuật Radix Sort
    + Giải thuật cũng có thể được mở rộng để làm việc với các số nguyên âm, hay sắp xếp các chuỗi ký tự
+## e. Ví dụ:
+### Ví dụ 1:
+		#include <bits/stdc++.h>
+		using namespace std;
+		 
+		vector<int> countSort(vector<int>& inputArray) {
+		    int N = inputArray.size();
+		    
+		    // Finding the maximum element of array inputArray[].
+		    int M = 0; 
+		    for (int i = 0; i < N; i++) M = max(M, inputArray[i]);
+		 
+		    // Initializing countArray[] with 0
+		    vector<int> countArray(M + 1, 0);
+		 
+		    // Mapping each element of inputArray[] as an index of countArray[] array
+		    for (int i = 0; i < N; i++) countArray[inputArray[i]]++;
+		 
+		    // Calculating prefix sum at every index of array countArray[]
+		    for (int i = 1; i <= M; i++) countArray[i] += countArray[i - 1];
+		 
+		    // Creating outputArray[] from countArray[] array
+		    vector<int> outputArray(N);
+		 
+		    for (int i = N - 1; i >= 0; i--) {
+		        outputArray[countArray[inputArray[i]] - 1] = inputArray[i];
+		        countArray[inputArray[i]]--;
+		    }
+		 
+		    return outputArray;
+		}
+		
+		int main() {
+		    vector<int> inputArray = { 4, 3, 12, 1, 5, 5, 3, 9 };
+		 
+		    vector<int> outputArray = countSort(inputArray);
+		    for (int i = 0; i < inputArray.size(); i++) cout << outputArray[i] << " ";
+		 
+		    return 0;
+		}
 
+> Output
+
+		1 3 3 4 5 5 9 12 
+
+### Ví dụ 2:
+		#include <bits/stdc++.h>
+		using namespace std;
+		#define RANGE 255
+		
+		void countSort(char arr[]) {
+		    // The output character array that will have sorted arr
+		    char output[strlen(arr)];
+		 
+		    // Create a count array to store count of individual characters and initialize count array as 0
+		    int count[RANGE + 1];
+		    memset(count, 0, sizeof(count));
+		 
+		    // Store count of each character
+		    for(int i = 0; arr[i]; ++i) ++count[arr[i]];
+		 
+		    // Change count[i] so that count[i] now contains actual position of this character in output array
+		    for (int i = 1; i <= RANGE; ++i) count[i] += count[i-1];
+		 
+		    // Build the output character array
+		    for (int i = 0; arr[i]; ++i) {
+		        output[count[arr[i]]-1] = arr[i];
+		        --count[arr[i]];
+		    }
+		 
+		    // Copy the output array to arr, so that arr now contains sorted characters
+		    for (int i = 0; arr[i]; ++i) arr[i] = output[i];
+		}
+		 
+		// Driver program to test above function
+		int main() {
+		    char arr[] = "geeksforgeeks";
+		    countSort(arr);
+		    cout << arr;
+		    return 0;
+		}
+
+> Output
+
+		eeeefggkkorss 
 # II. Các phương pháp sắp xếp khác
 # 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
+> https://www.w3schools.com/dsa/dsa_algo_radixsort.php
 ## a. Mã nguồn minh họa
 		int maximum(int *unsortedArray, int size) {
 			int maximumValue = unsortedArray[0];
