@@ -974,7 +974,17 @@ Không sử dụng phương pháp sắp xếp dựa trên quá trình so sánh, 
 		eeeefggkkorss 
 # II. Các phương pháp sắp xếp khác
 # 8. Thuật toán Radix Sort (Sắp xếp theo cơ số)
+> https://www.geeksforgeeks.org/radix-sort/?ref=shm
+>
+> https://www.geeksforgeeks.org/msd-most-significant-digit-radix-sort/?ref=lbp
+> 
 > https://www.w3schools.com/dsa/dsa_algo_radixsort.php
+>
+> https://www.youtube.com/watch?v=Dr6DdLDsE-4&list=PLoaAbmGPgTSNMAzkKBHkh2mLuBk54II5L&index=47
+
+	Least significant digit (LSD): số có trọng số thấp nhất, ở hàng thấp nhất, ít quan trọng nhất (Trong một số bao gồm nhiều chữ số, đó thường là chữ số nằm tận cùng bên phải.)
+	Most significant digit (MSD): số có trọng số lớn nhất, ở hàng cao nhất, quan trọng nhất (Trong một số gồm nhiều chữ số, đó thường là chữ số nằm tận cùng bên trái.)
+ 	
 ## a. Mã nguồn minh họa
 		int maximum(int *unsortedArray, int size) {
 			int maximumValue = unsortedArray[0];
@@ -1033,6 +1043,67 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 - Gọi k là số lượng chữ số trong số lớn nhất của dãy số, do thuật toán áp dụng giải thuật Counting Sort để sắp xếp trên từng chữ số. Vì thế độ phức tạp của thuật toán là : d * O(n + b) = O(d * (n+ b)), với b là hệ số (trong giải thuật trên ta chọn hệ số là 10 tức miền giá trị từ 0 đến 9)
 ## d. Nhận xét và đánh giá :
 - Mặc dù giải thuật trên khá nhanh. Tuy nhiên vẫn chưa thể đánh bại giải thuật sắp xếp dựa trên so sánh (như QuickSort, HeapSort, Merge Sort)
+## e. Ví dụ :
+		#include <iostream>
+		
+		using namespace std;
+		
+		// A utility function to get maximum value in arr[]
+		int getMax(int arr[], int n){
+		    int mx = arr[0];
+		    for (int i = 1; i < n; i++)
+		        if (arr[i] > mx) mx = arr[i];
+		    return mx;
+		}
+		
+		// A function to do counting sort of arr[] according to the digit represented by exp.
+		void countSort(int arr[], int n, int exp){
+		    // Output array
+		    int output[n];
+		    int count[10] = { 0 };
+		
+		    // Store count of occurrences in count[]
+		    for (int i = 0; i < n; i++) count[(arr[i] / exp) % 10]++;
+		
+		    // Change count[i] so that count[i] now contains actual position of this digit in output[]
+		    for (int i = 1; i < 10; i++) count[i] += count[i - 1];
+		
+		    // Build the output array
+		    for (int i = n - 1; i >= 0; i--) {
+		        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+		        count[(arr[i] / exp) % 10]--;
+		    }
+		
+		    // Copy the output array to arr[], so that arr[] now contains sorted numbers according to current digit
+		    for (int i = 0; i < n; i++) arr[i] = output[i];
+		}
+		
+		// The main function to that sorts arr[] of size n using Radix Sort
+		void radixsort(int arr[], int n){
+		    // Find the maximum number to know number of digits
+		    int m = getMax(arr, n);
+		
+		    // Do counting sort for every digit.
+		    // Note that instead of passing digit number, exp is passed. exp is 10^i where i is current digit number
+		    for (int exp = 1; m / exp > 0; exp *= 10) countSort(arr, n, exp);
+		}
+		
+		void print(int arr[], int n){
+		    for (int i = 0; i < n; i++) cout << arr[i] << " ";
+		}
+		
+		int main(){
+		    int arr[] = { 170, 45, 75, 90, 802, 24, 2, 66 };
+		    int n = sizeof(arr) / sizeof(arr[0]);
+		
+		    radixsort(arr, n);
+		    print(arr, n);
+		    return 0;
+		}
+
+> Output
+
+		2 24 45 66 75 90 170 802 
 # 9.Thuật toán Bucket Sort( Sắp xếp phân cụm)
 ## a. Mã nguồn minh họa
 		void bucketSort(double *unsortedArray, int size) {
