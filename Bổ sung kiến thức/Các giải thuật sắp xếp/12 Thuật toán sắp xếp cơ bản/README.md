@@ -11,7 +11,7 @@
 ![image](https://github.com/minchangggg/DSA/assets/125820144/df435f56-0f1b-433d-804b-928712c0b2a9)
 # I. CÁC PHƯƠNG PHÁP THÔNG DỤNG
 > https://superstudy.guide/algorithms-data-structures/sorting-search/sorting-algorithms/
-# 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
+# 1. Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
 >
 > https://www.w3schools.com/dsa/dsa_algo_bubblesort.php
@@ -81,7 +81,7 @@
 
 		Sorted array: 11 12 22 25 34 64 90
 
-# 2.Thuật toán Insertion Sort (Sắp xếp chèn)
+# 2. Thuật toán Insertion Sort (Sắp xếp chèn)
 > https://www.geeksforgeeks.org/insertion-sort-algorithm/
 >
 > https://www.w3schools.com/dsa/dsa_algo_insertionsort.php
@@ -250,7 +250,7 @@ Với một mảng số ban đầu chưa được sắp xếp gồm size phần 
 
 	Sorted array: 11 12 22 25 64 
 
-# 4.Thuật toán Merge Sort (Sắp xếp trộn)
+# 4. Thuật toán Merge Sort (Sắp xếp trộn)
 > https://www.geeksforgeeks.org/merge-sort/?ref=header_search
 ## a. Mã nguồn minh họa (python)
 ### Source 1
@@ -408,7 +408,7 @@ Giải thuật Sắp xếp Trộn giữ được tính ổn định tương đ�
 		Given array is 12 11 13 5 6 7 
 		Sorted array is 5 6 7 11 12 13 
 
-# 5.Thuật toán Heap Sort (Sắp xếp vun đống)
+# 5. Thuật toán Heap Sort (Sắp xếp vun đống)
 > https://www.geeksforgeeks.org/heap-sort/?ref=header_search
 >
 > https://www.youtube.com/watch?v=Dr6DdLDsE-4&list=PLoaAbmGPgTSNMAzkKBHkh2mLuBk54II5L&index=47
@@ -822,7 +822,7 @@ Giải thuật Quick Sort với tư tưởng chính :
 > Output
 
 		Sorted Array: 1 5 7 8 9 10 
-# 7.Thuật toán Counting Sort (Sắp xếp đếm phân phối)
+# 7. Thuật toán Counting Sort (Sắp xếp đếm phân phối)
 > https://www.geeksforgeeks.org/counting-sort/?ref=header_search
 > 
 > https://www.w3schools.com/dsa/dsa_algo_countingsort.php
@@ -1112,7 +1112,7 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 		2 24 45 66 75 90 170 802 
 
 # II. CÁC PHƯƠNG PHÁP KHÁC
-# 9.Thuật toán Bucket Sort( Sắp xếp phân cụm)
+# 9. Thuật toán Bucket Sort( Sắp xếp phân cụm)
 ## a. Mã nguồn minh họa
 		void bucketSort(double *unsortedArray, int size) {
 			vector<double> *buckets = new vector<double>[size];
@@ -1152,7 +1152,7 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 - Sắp xếp các phần tử trên từng cụm buckets sử dụng Insertion Sort : O(n) (trong trường hợp các phần tử trong dãy số phải được phân bố đều đặn ) Như vậy độ phức tạp của bài toán : O(n)
 ## d. Nhận xét và đánh giá :
 - Giải thuật cho phép độ phức tạp thời gian sắp xếp dãy số theo thời gian tuyến tính trong trường hợp dãy số ban đầu phải được phân bố đều đặn trên miền giá trị của chúng
-# 10.Thuật toán Shell Sort (Tối ưu Insertion Sort)
+# 10. Thuật toán Shell Sort (Tối ưu Insertion Sort)
 ## a. Mã nguồn minh họa
 		void shellSort(double *unsortedArray, int size) {
 			int interval = 1;
