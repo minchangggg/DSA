@@ -10,14 +10,15 @@
 
 <img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/a536f2c2-b290-4694-a4e3-30b0804afe0e">
 
-      - Data structure là một cách cụ thể để lưu trữ và tổ chức dữ liệu trong máy tính để nó có thể được sử dụng một cách hiệu quả. \
-      - Một Data Structure là một định dạng đặc biệt để tổ chức và lưu trữ dữ liệu. 
-      - Các kiểu data structure chung gồm arrays, files, linked lists, stacks, queues, trees, graphs, ...
-      - Tùy thuộc vào tổ chức của các phần tử, cấu trúc dữ liệu được phân thành hai loại:
-          + Linear data structures: Các phần tử được truy cập theo thứ tự tuần tự nhưng nó không bắt buộc phải lưu trữ tất cả các phần tử một cách tuần tự (say, Linked Lists). Examples: Linked Lists, Stacks and Queues.
-          + Non – linear data structures: Các phần tử của cấu trúc dữ liệu này được lưu trữ / truy cập trong một thứ tự phi tuyến tính. Examples: Trees and graphs.
+<img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/d1da22b3-6185-4221-94f2-c56080a38df2">
 
-<img width="700" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/fe64a712-4664-4328-be77-b6d6a8d977bc">  
+      Data structures can be broadly categorized into:
+            - Primitive Data Structures: These are basic data structures that include Integers, Float, Character, and Boolean.
+            - Non-Primitive Data Structures: These are more complex data structures and are further classified into:
+                  + Linear Data Structures: In these data structures, data elements are arranged sequentially. Examples include arrays, linked lists, stacks, and queues.
+                  + Non-Linear Data Structures: Here, data elements aren't placed in a sequence. Examples are graphs and trees.
+
+
 
 ## [ Linear data structure ]
 ### Array
@@ -30,6 +31,7 @@
 ### Hash
 
 ## [ Non-linear data structure ]
+Khác với cách lưu trữ của linear, nó sẽ tổ chức các dữ liệu theo dạng cấp bậc và không theo trình tự nhất định nào cả, mỗi phần tử sẽ liên kết với 1 hoặc nhiều phần tử khác. 2 cấu trúc điển hình là Tree và Graph.
 ### Tree
 ### Graph
 
