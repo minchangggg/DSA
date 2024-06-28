@@ -9,7 +9,8 @@
 - Các phương pháp sắp xếp thông dụng
   
 ![image](https://github.com/minchangggg/DSA/assets/125820144/df435f56-0f1b-433d-804b-928712c0b2a9)
-
+# I. CÁC PHƯƠNG PHÁP THÔNG DỤNG
+> https://superstudy.guide/algorithms-data-structures/sorting-search/sorting-algorithms/
 # 1.Thuật toán Bubble Sort (Sắp xếp nổi bọt)
 > https://www.geeksforgeeks.org/bubble-sort-algorithm/
 >
@@ -1109,6 +1110,8 @@ Với mỗi thao tác sắp xếp các phần tử là theo một hàng nhất �
 > Output
 
 		2 24 45 66 75 90 170 802 
+
+# II. CÁC PHƯƠNG PHÁP KHÁC
 # 9.Thuật toán Bucket Sort( Sắp xếp phân cụm)
 ## a. Mã nguồn minh họa
 		void bucketSort(double *unsortedArray, int size) {
