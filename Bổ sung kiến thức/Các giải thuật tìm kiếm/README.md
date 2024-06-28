@@ -9,6 +9,7 @@
 # Các thuật toán tìm kiếm
 + Tìm kiếm tuyến tính(Linear Search) : là một giải thuật tìm kiếm rất cơ bản. Trong kiểu tìm kiếm này, một hoạt động tìm kiếm liên tiếp được diễn ra qua tất cả từng phần tử.
 + Tìm kiếm nhị phân(Binary Search): là một giải thuật tìm kiếm nhanh với độ phức tạp thời gian chạy là Ο(log n). Giải thuật tìm kiếm nhị phân làm việc dựa trên nguyên tắc chia để trị (Divide and Conquer).
+> https://wiki.vnoi.info/algo/basic/Binary-Search
 + Tìm kiếm nội suy(Interpolation Search): là biến thể cải tiến của Tìm kiếm nhị phân (Binary Search). Để giải thuật tìm kiếm này làm việc chính xác thì tập dữ liệu phải được sắp xếp.
   
         Thuật toán Linear Search
