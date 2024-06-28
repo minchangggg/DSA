@@ -6,5 +6,5 @@
 ## External sorting 
 - Chỉ một phần nhỏ dữ liệu cần sắp xếp được đưa vào bộ nhớ trong, phần lớn dữ liệu còn lại được lưu ở bộ nhớ ngoài , kích thước dữ liệu cần sắp xếp lúc này rất lớn, và thời gian sắp xếp thực hiện rất chậm.
 - Các thuật toán sắp xếp sử dụng bộ nhớ ngoài, chẳng hạn như băng hoặc đĩa, trong quá trình sắp xếp thuộc danh mục này.
-
-![image](https://github.com/minchangggg/DSA/assets/125820144/c9ca3825-830d-4fab-ac6f-b21aa5f28c45)
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/33840c15-348a-4752-919a-ece244e53654)
