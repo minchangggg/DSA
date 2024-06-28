@@ -1,4 +1,6 @@
 > https://github.com/dungbachviet/SortingAlgorithms
+>
+> https://viblo.asia/p/chuong-10-sorting-1ly-thuyet-co-ban-2oKLnxa34QO#_108-shell-sort-27
 
 - Sắp xếp là quá trình bố trí lại các phần tử trong một tập hợp theo một trình tự nào đó nhằm mục đích giúp quản lý và tìm kiếm các phần tử dễ dàng và nhanh chóng hơn.
 - Tại sao phải sắp xếp?
