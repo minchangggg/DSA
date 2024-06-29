@@ -20,6 +20,7 @@ In một số nguyên: thời gian tối thiểu cần thiết để tạo ra t 
 `Sample Input 0`
 
 3 7
+
 3 2 5
 
 `Sample Output 0`
