@@ -391,13 +391,14 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
 - Dạng 1: `lower_bound(l, r, val);`
 - Dạng 2: `lower_bound(l, r, val, comp);`
 ### b. Tác dụng: 
-- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà lớn hơn hoặc bằng khóa tìm kiếm val. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
+- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà **lớn hơn hoặc bằng** khóa tìm kiếm val. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
   + Ở dạng 1, phép toán so sánh mặc định là <. Nghĩa là hàm sẽ trả về iterator vào vị trí đầu tiên mà (*it >= val)
   + Ở dạng 2, phép toán so sánh sẽ được định nghĩa theo hàm boolean comp do người dùng tự viết. Hàm comp phải bao gồm hai tham số a và b - đại diện cho phần tử trong đoạn tìm kiếm và khóa tìm kiếm. Khi sử dụng hàm comp làm phép so sánh, hàm lower_bound sẽ trả về iterator vào vị trí đầu tiên mà (comp(*it, val) == false).
 - Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
 ### c. Độ phức tạp của hàm 
 `O(log2(n))`, với n là kích thước không gian tìm kiếm.
 ### d. Ví dụ
+#### Ví dụ 1
         #include <iostream>
         #include <algorithm>
         #include <vector>
@@ -433,18 +434,101 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
 
         Vị trí đầu tiên lớn hơn hoặc bằng 30 là: 4
         Vị trí đầu tiên lớn hơn hoặc bằng 20 là: 5
+#### Ví dụ 2: lower_bound với mảng
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int main(){
+          int a[7] = {1, 2, 3, 3, 3, 4, 6};
+          
+          auto it1 = lower_bound(a, a + 7, 3);
+          cout << *it1 << endl;
+          cout << (it1 - a) << endl;
+        
+          auto it2 = lower_bound(a, a + 7, 8);
+          (it2 == a + 7) ? cout << "NOT FOUND" : cout << *it2 << endl;
+          cout << (it2 - a) << endl;
+        }
+
+> Output
+
+        3
+        2
+        NOT FOUND
+        7
+#### Ví dụ 3: lower_bound với vector
+        #include <bits/stdc++.h>
+        using namespace std;
+        int main(){
+          vector<int> a = {1, 2, 3, 3, 3, 4, 6};
+          
+          auto it1 = lower_bound(a.begin(), a.end(), 3);
+          (it1 == a.end()) ? cout << "NOT FOUND\n" : else cout << *it1 << endl;
+          cout << (it1 - a.begin()) << endl;
+        
+          auto it2 = lower_bound(a.begin(), a.end(), 8);
+          (it2 == a.end()) ? cout << "NOT FOUND\n" : cout << *it2 << endl;
+          cout << (it2 - a.begin()) << endl;
+        }
+
+> Output
+
+        3
+        2
+        NOT FOUND
+        7
+#### Ví dụ 4
+        #include <bits/stdc++.h>
+        using namespace std;
+        int main(){
+            vector<int> a = {1, 1, 3, 3, 3, 4, 6};
+        
+            auto it1 = lower_bound(a.begin(), a.end(), 2); // &a[2]
+            --it1; // &a[1]
+            cout << *it1 << endl; // 1
+        
+            auto it2 = lower_bound(a.begin(), a.end(), 7); // &a[7]
+            --it2; // &a[6]
+            cout << *it2 << endl; // 6
+        }
+
+> Output
+
+        1
+        6
+#### Ví dụ 5
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int main(){
+            vector<int> a = {1, 1, 3, 3, 3, 4, 6}; // n = 7
+        
+            auto it1 = lower_bound(a.begin(), a.end(), 7); // &a[7]
+            it1 -= 2; // &a[5]
+            cout << *it1 << endl; // 4
+        
+            auto it2 = lower_bound(a.begin(), a.end(), 0); // &a[0]
+            it2--; // ....
+            cout << *it2 << endl; // gtri rác
+        }
+        
+> Output
+
+        4
+        335575821
 ## 3. Hàm upper_bound
 ### a. Cú pháp:
 - Dạng 1: `upper_bound(l, r, val);`
 - Dạng 2: `upper_bound(l, r, val, comp);`
 ### b. Tác dụng 
-- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà lớn hơn hẳn khóa tìm kiếm val. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
+- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà **lớn hơn hẳn** khóa tìm kiếm **val**. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
   + Ở dạng 1, phép toán so sánh mặc định là <. Nghĩa là hàm sẽ trả về iterator vào vị trí đầu tiên mà (*it > val) (khác với lower_bound, các bạn chú ý phân biệt).
   + Ở dạng 2, phép toán so sánh sẽ được định nghĩa theo hàm boolean comp do người dùng tự viết. Hàm comp phải bao gồm hai tham số a và b - đại diện cho phần tử trong đoạn tìm kiếm và khóa tìm kiếm. Khi sử dụng hàm comp làm phép so sánh, hàm upper_bound sẽ trả về iterator vào vị trí đầu tiên mà (comp(*it, val) == false). Lưu ý, phần tử mà hàm upper_bound trả về sẽ không thể bằng với khóa val.
 - Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
 ### c. Độ phức tạp của hàm: 
 `O(log2(n))`, với n là kích thước không gian tìm kiếm.
 ### d. Ví dụ
+#### Ví dụ 1
         #include <iostream>
         #include <algorithm>
         #include <vector>
@@ -481,6 +565,49 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
 
         Vị trí đầu tiên lớn hơn 30 là: 6
         Vị trí đầu tiên nhỏ hơn 50 là: 1
+#### Ví dụ 2: upper_bound với mảng
+        #include <bits/stdc++.h>
+        using namespace std;
+        int main(){
+          int a[7] = {1, 2, 3, 3, 3, 4, 6};
+          
+          auto it1 = upper_bound(a, a + 7, 3);
+          cout << *it1 << endl;
+          cout << (it1 - a) << endl;
+        
+          auto it2 = upper_bound(a, a + 7, 8);
+          (it2 == a + 7) ? cout << "NOT FOUND" : cout << *it2 << endl;
+          cout << (it2 - a) << endl;
+        }
+
+> Output
+
+        4
+        5
+        NOT FOUND
+        7
+#### Ví dụ 3: upper_bound với vector
+        #include <bits/stdc++.h>
+        using namespace std;
+        int main(){
+          vector<int> a = {1, 2, 3, 3, 3, 4, 6};
+          
+          auto it1 = upper_bound(a.begin(), a.end(), 3);
+          (it1 == a.end()) ? cout << "NOT FOUND\n" : cout << *it1 << endl;
+          cout << (it1 - a.begin()) << endl;
+          
+          auto it2 = upper_bound(a.begin(), a.end(), 6);
+          (it2 == a.end()) ? cout << "NOT FOUND\n" : cout << *it2 << endl;
+          cout << (it2 - a.begin()) << endl;
+        }
+
+> Output
+
+        4
+        5
+        NOT FOUND
+        7
+
 ## 4. Hàm equal_range
 ### a. Cú pháp:
 - Dạng 1: `equal_range(l, r, val);`
