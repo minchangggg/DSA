@@ -23,7 +23,7 @@
 
 ![image](https://github.com/minchangggg/DSA/assets/125820144/77c80cab-1ed3-4af5-907e-8527d9b96eaf)
 
-### Code
+### a. Code
 `Cách 1:`
 
         #include <bits/stdc++.h>
@@ -70,7 +70,8 @@
 > Output
 
         Element is present at index 3
-### Ví dụ 1: Tìm vị trí đầu tiên của X trong mảng
+### b. Ví dụ:
+#### Ví dụ 1: Tìm vị trí đầu tiên của X trong mảng
         #include <iostream>
         using namespace std;
         
@@ -94,7 +95,7 @@
 > Output
 
         Vi tri dau tien cua 3 : 4
-### Ví dụ 2: Đếm số lần xuất hiện của X trong mảng
+#### Ví dụ 2: Đếm số lần xuất hiện của X trong mảng
         #include <iostream>
         using namespace std;
         
@@ -123,7 +124,7 @@
 ![image](https://github.com/minchangggg/DSA/assets/125820144/88fcbfcb-a970-413a-81e1-5861a0edd4af)
 
 Binary Search có lợi thế lớn về độ phức tạp thời gian khi so sánh với Linear Search. Linear Search có độ phức tạp trường hợp xấu nhất là Ο(n) trong khi Binary Search là Ο(log n).
-### Code
+### a. Code
 `Dùng vòng lặp`
 
         #include <bits/stdc++.h>
@@ -200,7 +201,8 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
 
         Element is present at index 3
 
-### Ví dụ 1: Tìm vị trí đầu tiên của phần tử X trong mảng đã được sắp xếp 
+### b. Ví dụ
+#### Ví dụ 1: Tìm vị trí đầu tiên của phần tử X trong mảng đã được sắp xếp 
 `Độ phức tạp: O(logN)`
 
         int firstPos(int a[], int n, int x){
@@ -217,7 +219,7 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
           }
           return res;
         }
-### Ví dụ 2: Tìm vị trí cuối cùng của phần tử X trong mảng đã được sắp xếp 
+#### Ví dụ 2: Tìm vị trí cuối cùng của phần tử X trong mảng đã được sắp xếp 
 `Độ phức tạp: O(logN)`
 
         int lastPos(int a[], int n, int x){
@@ -234,7 +236,7 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
           }
           return res;
         }
-### Ví dụ 3: Tìm vị trí đầu tiên của phần tử lớn hơn hoặc bằng X trong mảng đã được sắp xếp
+#### Ví dụ 3: Tìm vị trí đầu tiên của phần tử lớn hơn hoặc bằng X trong mảng đã được sắp xếp
 `Độ phức tạp: O(logN)`
 
         int lower(int a[], int n, int x){
@@ -251,7 +253,7 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
           }
           return res;
         }
-### Ví dụ 4: Tìm vị trí cuối cùng của phần tử nhỏ hơn hoặc bằng X trong mảng đã được sắp xếp
+#### Ví dụ 4: Tìm vị trí cuối cùng của phần tử nhỏ hơn hoặc bằng X trong mảng đã được sắp xếp
 `Độ phức tạp: O(logN)`
         
         int upper(int a[], int n, int x){
