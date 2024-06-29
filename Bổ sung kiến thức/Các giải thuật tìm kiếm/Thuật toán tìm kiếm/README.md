@@ -337,3 +337,207 @@ Binary Search có lợi thế lớn về độ phức tạp thời gian khi so s
             ? cout << "Element " << x << " is not present in array"
             : cout << "Element " << x << " is present at index " << result;
         }
+
+# II. Các hàm tìm kiếm nhị phân trong STL C++
+> https://viblo.asia/p/gioi-thieu-mot-so-ham-tim-kiem-co-san-trong-stl-c-Do754OvLlM6#_3-ham-lower_bound-4
+## 1. Hàm binary_search
+### a. Cú pháp:
+- Dạng 1: `binary_search(l, r, val);`
+- Dạng 2: `binary_search(l, r, val, comp);`
+### b. Tác dụng: 
+- Tìm kiếm xem giá trị val có xuất hiện trong đoạn [l,r−1] của đoạn cần tìm không (lưu ý đoạn tìm kiếm phải được sắp xếp theo một trật tự nhất định). Nếu tìm thấy val thì trả về true, ngược lại trả về false.
+- Ở dạng 1, phép so sánh mặc định của hàm là <, nghĩa là hai phần tử a,b được xem là bằng nhau nếu như !(a < b) && !(b < a).
+- Ở dạng 2, các bạn có thể tự viết một hàm so sánh kiểu boolean comp theo ý mình, khi đó hai phần tử a,b được xem là bằng nhau nếu như !(comp(a, b)) && !(comp(b, a)).
+- Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
+### c. Độ phức tạp của hàm: 
+`O(log2(n))`, với n là kích thước không gian tìm kiếm.
+### d. Ví dụ:
+
+        #include <iostream>
+        #include <algorithm>
+        #include <vector>
+        
+        using namespace std;
+        
+        bool comp(int a, int b){
+            return a > b;	
+        }
+        
+        int main(){
+            int a[] = {1, 2, 3, 4, 5, 4, 3, 2, 1};
+            // Copy mảng a sang vector v. Sau đây v = {1, 2, 3, 4, 5, 4, 3, 2, 1}.
+            vector < int > v(a, a + 9); 
+        	
+            sort(a, a + n); // a = {1, 1, 2, 2, 3, 3, 4, 4, 5}.
+            
+            if (binary_search(a, a + n, 5)) cout << "Tìm thấy phần tử 5" << endl;
+            else cout << "Không tìm thấy phần tử 5" << endl;
+        	
+            sort(v.begin(), v.end(), comp); // v = {5, 4, 4, 3, 3, 2, 2, 1, 1}.
+            if (binary_search(a, a + n, 6, comp)) cout << "Tìm thấy phần tử 6";
+            else cout << "Không tìm thấy phần tử 6";
+        
+            return 0;
+        }
+
+> Output
+
+        Tìm thấy phần tử 5
+        Không tìm thấy phần tử 6
+## 2. Hàm lower_bound
+![image](https://github.com/minchangggg/DSA/assets/125820144/93e29cd7-ab95-499b-b426-4c6357293421)
+
+### a. Cú pháp:
+- Dạng 1: `lower_bound(l, r, val);`
+- Dạng 2: `lower_bound(l, r, val, comp);`
+### b. Tác dụng: 
+- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà lớn hơn hoặc bằng khóa tìm kiếm val. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
+  + Ở dạng 1, phép toán so sánh mặc định là <. Nghĩa là hàm sẽ trả về iterator vào vị trí đầu tiên mà (*it >= val)
+  + Ở dạng 2, phép toán so sánh sẽ được định nghĩa theo hàm boolean comp do người dùng tự viết. Hàm comp phải bao gồm hai tham số a và b - đại diện cho phần tử trong đoạn tìm kiếm và khóa tìm kiếm. Khi sử dụng hàm comp làm phép so sánh, hàm lower_bound sẽ trả về iterator vào vị trí đầu tiên mà (comp(*it, val) == false).
+- Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
+### c. Độ phức tạp của hàm 
+`O(log2(n))`, với n là kích thước không gian tìm kiếm.
+### d. Ví dụ
+        #include <iostream>
+        #include <algorithm>
+        #include <vector>
+        
+        using namespace std;
+        
+        bool comp(int a, int b){
+            return a > b;	
+        }
+        
+        int main(){
+            int a[] = {10, 20, 30, 40, 50, 40, 30, 20, 10};
+            vector < int > v(a, a + 9); 
+        	
+            sort(a, a + 9); // a = {10, 10, 20, 20, 30, 30, 40, 40, 50}
+        	
+            // Tìm vị trí của phần tử đầu tiên lớn hơn hoặc bằng 30 trong mảng a.
+            // Muốn đưa ra vị trí là số nguyên thì lấy kết quả hàm trừ đi iterator a[0].
+            int pos1 = lower_bound(a, a + 9, 30) - a;
+            cout << "Vị trí đầu tiên lớn hơn hoặc bằng 30 là: " << pos1 << endl;
+        
+            sort(v.begin(), v.end(), comp); // v = {50, 40, 40, 30, 30, 20, 20, 10, 10};
+            
+            // Tìm vị trí đầu tiên nhỏ hơn hoặc bằng số 20 trong đoạn [0, 5] của vector v.
+            // Tương tự, lấy hai iterator trừ cho nhau để ra được vị trí là số nguyên.
+            int pos2 = lower_bound(v.begin(), v.begin() + 5, 20, comp) - v.begin();
+            cout << "Vị trí đầu tiên nhỏ hơn hoặc bằng 20 là: " << pos2;
+        	
+            return 0;
+        }
+
+> Output
+
+        Vị trí đầu tiên lớn hơn hoặc bằng 30 là: 4
+        Vị trí đầu tiên lớn hơn hoặc bằng 20 là: 5
+## 3. Hàm upper_bound
+### a. Cú pháp:
+- Dạng 1: `upper_bound(l, r, val);`
+- Dạng 2: `upper_bound(l, r, val, comp);`
+### b. Tác dụng 
+- Trả về iterator hoặc con trỏ trỏ tới phần tử đầu tiên trong đoạn [l,r−1] mà lớn hơn hẳn khóa tìm kiếm val. Nếu như không tìm thấy, hàm sẽ trả về iterator trỏ vào vị trí r. Đoạn tìm kiếm bắt buộc phải được sắp xếp theo đúng phép toán so sánh của hàm.
+  + Ở dạng 1, phép toán so sánh mặc định là <. Nghĩa là hàm sẽ trả về iterator vào vị trí đầu tiên mà (*it > val) (khác với lower_bound, các bạn chú ý phân biệt).
+  + Ở dạng 2, phép toán so sánh sẽ được định nghĩa theo hàm boolean comp do người dùng tự viết. Hàm comp phải bao gồm hai tham số a và b - đại diện cho phần tử trong đoạn tìm kiếm và khóa tìm kiếm. Khi sử dụng hàm comp làm phép so sánh, hàm upper_bound sẽ trả về iterator vào vị trí đầu tiên mà (comp(*it, val) == false). Lưu ý, phần tử mà hàm upper_bound trả về sẽ không thể bằng với khóa val.
+- Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
+### c. Độ phức tạp của hàm: 
+`O(log2(n))`, với n là kích thước không gian tìm kiếm.
+### d. Ví dụ
+        #include <iostream>
+        #include <algorithm>
+        #include <vector>
+        
+        using namespace std;
+        
+        bool comp(int a, int b){
+            return a > b;	
+        }
+        
+        int main(){
+            int a[] = {10, 20, 30, 40, 50, 40, 30, 20, 10};
+            vector < int > v(a, a + 9);
+        	
+            sort(a, a + 9); // a = {10, 10, 20, 20, 30, 30, 40, 40, 50}
+        	
+            // Tìm vị trí của phần tử đầu tiên lớn hơn 30 trong mảng a.
+            // Muốn đưa ra vị trí là số nguyên thì lấy kết quả hàm trừ đi iterator a[0].
+            int pos1 = upper_bound(a, a + 9, 30) - a;
+            cout << "Vị trí đầu tiên lớn hơn 30 là: " << pos1 << endl;
+        
+            // v = {50, 40, 40, 30, 30, 20, 20, 10, 10};
+            sort(v.begin(), v.end(), comp);
+            
+            // Tìm vị trí đầu tiên nhỏ hơn hơn 50 trong đoạn [0, 5] của vector v.
+            // Tương tự, lấy hai iterator trừ cho nhau để ra được vị trí là số nguyên.
+            int pos2 = upper_bound(v.begin(), v.end(), 50, comp) - v.begin();
+            cout << "Vị trí đầu tiên nhỏ hơn 50 là: " << pos2;
+        	
+            return 0;
+        }
+
+> Output
+
+        Vị trí đầu tiên lớn hơn 30 là: 6
+        Vị trí đầu tiên nhỏ hơn 50 là: 1
+## 4. Hàm equal_range
+### a. Cú pháp:
+- Dạng 1: `equal_range(l, r, val);`
+- Dạng 2: `equal_range(l, r, val, comp);`
+### b. Tác dụng: 
+- Hàm equal_range trả về một biến kiểu pair có hai trường đều là iterator hoặc con trỏ trỏ vào khoảng có giá trị tương đương với khóa tìm kiếm val trong đoạn [l,r]. Thực tế, hàm này là sự kết hợp giữa lower_bound và upper_bound, nó sẽ trả về một cặp iterator (first, second) thỏa mãn:
+  + Phần tử ở iterator first là phần tử đầu tiên lớn hơn hoặc bằng khóa val.
+  + Phần tử ở iterator second là phần tử đầu tiên lớn khóa val.
+- Nếu như không tồn tại khoảng nào như vậy, hàm sẽ trả về hai iterator bằng nhau: Hoặc cùng trỏ vào phần tử đầu tiên lớn hơn val, hoặc cùng trỏ vào iterator r nếu như val lớn hơn tất cả các phần tử trong đoạn tìm kiếm.
+- Đoạn tìm kiếm cần được sắp xếp tuân theo phép so sánh của hàm trước khi sử dụng.
+- Ở dạng 1, phép so sánh mặc định của hàm là <, nghĩa là áp dụng phép so sánh này với hàm lower_bound cho iterator first và upper_bound cho iterator second.
+- Ở dạng 2, phép so sánh mặc định của hàm là hàm comp do người dùng tự viết, nghĩa là áp dụng hàm này làm phép so sánh cho hàm lower_bound cho iterator first và upper_bound cho iterator second.
+- Lưu ý, nếu như không gian tìm kiếm có kiểu của các phần tử là pair, thì phép so sánh sẽ ưu tiên thực hiện theo trường first trước, rồi mới tới trường second.
+### c. Độ phức tạp của hàm: 
+`O(2×log2(n))`, với n là kích thước không gian tìm kiếm.
+### d. Ví dụ:
+        #include <iostream>
+        #include <algorithm>
+        #include <vector>
+        #include <utility>
+        
+        using namespace std;
+        
+        bool comp(int a, int b){
+            return a > b;
+        }
+        
+        int main(){
+            int a[] = {10, 20, 30, 30, 20, 10, 10, 20};
+            // Biến tìm kiếm đối với mảng phải sử dụng con trỏ.
+            pair < int* , int* > bounds_1;
+            
+            vector < int > v(a, a + 8);
+            // Biến tìm kiếm đối với vector phải sử dụng iterator.
+            pair < vector < int > :: iterator, vector < int > :: iterator > bounds_2;
+        
+            // a = {10, 10, 10, 20, 20, 20, 30, 30}.
+            sort(a, a + 8);
+        
+            // Dùng phép toán so sánh mặc định với mảng a.
+            // Tìm kiếm đoạn đầu tiên bằng 20.
+            bounds_1 = equal_range(a, a + 8, 20); // Đoạn [3, 6].
+            cout << bounds_1.first - a << ' ' << bounds_1.second - a << endl;
+        
+            // v = {30, 30, 20, 20, 20, 10, 10, 10}.
+            sort(v.begin(), v.end(), comp);
+        
+            // Dùng phép toán so sánh comp với vector v.
+            // Iterator first: Trỏ vào phần tử đầu tiên nhỏ hơn hoặc bằng 20.
+            // Iterator second: Trỏ vào phần tử đầu tiên nhỏ hơn 20.
+            bounds_2 = equal_range(v.begin(), v.end(), 20, comp); // Đoạn [2, 5].
+            cout << bounds_2.first - v.begin() << ' ' << bounds_2.second - v.begin() << endl;
+        
+            return 0;
+        }
+        
+> Output
+        
+        3 6
+        2 5
