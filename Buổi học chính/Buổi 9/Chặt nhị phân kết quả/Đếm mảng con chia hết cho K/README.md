@@ -9,7 +9,7 @@ Dòng tiếp theo có n số nguyên a1, a2,... an: các phần tử trong mản
 
 `Constraints`
 
-1 <= n <= 2.10^5; 1 <= x, ai <= 10^9  
+1 <= n <= 2.10^5; 1 <= ai <= 10^9  
 
 `Output Format`
 
