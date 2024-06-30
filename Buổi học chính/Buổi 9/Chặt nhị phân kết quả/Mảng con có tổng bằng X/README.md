@@ -23,3 +23,4 @@ In ra số nguyên: số lượng mảng con
 
 `Sample Output 0`
 
+3
