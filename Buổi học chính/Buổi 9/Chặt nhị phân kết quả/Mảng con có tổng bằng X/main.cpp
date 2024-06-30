@@ -27,7 +27,7 @@ int main(){
         // TH2: muốn biết dãy con có tổng bằng x hay không
         if(mp.count(sum - x)) ++ans; 
 
-        mp[sum] = 1;
+        mp[sum] = 1; // dùng map để đánh dấu
     }
     cout << ans;
     // cout << (float) ans;
