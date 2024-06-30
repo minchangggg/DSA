@@ -44,7 +44,7 @@
 ## Greedy Algorithms
 ## Recursion
 ## Backtracking Algorithm
-## Dynamic Programming
+## [Dynamic Programming](https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/Quy%20ho%E1%BA%A1ch%20%C4%91%E1%BB%99ng)
 ## Graph Algorithms:
 ## Pattern Searching
 ## [Mathematical Algorithms](https://github.com/minchangggg/DSA/tree/main/Bu%E1%BB%95i%20h%E1%BB%8Dc%20ch%C3%ADnh/Bu%E1%BB%95i%207) 
