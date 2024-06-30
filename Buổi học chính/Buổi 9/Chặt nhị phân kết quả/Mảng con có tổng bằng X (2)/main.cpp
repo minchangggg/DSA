@@ -25,7 +25,7 @@ int main(){
         // TH1(TH đặc biệt): dãy con bắt đầu từ 0 và kết thúc ở i có tổng bằng sum
         if(sum == x) ++ans; 
         // TH2: muốn biết dãy con có tổng bằng x hay không
-        if(mp.count(sum - x)) ++ans; 
+        if(mp.count(sum - x)) ans += mp[sum - x]; 
 
         mp[sum]++; // map dùng để đếm thay vì đánh dấu như bài trước
     }
