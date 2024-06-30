@@ -16,6 +16,7 @@ int main(){
 
     int n, t; cin >> n >> t;
     int a[n]; for(int &x : a) cin >> x;
+    
     ll left = 0, right = 1ll * (*min_element(a, a + n)) * t;
     ll ans = -1;
     while(left <= right){
