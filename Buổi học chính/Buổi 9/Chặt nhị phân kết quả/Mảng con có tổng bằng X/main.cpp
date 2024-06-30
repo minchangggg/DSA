@@ -2,12 +2,6 @@
 using namespace std;
 using ll = long long;
 
-// bool check(int a[], int n, int k, double len){
-//     ll cnt = 0; 
-//     for(int i = 0; i < n; i++) cnt += (int)(a[i]/len);
-//     return cnt >= k;
-// }
-
 int main(){
     #ifndef DSA
     freopen("input.TXT", "r", stdin);
