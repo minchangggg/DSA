@@ -46,7 +46,7 @@
 
 ## Greedy Algorithms
 
-## [Recursion (https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/%C4%90%E1%BB%87%20quy)
+## [Recursion] (https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/%C4%90%E1%BB%87%20quy)
 
 ## Backtracking Algorithm
 
