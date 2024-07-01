@@ -84,7 +84,155 @@
         111
 
 # III. Sinh tổ hợp chập K của N phần tử
+![image](https://github.com/minchangggg/DSA/assets/125820144/ef11f53e-71d7-423a-b0cd-1473b53c394d)
 
+## a. Phân tích bài toán
+- Xét về bản chất thì thuật toán sinh các chuỗi nhị phân có độ dài là k thực chất là liệt kê các chỉnh hợp lặp chập k của 2 (vì tập nguồn của chúng ta có 2 phần tử là 0 và 1). 
+- Vậy thì nếu tập nguồn của chúng ta không phải là 2 phần tử nữa, mà là n phần tử thì sao ?
+- Khi đó, bài toán mới của chúng ta sẽ là : Cho tập X có n phần tử {1,2,…,n}. hãy liệt kê các chỉnh hợp lặp chập k của n.
+- Ví dụ : với n = 2 và k = 3 nhập từ bàn phím thì các cấu hình của bài toán là : (111) ; (112) ; (121) ; (122) ; (211) ; (212) ; (221) ; (222).
+- Theo công thức của chỉnh hợp lặp thì số các cấu hình = n^k = 2^3 = 8.
+- Và nhìn vào ví dụ trên, chúng ta cũng sẽ thấy cấu hình đầu là toàn số 1 và cấu hình cuối toàn số n. và  ta dễ dàng tìm ra thuật toán như sau :
+- Xét từ cuối dãy về đầu, gặp chữ số có giá trị chưa bằng n :
+  + Tăng chữ số đó lên 1 đơn vị
+  + Gán tất cả phần tử sau vị trí đó = 1.
+- Thuật toán dừng lại khi sinh được cấu hình cuối gồm các phần tử có giá trị đều = n.
+
+### b. Code
+`In thuận`
+
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
+        
+        // Các biến toàn cục và hàm khởi tạo cấu hình đầu tiên
+        int n, k, a[100]; // lưu cấu hình
+        bool final = false; // check cấu hình cuối
+        
+        void init(){ 
+            for(int i = 1; i <= n; i++) a[i] = i;
+        }
+        
+        // Hàm sinh cấu hình kế tiếp:
+        void sinh(){
+            int i = k;
+            while(i >= 1 && a[i] == n - k + i){ // cực đại tại a[i] bất kì là n-k+i
+                --i;
+            }
+            if(i == 0) final = true; //  đây là cấu hình cuối cùng
+            else{
+                a[i]++;
+                for(int j = i + 1; j <= k; j++){
+                    a[j] = a[j - 1] + 1;
+                }
+            }
+        }
+        
+        int main(){
+            n = 5, k = 3;
+            init();
+            while(!final){
+                for(int i = 1; i <= k; i++){ cout << a[i];
+            }
+            cout << endl;
+            sinh();
+            }
+        }
+
+> Output
+
+        123
+        124
+        125
+        134
+        135
+        145
+        234
+        235
+        245
+        345
+
+`In ngược`
+
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
+        
+        // Các biến toàn cục và hàm khởi tạo cấu hình đầu tiên
+        int n, k, a[100]; // lưu cấu hình
+        bool final = false; // check cấu hình cuối
+        vector<vector<int>> res;
+        
+        void init(){ 
+            for(int i = 1; i <= n; i++) a[i] = i;
+        }
+        
+        // Hàm sinh cấu hình kế tiếp:
+        void sinh(){
+            int i = k;
+            while(i >= 1 && a[i] == n - k + i){ // cực đại tại a[i] bất kì là n-k+i
+                --i;
+            }
+            if(i == 0) final = true; //  đây là cấu hình cuối cùng
+            else{
+                a[i]++;
+                for(int j = i + 1; j <= k; j++){
+                    a[j] = a[j - 1] + 1;
+                }
+            }
+        }
+        
+        int main(){
+            n = 5, k = 3;
+            init();
+            while(!final){
+                vector<int> tmp(a + 1, a + k + 1);
+                res.push_back(tmp);
+                sinh();
+            }
+        
+            // In thuận
+            for(auto x : res){
+                for(auto y : x){
+                    cout << y << ' ';
+                }
+                cout << endl;
+            }
+        
+            cout << endl;
+        
+            // In ngược
+            for(int i = res.size()-1; i >= 0; i--){
+                for(auto x : res[i]){
+                    cout << x << ' ';
+                }
+                cout << endl;
+            }
+        }
+
+> Output
+
+        1 2 3 
+        1 2 4 
+        1 2 5 
+        1 3 4 
+        1 3 5 
+        1 4 5 
+        2 3 4 
+        2 3 5 
+        2 4 5 
+        3 4 5 
+        
+        3 4 5 
+        2 4 5 
+        2 3 5 
+        2 3 4 
+        1 4 5 
+        1 3 5 
+        1 3 4 
+        1 2 5 
+        1 2 4 
+        1 2 3 
 # IV. Sinh hoán vị
 
 # V. Sinh phân hoạch
