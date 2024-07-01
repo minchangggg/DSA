@@ -364,6 +364,8 @@ Trong C++ cũng cung cấp 2 hàm next_permutation để sinh ra cấu hình k�
             }
         }
 # VI. Sinh tập con bằng toán tử bit
+  + 1 << n = 2^n => duy nhất bit thứ k = 1. VD: 2^0 = 1; 2^1 = 10, 2^2 = 100...(chuyển đổi nhị phân thông thường)
+  + 2 << n = 2.(2^n) 
 ## a. Phân tích bài toán
 ![image](https://github.com/minchangggg/DSA/assets/125820144/cb34da21-1848-414e-8288-55677b614897)
 ## b. Code 
@@ -372,8 +374,8 @@ Trong C++ cũng cung cấp 2 hàm next_permutation để sinh ra cấu hình k�
         int main(){
           int a[] = {1, 2, 3};
           int n = 3;
-          for(int i = 0; i < (1 << 3); i++){
-            for(int j = 0; j < 3; j++){
+          for(int i = 0; i < (1 << n); i++){ // i = 0 -> 2^n -1
+            for(int j = 0; j < n; j++){ // duyệt từng bit
               if(i & (1 << j)) cout << a[j] << ' ';
             }
             cout << endl;
