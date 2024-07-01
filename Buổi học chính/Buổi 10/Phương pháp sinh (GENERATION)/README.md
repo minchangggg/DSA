@@ -110,7 +110,7 @@
         bool final = false; // check cấu hình cuối
         
         void init(){ 
-            for(int i = 1; i <= n; i++) a[i] = i;
+            for(int i = 1; i <= k; i++) a[i] = i;
         }
         
         // Hàm sinh cấu hình kế tiếp:
@@ -164,7 +164,7 @@
         vector<vector<int>> res;
         
         void init(){ 
-            for(int i = 1; i <= n; i++) a[i] = i;
+            for(int i = 1; i <= k; i++) a[i] = i;
         }
         
         // Hàm sinh cấu hình kế tiếp:
