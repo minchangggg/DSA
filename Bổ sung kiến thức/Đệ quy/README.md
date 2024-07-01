@@ -2,6 +2,8 @@
 >
 > https://viblo.asia/p/de-quy-va-giai-thuat-de-quy-gGJ5969JKX2
 >
+> https://www.geeksforgeeks.org/introduction-to-recursion-2/
+>
 > https://topdev.vn/blog/de-quy-la-gi/
 >
 > https://howkteam.vn/course/cau-truc-du-lieu-va-giai-thuat/de-quy-4281
