@@ -19,6 +19,7 @@ In ra số thứ tự của tổ hợp
 `Sample Input 0`
 
 12 4
+
 8 9 10 11
 
 `Sample Output 0`
