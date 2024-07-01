@@ -234,10 +234,148 @@
         1 2 4 
         1 2 3 
 # IV. Sinh hoán vị
+## a. Phân tích bài toán
+![image](https://github.com/minchangggg/DSA/assets/125820144/b3151efc-caea-46cd-bc0f-1049957fce31)
+## b. Code 
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
+        
+        // Các biến toàn cục và hàm khởi tạo cấu hình đầu tiên
+        int n, X[100]; // lưu cấu hình
+        bool final = false; // check cấu hình cuối
+        
+        void init(){ 
+            for(int i = 1; i <= n; i++){
+                X[i] = i;
+            }
+        }
+        
+        void sinh(){
+            int i = n;
+            while(i >= 1 && X[i] > X[i + 1]){
+                --i;
+            }
+            if(i == 0){
+                final = true;
+            }
+            else{
+                int j = n;
+                while(X[i] > X[j]) --j;
+                swap(X[i], X[j]);
+                reverse(X + i + 1, X + n + 1);
+            }
+        }
+        
+        int main(){
+            n = 4;
+            init();
+            while(!final){
+                for(int i = 1; i <= n; i++){
+                    cout << X[i];
+                }
+                cout << endl;
+                sinh();
+            }
+        }
 
+> Output
+
+        1234
+        1243
+        1324
+        1342
+        1423
+        1432
+        2134
+        2143
+        2314
+        2341
+        2413
+        2431
+        3124
+        3142
+        3214
+        3241
+        3412
+        3421
+        4123
+        4132
+        4213
+        4231
+        4312
+        4321
+## c. Hàm next_permutation và prev_permutation
+Trong C++ cũng cung cấp 2 hàm next_permutation để sinh ra cấu hình kế tiếp và prev_permutation để sinh ra cấu hình liền trước. Các bạn có thể sử dụng nó và kết hợp với mảng hoặc vector để sinh hoán vị.
+### next_permutation
+![image](https://github.com/minchangggg/DSA/assets/125820144/53f23f6c-a3c0-406b-84e3-ec040ba82297)
+### prev_permutation
+![image](https://github.com/minchangggg/DSA/assets/125820144/a49f1f34-961a-4001-b301-b5ba5137848f)
 # V. Sinh phân hoạch
-
-# Sinh tập con bằng toán tử bit
-
-
-
+## a. Phân tích bài toán
+![image](https://github.com/minchangggg/DSA/assets/125820144/88e20a96-d685-469e-a227-5e33ec50ff11)
+## b. Code 
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
+        
+        // Các biến toàn cục và hàm khởi tạo cấu hình đầu tiên
+        int n, X[100], cnt; // lưu cấu hình
+        bool final = false; // check cấu hình cuối
+        
+        void init(){ 
+            cnt = 1;
+            X[1] = n;
+        }
+        
+        void sinh(){
+            int i = cnt;
+            while(i >= 1 && X[i] == 1){
+                --i;
+            }
+            if(i==0) final = true;
+            else{
+                int d = cnt-i + 1; // số lượng đơn vị cần phải bù vào 
+                --X[i];
+                cnt = i;
+                int q = d / X[i]; // d gấp bnh lần X[i]
+                int r = d % X[i]; // tính số dư bao nhiêu để đặt vào vị trí cuối cùng
+                if(q != 0){
+                    for(int j = 1; j <= q; i++){
+                        X[i+j] = X[i];
+                        ++cnt;
+                    }
+                }
+                if(r != 0) {
+                    ++cnt;
+                    X[cnt] = r;
+                }
+            }
+        }
+        
+        int main(){
+            n = 6;
+            init();
+            
+            while(!final){
+                for(int i = 1; i <= cnt; i++) cout << X[i] << ' ';
+                cout << endl; 
+                sinh();
+            }
+        }
+# VI. Sinh tập con bằng toán tử bit
+## a. Phân tích bài toán
+![image](https://github.com/minchangggg/DSA/assets/125820144/cb34da21-1848-414e-8288-55677b614897)
+## b. Code 
+        #include <bits/stdc++.h>
+        using namespace std;
+        int main(){
+          int a[] = {1, 2, 3};
+          int n = 3;
+          for(int i = 0; i < (1 << 3); i++){
+            for(int j = 0; j < 3; j++){
+              if(i & (1 << j)) cout << a[j] << ' ';
+            }
+            cout << endl;
+          }
+        }
