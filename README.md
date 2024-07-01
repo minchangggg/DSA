@@ -39,19 +39,33 @@
 <img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/e5cca2b9-5f0a-4389-ad92-219a25905d6f">
 
 ## [Searching Algorithm](https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/C%C3%A1c%20gi%E1%BA%A3i%20thu%E1%BA%ADt%20t%C3%ACm%20ki%E1%BA%BFm)
+
 ## [Sorting Algorithm](https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/C%C3%A1c%20gi%E1%BA%A3i%20thu%E1%BA%ADt%20s%E1%BA%AFp%20x%E1%BA%BFp)
+
 ## Divide and Conquer Algorithm
+
 ## Greedy Algorithms
-## Recursion
+
+## [Recursion (https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/%C4%90%E1%BB%87%20quy)
+
 ## Backtracking Algorithm
+
 ## [Dynamic Programming](https://github.com/minchangggg/DSA/tree/main/B%E1%BB%95%20sung%20ki%E1%BA%BFn%20th%E1%BB%A9c/Quy%20ho%E1%BA%A1ch%20%C4%91%E1%BB%99ng)
+
 ## Graph Algorithms:
+
 ## Pattern Searching
+
 ## [Mathematical Algorithms](https://github.com/minchangggg/DSA/tree/main/Bu%E1%BB%95i%20h%E1%BB%8Dc%20ch%C3%ADnh/Bu%E1%BB%95i%207) 
+
 ## Geometric Algorithms
+
 ## Bitwise Algorithms
+
 ## Randomized Algorithms
+
 ## Branch and Bound Algorithm
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 <img width="650" alt="image" src="https://github.com/minchangggg/DSA/assets/125820144/1b510502-b5e2-4c5d-afc3-4b59a429cf8c">
