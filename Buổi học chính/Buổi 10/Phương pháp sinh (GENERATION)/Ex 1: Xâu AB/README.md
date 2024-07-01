@@ -21,3 +21,11 @@ BBA
 BAB
 
 BAA
+
+ABB
+
+ABA
+
+AAB
+
+AAA
