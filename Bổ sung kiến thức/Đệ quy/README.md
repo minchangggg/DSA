@@ -8,8 +8,30 @@
 >
 > https://howkteam.vn/course/cau-truc-du-lieu-va-giai-thuat/de-quy-4281
 
+Bài tập ví dụ:
+
+> https://viblo.asia/p/nhung-bai-tap-ap-dung-de-quy-thuong-gap-trong-c-gwd43jZAVX9
+>
+> https://viettruong92.blogspot.com/2011/12/bai-tap-e-quy.html
+>
+> https://www.dammio.com/2023/10/08/10-vi-du-bang-c-su-dung-de-quy
+
 # I. Hàm Đệ Quy
-## 1. Định Nghĩa Hàm Đệ Quy
+## 1. Cấu trúc dữ liệu ngăn xếp
+### a. Stack
+- Ngăn xếp (stack) là một cấu trúc dữ liệu có quan hệ mật thiết với cơ chế hoạt động của đệ quy. Để hiểu được cách hàm đệ quy hoạt động, ta cần nắm được cách hoạt động của cấu trúc dữ liệu ngăn xếp.
+- Ngăn xếp là một cấu trúc dữ liệu hỗ trợ 2 thao tác push và pop. Trong đó push giúp thêm 1 phần tử vào đỉnh ngăn xếp, pop giúp xóa 1 phần tử khỏi đỉnh ngăn xếp. Cả 2 thao tác này đều được thực hiện ở đỉnh ngăn xếp.
+- Ngăn xếp hoạt động theo nguyên tắc viết tắt là LIFO (Last In First Out) nghĩa là vào cuối thì ra đầu. Các phần tử vào cuối cùng sẽ được ra đầu tiên
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/290f58ca-cf51-44d7-ad1d-472cf48768ec)
+
+- Trong chương trình tồn tại một bộ nhớ là bộ nhớ ngăn xếp, cách hoạt động của bộ nhớ này tương tự như cách hoạt động của cấu trúc dữ liệu ngăn xếp.
+### b. Stack frame
+![image](https://github.com/minchangggg/DSA/assets/125820144/e6797f82-2d9c-4e80-9705-f9d46826e96e)
+
+- Những thành phần của stack frame có thể kể đến như biến cục bộ, đối số, địa chỉ trả về của một chương trình con. Mỗi khi một lời gọi hàm được thực hiện, stack frame chứa thông tin của hàm đó được đẩy vào bộ nhớ stack và khi hàm đó kết thúc thì stack frame này được loại bỏ khỏi bộ nhớ stack.
+
+## 2. Định Nghĩa Hàm Đệ Quy
 ### a. Định nghĩa
 - Hàm đệ quy được định nghĩa là hàm gọi lại chính nó. Có rất nhiều thuật toán và cấu trúc dữ liệu dựa trên kỹ thuật đệ quy này : Quick sort, Merge sort, DFS, Cây Phân Đoạn...
   
@@ -39,12 +61,7 @@
 > Output : 
 
         4 3 2 1
-### c. Bộ nhớ Stack
-- Nguyên tắc hoạt động của bộ nhớ Stack là LIFO (Last in - First out hay còn gọi là vào sau - ra trước ). Khi một biến được khai báo trong hàm, nó sẽ được đẩy vào Stack, khi hàm đó kết thúc thì tất cả những biến đó sẽ được đẩy ra, giải phóng khỏi Stack. Hình dưới là minh họa cách hoạt động của bộ nhớ Stack.
-
-![image](https://github.com/minchangggg/DSA/assets/125820144/e405cebf-ef0e-4cc9-8637-526c48665b93)
-
-- Nhận xét đệ quy:
+### c. Nhận xét đệ quy
   + Ưu điểm: Thuận lợi cho việc biểu diễn bài toán, như ở ví dụ trên, nhìn vào hàm là chúng ta có thể thấy ngay nó biểu diễn dãy số fibonacci, hay tính giai thừa.
   + Nhược điểm: Tốn nhiều bộ nhớ, nếu không phần cơ sở (điểm dừng) thì sẽ gây ra việc tràn bộ nhớ stack. Bên cạnh đó việc sử dụng đệ quy tốn nhiều thời gian hơn vòng lặp.
 ## 2. Ví Dụ Về Đệ Quy
@@ -141,9 +158,10 @@
 - Có thể hiểu đơn giản công thức truy hồi giúp xác định giá trị của phần tử hay kết quả của 1 bài toán lớn hơn thông qua bài toán con nhỏ hơn đã biết trước kết quả.
 - Ví dụ khi bạn cần tìm số Fibonacci thứ 10 bạn có thể sử dụng số Fibonacci thứ 8 và 9. Và công thức truy hồi của dãy Fibonacci là : Fn = Fn-1 và Fn-2
 - Vậy khi sử dụng đệ quy để tính toán kết quả của các bài toán bạn cần xác định cho mình :
-  + Bài toán cơ sở - bài toán con nhỏ nhất mà bạn đã biết giá trị
-  + Công thức truy hồi 
+  + Bài toán cơ sở - bài toán con nhỏ nhất mà bạn đã biết giá trị -> làm điểm dừng cho hàm đệ quy
+  + Công thức truy hồi -> tìm ra lời giải của bài toán lớn hơn thông qua đáp án của bài toán nhỏ hơn.
 - Khi code đệ quy bạn chỉ cần kiểm tra xem lời gọi đệ quy của bạn đã gọi tới bài toán cơ sở chưa, đây sẽ là điểm dừng cho lời gọi đệ quy. Nếu chưa phải bài toán con nhỏ nhất thì bạn sẽ trả về công thức truy hồi thông qua lời gọi đệ quy
+- Lưu ý: Nếu đệ quy không có điểm dừng, khi số lượng hàm đệ quy gọi đủ lớn sẽ làm bộ nhớ stack bị tràn.
 ### Ví dụ 1 : Tìm số Fibonacci bằng đệ quy
 - Bài toán cơ sở : F0 = 0, F1 = 1
 - Công thức truy hồi : Fn = Fn-1 và Fn-2 với n > 1
@@ -279,12 +297,8 @@
         #include <stdio.h>
         
         int C(int n, int k){
-           if(n == k || k == 0){
-              return 1;
-           }
-           else{
-              return C(n - 1, k - 1) + C(n - 1, k);
-           }
+           if(n == k || k == 0) return 1;
+           else return C(n - 1, k - 1) + C(n - 1, k);
         }
         
         int main(){
@@ -666,9 +680,11 @@
 
 
 ## 5. Bài toán “Tháp Hà Nội” (Tower of Ha Noi)
+> https://200lab.io/blog/bai-toan-thap-ha-noi/
+
 - Đây là một bài toán rất nổi tiếng và kinh điển, rất thích hợp để minh họa cho thuật toán đệ quy. Sau đây là nội dung bài toán : Có 3 chiếc cọc được đánh dấu lần lượt là A, B, C và n chiếc đĩa. Các đĩa này có kích thước khác nhau và mỗi đĩa đều có một lỗ ở giữa để cắm vào cọc. Ban đầu, các đĩa đều nằm ở cọc A, trong đó, đĩa nhỏ luôn nằm trên đĩa lớn hơn.
 
-![image](https://github.com/minchangggg/DSA/assets/125820144/27b8899c-3f68-4aaf-9fb3-83a8f93cdfa8)
+![image](https://github.com/minchangggg/DSA/assets/125820144/7cad5932-e425-4200-9d1b-541ff15a7a3f)
 
 - Yêu cầu : chuyển n đĩa từ cọc A sang cọc đích C với các điều kiện sau :
   + Mỗi lần chỉ chuyển được 1 đĩa
@@ -678,3 +694,29 @@
   + Trường hợp đơn giản nhất, n=1, ta chỉ cần chuyển 1 đĩa từ cọc A sang cọc C.
   + Nhiều hơn một chút, n=2, ta chuyển đĩa nhỏ nhất sang cọc B, chuyển đĩa còn lại sang cọc C, và cuối cùng chuyển đĩa nhỏ ở cọc B sang cọc C.
   + Bây giờ ta xét n đĩa (n>2). Giả sử ta đã có cách chuyển n-1 đĩa từ một cọc sang một cọc khác. Như vậy, để chuyển n đĩa từ cọc nguồn sang cọc đích, ta cần chuyển n-1 đĩa từ cọc nguồn sang cọc trung gian. Sau đó chuyển đĩa lớn nhất từ cọc nguồn sang cọc đích. Cuối cùng, chuyển n-1 từ cọc trung gian về cọc đích.
+- Nhận xét: Bài toán Tháp Hà Nội (Tower of Hanoi) với số đĩa là n có thể được giải với số bước tối thiểu là 2n−1. Do đó, với trường hợp 3 đĩa, bài toán Tháp Hà Nội (Tower of Hanoi) có thể được giải sau 23−1 = 7 bước.
+- Minh họa:
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/f4121413-0c3a-45ac-a7ab-ea35099805ec)
+
+- Code
+        #include<stdio.h>
+         
+        void TOH(int num, char x, char y, char z);
+         
+        int main() {
+           int num;
+           printf("\nNhap so dia: ");
+           scanf("%d", &num);
+         
+           TOH(num - 1, 'A', 'B', 'C');
+           return (0);
+        }
+         
+        void TOH(int num, char x, char y, char z) {
+           if (num > 0) {
+              TOH(num - 1, x, z, y);
+              printf("\n%c -> %c", x, y);
+              TOH(num - 1, z, y, x);
+           }
+        }
