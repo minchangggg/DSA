@@ -454,27 +454,28 @@ Bài tập ví dụ:
 - Công thức truy hồi : F(N) = max(N % 10, F(N / 10)) với N ≥ 10
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        int F(long long n){
-           if(n < 10){
-              return n;
-           }
-           else{
-              int tmp = F(n / 10);
-              return n % 10 > tmp ? n % 10 : tmp;
-           }
+        int F(ll n){
+            if(n < 10) return n;
+            else{
+                ll tmp = F(n / 10);
+                return max(n % 10, tmp);
+            }
         }
         
         int main(){
-           long long n = 12349567;
-           printf("%d", F(n));
-           return 0;
+            ll n = 12349567;
+            cout << F(n);
+            return 0;
         }
 
 > Output : 
         
         9
+        
 ## 4. Các Bài Toán Liên Quan Tới Tổng Dãy Số
 ### Bài 1. Tổng tự nhiên liên tiếp S(n) = 1 + 2 + 3 + ... + n
 - Bài toán cơ sở : S(n) = 1 nếu n = 1
@@ -533,51 +534,49 @@ Bài tập ví dụ:
 - Công thức truy hồi : S(n) = 1/n + S(n - 1) với n > 1
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
         double S(int n){
-           if(n == 1){
-              return 1;
-           }
-           else{
-              return (double)1 / n + S(n - 1);
-           }
+            if(n == 1)
+                return 1;
+            else
+                return (double) 1/n + S(n - 1);
         }
         
         int main(){
-           int n = 10;
-           printf("%.2lf", S(n));
-           return 0;
+            int n = 10;
+            cout << S(n);
+            return 0;
         }
 
 > Output :
         
-        2.93
+        2.92897
 ## 5. Các Bài Toán Liên Quan Tới Mảng
 ### Bài 1. Tính tổng các số chẵn trong mảng 
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
         int even_sum(int a[], int n){
-           if(n == 0){
-              return 0;
-           }
-           else{
-              if(a[n - 1] % 2 == 0){
-                 return a[n - 1] + even_sum(a, n - 1);
-              }
-              else{
-                 return even_sum(a, n - 1);
-              }
-           }
+            if(n == 0) return 0;
+            else{
+                if(a[n - 1] % 2)
+                    return even_sum(a, n - 1);
+                else
+                    return a[n - 1] + even_sum(a, n - 1);
+            }
         }
         
         int main(){
-           int n = 6;
-           int a[6] = {1, 2, 3, 4, 5, 6};
-           printf("%d\n", even_sum(a, n));
-           return 0;
+            int n = 6;
+            int a[] = {1, 2, 3, 4, 5, 6};
+            cout << even_sum(a, n);
+            return 0;
         }
 
 > Output :
@@ -587,50 +586,51 @@ Bài tập ví dụ:
 ### Bài 2 . Kiểm tra mảng đối xứng
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
         int doixung(int a[], int left, int right){
-           if(left > right){
-              return 1;
-           }
-           else{
-              if(a[left] != a[right]){
-                 return 0;
-              }
-              else{
-                 return doixung(a, left + 1, right - 1);
-              }
-           }
+            if(left > right)
+                return 1;
+            else{
+                if(a[left] != a[right])
+                    return 0;
+                else
+                    return doixung(a, left + 1, right - 1);
+            }
         }
         
         int main(){
-           int n = 6;
-           int a[6] = {1, 2, 3, 3, 2, 1};
-           printf("%d\n", doixung(a, 0, n - 1));
-           return 0;
+            int n = 6;
+            int a[] = {1, 2, 3, 3, 2, 1};
+            (doixung(a, 0, n - 1)) ? cout << "Xau doi xung" : cout << "Xau khong doi xung";
+            return 0;
         }
 
 > Output : 
 
-        1
+        Xau doi xung
 
 ### Bài 3. In ra mảng từ trái qua phải
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
         void left_to_right(int a[], int n){
-           if(n > 0){
-              left_to_right(a, n - 1);
-              printf("%d ", a[n - 1]);
-           }
+            if(n > 0){
+                left_to_right(a, n - 1);
+                cout << a[n - 1];
+            }
         }
         
         int main(){
-           int n = 6;
-           int a[6] = {1, 2, 3, 4, 5, 6};
-           left_to_right(a, 6);
-           return 0;
+            int n = 6;
+            int a[] = {1, 2, 3, 4, 5, 6};
+            left_to_right(a, 6);
+            return 0;
         }
 
 > Output : 
@@ -640,20 +640,22 @@ Bài tập ví dụ:
 ### Bài 4. In ra mảng từ phải qua trái
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        void left_to_right(int a[], int n){
-           if(n > 0){
-              printf("%d ", a[n - 1]);
-              left_to_right(a, n - 1);
-           }
+        void right_to_left(int a[], int n){
+            if(n > 0){
+                cout << a[n - 1] << ' ';
+                right_to_left(a, n - 1);
+            }
         }
         
         int main(){
-           int n = 6;
-           int a[6] = {1, 2, 3, 4, 5, 6};
-           left_to_right(a, 6);
-           return 0;
+            int n = 6;
+            int a[] = {1, 2, 3, 4, 5, 6};
+            right_to_left(a, n);
+            return 0;
         }
 
 > Output : 
