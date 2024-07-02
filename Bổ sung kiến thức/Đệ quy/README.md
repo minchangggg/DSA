@@ -700,6 +700,7 @@ Bài tập ví dụ:
 ![image](https://github.com/minchangggg/DSA/assets/125820144/f4121413-0c3a-45ac-a7ab-ea35099805ec)
 
 - Code
+
         #include<stdio.h>
          
         void TOH(int num, char x, char y, char z);
