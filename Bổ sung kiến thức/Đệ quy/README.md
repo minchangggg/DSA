@@ -1,3 +1,5 @@
+> https://www.geeksforgeeks.org/recursion-algorithms/
+>
 > https://200lab.io/blog/de-quy-la-gi/
 >
 > https://viblo.asia/p/de-quy-va-giai-thuat-de-quy-gGJ5969JKX2
@@ -10,6 +12,8 @@
 
 Bài tập ví dụ:
 
+> https://www.geeksforgeeks.org/top-50-interview-problems-on-recursion-algorithm/
+> 
 > https://viblo.asia/p/nhung-bai-tap-ap-dung-de-quy-thuong-gap-trong-c-gwd43jZAVX9
 >
 > https://viettruong92.blogspot.com/2011/12/bai-tap-e-quy.html
