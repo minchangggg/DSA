@@ -42,9 +42,11 @@ Sự khác nhau giữa đệ quy và quay lui.
 
 ### b. Thành phần của một hàm đệ quy
 - Một hàm đệ quy gồm 2 phần:
-  + Phần cơ sở: Điều kiện để thoát khỏi đệ quy. Nếu như không có phần này, hàm đệ quy sẽ thực hiện mãi mãi gây ra tràn bộ nhớ Stack.
-  + Phần đệ quy: Thân hàm có chứa phần gọi đệ quy, thực hiện cho đến khi thỏa mãn điều kiện ở phần cơ sở.
-    
+  + Phần cơ sở (Base case) : Mục tiêu của base case là tìm một điểm dừng cho đệ quy. Nếu như không có phần này, hàm đệ quy sẽ thực hiện mãi mãi gây ra tràn bộ nhớ Stack.
+  + Phần đệ quy (Recursive case) : Mục tiêu của recursive case là cố gắng tìm ra một bài toán nhẹ nhàng, dễ giải quyết hơn cho đến khi đạt đến điểm dừng là base case.
+
+![image](https://github.com/minchangggg/DSA/assets/125820144/d64f6701-f987-42c7-86c9-da381fd9be63)
+
 - Ví dụ : 
 
         #include <bits/stdc++.h>
@@ -168,6 +170,9 @@ Sự khác nhau giữa đệ quy và quay lui.
 - Bài toán cơ sở : F0 = 0, F1 = 1
 - Công thức truy hồi : Fn = (Fn-1) + (Fn-2) với n > 1
 - Lưu ý là code này chạy rất chậm nếu n lớn
+  
+![image](https://github.com/minchangggg/DSA/assets/125820144/b7952de8-a8aa-4abb-bd5e-faf91afc4a99)
+
 - Code :
 
         #include <bits/stdc++.h>
@@ -798,3 +803,48 @@ Nếu coi các ô của bàn cờ là các đỉnh của đồ thị và các c�
         	cout << "Khong tim thay duong di.";
         }
 
+# II. Một số loại Đệ quy cơ bản thường gặp
+## 1. Đệ quy tuyến tính - Linear Recursion
+### a. Định nghĩa Đệ quy tuyến tính
+- Đệ qui tuyến tính (Linear Recursion) là một kỹ thuật lập trình nơi một hàm gọi lại chính nó một cách trực tiếp, nhưng chỉ thực hiện một lần trong mỗi lần gọi.
+- Điều này tạo nên một "chuỗi" của các lời gọi hàm, với mỗi lời gọi hàm mới dựa trên kết quả của lời gọi trước đó.
+### b. Cấu trúc Đệ quy tuyến tính
+- Cấu trúc của đệ quy tuyến tính là cấu trúc đơn giản nhất trong đệ quy, khi nó luôn thực hiện gọi lại chính nó cho mỗi lần thực hiện, cho đến khi tìm đến base case.
+  + Base Case: Điều kiện cơ bản để kết thúc quá trình đệ quy. Nếu không có base case, hàm sẽ tiếp tục gọi chính nó vô tận.
+  + Recursive Case: Phần của hàm nơi nó gọi lại chính nó, nhưng với một đối số nhỏ hơn hoặc đơn giản hơn.
+### c. Phân tích BigO
+- Space Complexity: Trong đệ quy tuyến tính, độ phức tạp không gian (space complexity) thường là O(n) vì có n lời gọi hàm được lưu trữ trên stack.
+- Time Complexity: Độ phức tạp thời gian (time complexity) cũng là O(n) vì mỗi lần đệ quy, độ phức tạp về tính toán sẽ giảm đi một lượng cố định.
+## 2. Đệ quy nhị phân - Binary Recursion
+### a. Định nghĩa Đệ quy nhị phân
+- Đệ quy nhị phân (Binary Recursion) là kỹ thuật lập trình mà trong đó mỗi hàm gọi lại chính nó hai lần trong mỗi lần thực thi.
+- Điều này làm cho kiểu đệ quy tạo có thể tạo ra một cây nhị phân tương đối phức tạp, với mỗi node trong cây có thể tạo ra hai node con tương ứng.
+### b. Cấu trúc Đệ quy nhị phân
+- Base Case: Điều kiện cơ bản để kết thúc quá trình đệ quy, tương đối giống với đệ quy tuyến tính.
+- Recursive Case: Phần của hàm nơi nó gọi lại chính nó, nhưng không chỉ một, mà là hai lần, thường với đối số khác nhau.
+### c. Phân tích BigO
+- Space Complexity: Trong đệ quy nhị phân, độ phức tạp không gian (space complexity) thường là O(n), do kiểu đệ quy này lưu trữ một thông tin dưới dạng cây nhị phân
+- Time Complexity: Độ phức tạp thời gian là O(2^n), biểu diễn cho số lượng lời gọi hàm tổng cộng mà ở đây là hai lần. Xin lưu ý rằng time complexity trên là cực kỳ lớn, do đó rất hiếm trường hợp mà chúng ta sử dụng kiểu đệ quy này trong thực tế.
+- Ngoài ra, các kiểu đệ quy đa nhánh (đệ quy thực hiện nhiều hơn hai lần cho mỗi lần gọi lại) cũng có thể phân tích như đệ quy nhị phân với time complexity thông thường là O(n^x) với n là số lần thực hiện đệ quy cho mỗi lần gọi lại.
+## 3. Đệ quy phi tuyến
+### a. Định nghĩa Đệ quy phi tuyến
+- Trong đệ quy phi tuyến, số lần một hàm gọi lại chính nó có thể thay đổi và không cố định, nó có thể phụ thuộc vào nhiều yếu tố khác nhau như giá trị đầu vào, điều kiện trong hàm, v.v.
+- Điều này tạo nên một cấu trúc phức tạp hơn so với đệ quy tuyến tính và nhị phân, nơi chúng ta có thể dự đoán trước được số lần gọi đệ quy ở mỗi bước.
+### b. Cấu trúc Đệ quy phi tuyến
+- Base Case: Điều kiện cơ bản để kết thúc quá trình đệ quy, tương đối giống với đệ quy tuyến tính.
+- Recursive Case: Phần của hàm nơi nó gọi lại chính nó
+- Đối với trường hợp đệ quy phi tuyến, các trường hợp gọi lại tương đối phức tạp và khó đoán, mỗi lần gọi hàm sẽ thực hiện một số lượng không ổn định, tạo ra một cấu trúc cây tương đối phức tạp cả về chiền rộng lẫn chiều sâu.
+### c. Phân tích BigO
+- Space Complexity: Trong đệ quy phi tuyến, độ phức tạp không gian (space complexity) thường là O(n), do kiểu đệ quy này lưu trữ một thông tin dưới dạng cây.
+- Tuy nhiên, vẫn có các trường hợp khác do nó còn phụ thuộc lớn và chiều sâu của cây và bài toán cần giải quyết.
+- Time Complexity: Vì mỗi lần gọi đệ quy, số lần thực hiện sẽ có độ biến thiên, vì thế độ phức tạp thời gian là sẽ được biểu diễn ở dạng O(x^n), nhưng còn phụ thuộc rất nhiều vào cách mà chúng ta xử lý ở mỗi lần gọi đệ quy.
+## 4. Đệ quy lồng - Nested Recursion
+### a. Định nghĩa Đệ quy lồng
+- Đệ quy lồng (Nested Recursion) là một dạng đệ quy khi lời gọi đệ quy thực hiện với một tham số là kết quả của một lời gọi đệ quy khác.
+- Điều này tạo nên một cấu trúc đệ quy "lồng vào nhau" hoặc "đệ quy trong đệ quy", khiến cho việc phân tích độ phức tạp cũng khó khăn hơn.
+### b. Cấu trúc Đệ quy lồng
+- Base Case: Điều kiện cơ bản để kết thúc quá trình đệ quy, tương đối giống với đệ quy tuyến tính. Đây là điều kiện là hàm gọi sẽ trả kết quả thay vì gọi một lồng đệ quy khác.
+- Recursive Case: Phần của hàm nơi nó gọi lại chính nó
+- Trong trường hợp đệ quy, đệ quy lồng thể hiện sự phức tạp thông qua việc một lời gọi đệ quy có thể chứa một hoặc nhiều lời gọi đệ quy khác như một đối số.
+### c. Phân tích BigO
+- Do tính chất phức tạp tương tự với đệ quy phi tuyến, độ phức tạp thuật toán trong extra space và time complexity giống với đệ quy phi tuyến.
