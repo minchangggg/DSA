@@ -16,6 +16,9 @@ Bài tập ví dụ:
 >
 > https://www.dammio.com/2023/10/08/10-vi-du-bang-c-su-dung-de-quy
 
+Sự khác nhau giữa đệ quy và quay lui.
+
+> https://www.youtube.com/watch?v=nootqR6fz6k
 # I. Hàm Đệ Quy
 ## 1. Cấu trúc dữ liệu ngăn xếp
 ### a. Stack
