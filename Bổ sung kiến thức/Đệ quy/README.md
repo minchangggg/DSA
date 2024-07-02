@@ -803,7 +803,7 @@ Nếu coi các ô của bàn cờ là các đỉnh của đồ thị và các c�
         	cout << "Khong tim thay duong di.";
         }
 
-# II. Một số loại Đệ quy cơ bản thường gặp
+# III. Một số loại Đệ quy cơ bản thường gặp
 ## 1. Đệ quy tuyến tính - Linear Recursion
 ### a. Định nghĩa Đệ quy tuyến tính
 - Đệ qui tuyến tính (Linear Recursion) là một kỹ thuật lập trình nơi một hàm gọi lại chính nó một cách trực tiếp, nhưng chỉ thực hiện một lần trong mỗi lần gọi.
