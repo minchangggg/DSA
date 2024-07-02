@@ -665,6 +665,8 @@ Bài tập ví dụ:
 
 ## 5. Bài toán “Tháp Hà Nội” (Tower of Ha Noi)
 > https://200lab.io/blog/bai-toan-thap-ha-noi/
+> 
+> https://www.youtube.com/watch?v=1bzO9aqEx9c
 
 - Đây là một bài toán rất nổi tiếng và kinh điển, rất thích hợp để minh họa cho thuật toán đệ quy. Sau đây là nội dung bài toán : Có 3 chiếc cọc được đánh dấu lần lượt là A, B, C và n chiếc đĩa. Các đĩa này có kích thước khác nhau và mỗi đĩa đều có một lỗ ở giữa để cắm vào cọc. Ban đầu, các đĩa đều nằm ở cọc A, trong đó, đĩa nhỏ luôn nằm trên đĩa lớn hơn.
 
@@ -689,36 +691,107 @@ Bài tập ví dụ:
         using namespace std;
         using ll = long long;
         
-        void move(int num, char a, char c);
-        void TOH(int num, char a, char b, char c);
+        void move(int num, char sourcePeg, char targetPeg);
+        void TOH(int num, char sourcePeg, char auxiliaryPeg, char targetPeg);
         
         int main() {
-            cout << "\nNhap so dia: ";
+            cout << "Enter the number of disks: ";
             int num = 0; cin >> num;
-            char a = 'A', b = 'B', c = 'C';
-            TOH(num, a, b, c);
+            char sourcePeg = 'A', auxiliaryPeg = 'B', targetPeg = 'C';
+            TOH(num, sourcePeg, auxiliaryPeg, targetPeg);
             return (0);
         }
         
-        void move(int num, char a, char c){
-            cout << "Chuyen dia thu " << num << " tu " << a << " sang " << c << endl;
+        void move(int num, char sourcePeg, char targetPeg){
+            cout << "Move disk " << num << " from " << sourcePeg << " to " << targetPeg << endl;
         }
         
-        void TOH(int num, char a, char b, char c) {
-            if (num == 1) move(num, a, c);
+        void TOH(int num, char sourcePeg, char auxiliaryPeg, char targetPeg) {
+            if (num == 1) move(num, sourcePeg, targetPeg);
             else {
-                TOH(num - 1, a, c, b);
-                move(num, a, c);
-                TOH(num - 1, b, a, c);
+                TOH(num - 1, sourcePeg, targetPeg, auxiliaryPeg);
+                move(num, sourcePeg, targetPeg);
+                TOH(num - 1, auxiliaryPeg, sourcePeg, targetPeg);
             }
         }
 
+> Giải thích
+
+        Di chuyển n-1 đĩa ở trên cùng ở sourcePeg đến auxiliaryPeg,
+        Mặc dù auxiliaryPeg là chiếc đinh trung gian, nhưng để có thể mang được các đĩa này đến auxiliaryPeg, ta cần một chiếc đinh trung gian khác, đó chính là chiếc đinh targetPeg.
+        Di chuyển chiếc đĩa lớn nhất ở dưới cùng, ứng với numberOfDisks, đến chiếc đinh targetPeg.
+        Di chuyển n-1 chiếc đĩa ở auxiliaryPegsang targetPeg, và lần này thì chúng ta sử dụng sourcePeg làm trung gian nếu số lượng đinh vẫn còn lớn.
+
 > Output
 
-        Chuyen dia thu 1 tu A sang C
-        Chuyen dia thu 2 tu A sang B
-        Chuyen dia thu 1 tu C sang B
-        Chuyen dia thu 3 tu A sang C
-        Chuyen dia thu 1 tu B sang A
-        Chuyen dia thu 2 tu B sang C
-        Chuyen dia thu 1 tu A sang C
+        Enter the number of disks: 3
+        Move disk 1 from A to C
+        Move disk 2 from A to B
+        Move disk 1 from C to B
+        Move disk 3 from A to C
+        Move disk 1 from B to A
+        Move disk 2 from B to C
+        Move disk 1 from A to C
+
+## 6. Bài toán Quân mã đi tuần
+> https://nguyenvanhieu.vn/bai-toan-ma-di-tuan/
+>
+> https://spiderum.com/bai-dang/BAI-TOAN-QUAN-MA-DI-TUAN-VA-NHUNG-DIEU-THU-VI-AN-SAU-NO-8ms
+
+Tại mỗi bước lần lượt cho quân mã thử tất cả các nước đi kế tiếp (tám nước đi kế tiếp). Với mỗi bước đi, kiểm tra xem nếu nước đi hợp lệ (chưa đi qua và ở trong bàn cờ) thì thử đi nước này. Nếu quân mã đã đi qua hết bàn cờ thì xuất kết quả. Ngược lại thì gọi đệ quy tiếp cho vị trí mới thử trên. Lưu ý là mỗi khi vị trí đã đi qua được đánh dấu chính bằng chính thứ tự nước đi trên bàn cờ. Sau khi không thử vị trí này thì phải bỏ đánh dấu để chọn giải pháp khác (trường hợp quay lui).
+Nếu coi các ô của bàn cờ là các đỉnh của đồ thị và các cạnh là nối giữa hai đỉnh tương ứng với hai ô mã giao chân thì dễ thấy rằng hành trình của quân mã cần tìm sẽ là một đường đi Hamilton. Ta có thể xây dựng hành trình bằng thuật toán quay lui kết hợp với phương pháp duyệt ưu tiên Warnsdorff: Nếu gọi deg(x, y) là số ô kề với ô (x, y) và chưa đi qua (kề ở đây theo nghĩa đỉnh kề chứ không phải là ô kề cạnh) thì từ một ô ta sẽ không thử xét lần lượt các hướng đi có thể, mà ta sẽ ưu tiên thử hướng đi tới ô có deg nhỏ nhất trước. Trong trường hợp có tồn tại đường đi, phương pháp này hoạt động với tốc độ tuyệt vời: Với mọi n chẵn trong khoảng từ 6 tới 18, với mọi vị trí ô xuất phát, trung bình thời gian tính từ lúc bắt đầu tới lúc tìm ra một nghiệm < 1 giây. Tuy nhiên trong trường hợp n lẻ, có lúc không tồn tại đường đi, do phải duyệt hết mọi khả năng nên thời gian thực thi lại hết sức tồi tệ. (Có xét ưu tiên như trên hay xét thứ tự như trước kia thì cũng vậy thôi).
+
+        #include<iostream>
+        #include<stdio.h>
+        #define MAX 8
+        using namespace std;
+        
+        int A[MAX][MAX] = { 0 };//Khởi tạo mảng giá trị 0
+        int X[8] = { -2,-2,-1,-1, 1, 1, 2, 2};
+        int Y[8] = { -1, 1,-2, 2,-2, 2,-1, 1};
+        int dem = 0;//Số bước đi
+        int n;
+        
+        void xuat() {
+        	for (int i = 0; i < n; i++) {
+        		for (int j = 0; j < n; j++)
+        			printf("%2d ", A[i][j]);
+        		cout << endl;
+        	}
+        	cout << endl;
+        }
+        
+        void diChuyen(int x, int y) {
+        	++dem;//Tăng giá trị bước đi
+        	A[x][y] = dem;//Đánh dấu đã đi
+        	for (int i = 0; i < 8; i++)	{
+        		//Kiểm tra xem mã đã đi hết bàn cờ chưa
+        		if (dem == n * n) {
+        			cout << "Cac buoc di la: n";
+        			xuat();
+        			exit(0);//kết thúc chương trình
+        		}
+        		//Nếu chưa đi hết bàn cờ thì tạo bước đi mới
+        		int u = x + X[i];//tạo một vị trí x mới
+        		int v = y + Y[i];//tạo một vịi trí y mới
+        		//Nếu hợp lẹ thì tiến hành di chuyển
+        		if (u >= 0 && u < n&&v >= 0 && v < n&& A[u][v] == 0)
+        			diChuyen(u, v);
+        	}
+        	//Nếu không tìm được bước đi thì ta phải trả lại các giá trị ban đầu
+        	--dem;
+        	A[x][y] = 0;
+        }
+        int main() {
+        	cout << "Nhap n: ";
+        	cin >> n;
+        	int a, b;
+        	cout << "Nhap vi tri ban dau.nx: ";
+        	cin>>a;
+        	cout << "y: ";
+        	cin >> b;
+        	diChuyen(a, b);
+        	//Nếu không tìm được bước đi thì sẽ thông báo
+        	cout << "Khong tim thay duong di.";
+        }
+
