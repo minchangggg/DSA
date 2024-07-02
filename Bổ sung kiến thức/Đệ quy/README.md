@@ -44,7 +44,8 @@ Bài tập ví dụ:
     
 - Ví dụ : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         void recursive(int n){
            if(n > 0){ // Điều kiện 
@@ -67,19 +68,20 @@ Bài tập ví dụ:
 ## 2. Ví Dụ Về Đệ Quy
 ### a. Ví dụ 1 : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         void dequy(int n){
-           if(n > 0){
-              printf("Loi goi ham khi n = %d\n", n);
-              dequy(n - 1);
-           }
-           printf("Ham khi n = %d ket thuc !\n", n);
+            if(n > 0){
+                cout << "Loi goi ham khi n = " << n << endl;
+                dequy(n - 1);
+            }
+            cout << "Ham khi n = " << n << " ket thuc !" << endl;
         }
         
         int main(){
-           dequy(4);
-           return 0;
+            dequy(4);
+            return 0;
         }
 
 > Output : 
@@ -116,20 +118,17 @@ Bài tập ví dụ:
 
 ### Ví dụ 2 : Tính tổng tự nhiên từ 1 tới N bằng đệ quy 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         int sum(int n){
-           if(n == 0){
-              return 0;
-           }
-           else{
-              return n + sum(n - 1);
-           }
+            if(n == 0) return 0;
+            else return n + sum(n - 1);
         }
         
         int main(){
-           printf("%d", sum(3));
-           return 0;
+            cout << sum(3);
+            return 0;
         }
 
 > Output :
@@ -164,24 +163,21 @@ Bài tập ví dụ:
 - Lưu ý: Nếu đệ quy không có điểm dừng, khi số lượng hàm đệ quy gọi đủ lớn sẽ làm bộ nhớ stack bị tràn.
 ### Ví dụ 1 : Tìm số Fibonacci bằng đệ quy
 - Bài toán cơ sở : F0 = 0, F1 = 1
-- Công thức truy hồi : Fn = Fn-1 và Fn-2 với n > 1
+- Công thức truy hồi : Fn = (Fn-1) + (Fn-2) với n > 1
 - Lưu ý là code này chạy rất chậm nếu n lớn
 - Code :
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         int F(int n){
-           if(n == 0 || n == 1){
-              return n;
-           }
-           else{
-              return F(n - 1) + F(n - 2);
-           }
+            if(n == 0 || n == 1) return n;
+            else return F(n - 1) + F(n - 2);
         }
         
         int main(){
-           cout << F(10);
-           return 0;
+            cout << F(10);
+            return 0;
         }
         
 > Output :
@@ -193,20 +189,18 @@ Bài tập ví dụ:
 - Công thức truy hồi : N! = N * (N - 1)! với n > 0
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        long long factorial(int n){
-           if(n == 0){
-              return 1;
-           }
-           else{
-              return n * factorial(n - 1);
-           }
+        ll factorial(int n){
+            if(n == 0) return 1;
+            else return n * factorial(n - 1);
         }
         
         int main(){
-           cout << factorial(10);
-           return 0;
+            cout << factorial(10);
+            return 0;
         }
 
 > Output :
@@ -219,20 +213,19 @@ Bài tập ví dụ:
 - Công thức truy hồi : Sum(N) = N % 10 + Sum(N / 10) với N ≥ 10
 - Code :
   
-        #include <stdio.h>
-        
+        #include <bits/stdc++.h>
+        using namespace std;
+                
         int sum(int n){
-           if(n < 10){
-              return n;
-           }
-           else{
-              return n % 10 + sum(n / 10);
-           }
+            if(n < 10) // nếu số đó chữ có 1 chữ số 
+                return n;
+            else
+                return n % 10 + sum(n / 10);
         }
         
         int main(){
-           printf("%d", sum(12345));
-           return 0;
+            cout << sum(12345);
+            return 0;
         }
 
 > Output :
@@ -266,22 +259,19 @@ Bài tập ví dụ:
 - Số Fibonacci có thể tính bằng hàm đệ quy dựa trên bài toán cơ sở và công thức truy hồi : 
   + Bài toán cơ sở : F0 = 0, F1 = 1
   + Công thức truy hồi : Fn = Fn-1 + Fn-2, n > 1
-- Code : 
-
-        #include <stdio.h>
+- Code :
+  
+        #include <bits/stdc++.h>
+        using namespace std;
         
         int F(int n){
-           if(n == 0 || n == 1){
-              return n;
-           }
-           else{
-              return F(n - 1) + F(n - 2);
-           }
+            if(n == 0 || n == 1) return n;
+            else return F(n - 1) + F(n - 2);
         }
         
         int main(){
-           printf("%d", F(12));
-           return 0;
+            cout << F(12);
+            return 0;
         }
 
 > Output :
@@ -294,7 +284,8 @@ Bài tập ví dụ:
   + Công thức truy hồi : C(n, k) = C(n - 1, k - 1) + C(n - 1, k) 
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         int C(int n, int k){
            if(n == k || k == 0) return 1;
@@ -302,7 +293,7 @@ Bài tập ví dụ:
         }
         
         int main(){
-           printf("%d", C(12, 2));
+           cout << C(12, 2);
            return 0;
         }
 
@@ -318,21 +309,21 @@ Bài tập ví dụ:
 
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         void dec_to_bin(long long n){
-           if(n < 2){
-              printf("%d", n);
-           }
+           if(n < 2)
+              cout << n;
            else{
               dec_to_bin(n / 2);
-              printf("%d", n % 2);
+              cout << n % 2; 
            }
         }
         
         int main(){
            dec_to_bin(37);
-           printf("\n");
+           cout << endl;
            dec_to_bin(282828282828);
            return 0;
         }
@@ -351,34 +342,27 @@ Bài tập ví dụ:
 
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
         
         void dec_to_hex(long long n){
-           if(n < 16){
-              if(n < 10){
-                 printf("%d", n);
-              }
-              else{
-                 printf("%c", (55 + n));
-              }
-           }
-           else{
-              dec_to_hex(n / 16);
-              int r = n % 16;
-              if(r < 10){
-                 printf("%d", r);
-              }
-              else{
-                 printf("%c", (55 + r));
-              }
-           }
+            if(n < 16){
+                if(n < 10) cout << n;
+                else cout << (char)(55 + n);
+            }
+            else{
+                dec_to_hex(n / 16);
+                int r = n % 16;
+                if(r < 10) cout << r;
+                else cout << (char)(55 + r);
+            }
         }
         
         int main(){
-           dec_to_hex(762);
-           printf("\n");
-           dec_to_hex(282828282828);
-           return 0;
+            dec_to_hex(762);
+            cout << endl;
+            dec_to_hex(282828282828);
+            return 0;
         }
 
 > Output : 
@@ -392,21 +376,19 @@ Bài tập ví dụ:
 - Công thức truy hồi : D(N) = 1 + D(N / 10) nếu N ≥ 10
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        int D(long long n){
-           if(n < 10){
-              return 1;
-           }
-           else{
-              return 1 + D(n / 10);
-           }
+        int D(ll n){
+            if(n < 10) return 1;
+            else return 1 + D(n / 10);
         }
         
         int main(){
-           long long n = 28282828;
-           printf("%d", D(n));
-           return 0;
+            ll n = 28282828;
+            cout << D(n);
+            return 0;
         }
 
 > Output :
@@ -418,21 +400,19 @@ Bài tập ví dụ:
 - Công thức truy hồi : S(N) = N % 10 + S(N / 10) nếu N ≥ 10
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        int S(long long n){
-           if(n < 10){
-              return n;
-           }
-           else{
-              return n % 10 + S(n / 10);
-           }
+        int S(ll n){
+            if(n < 10) return n;
+            else return n % 10 + S(n / 10);           
         }
         
         int main(){
-           long long n = 28282828;
-           printf("%d", S(n));
-           return 0;
+            ll n = 28282828;
+            cout << S(n);
+            return 0;
         }
 
 > Output :
@@ -444,23 +424,25 @@ Bài tập ví dụ:
 - Công thức truy hồi : S(N) = S(N / 10) nếu N lẻ, N % 10 + S(N / 10) nếu N chẵn với N ≥ 10
 - Code : 
 
-        #include <stdio.h>
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
         
-        int S(long long n){
-           if(n < 10){
-              if(n % 2 == 1) return 0;
-              else return n;
-           }
-           else{
-              if(n % 2 == 1) return S(n / 10);
-              else return n % 10 + S(n / 10);
-           }
+        int S(ll n){
+            if(n < 10){
+                if (n % 2) return 0;
+                else return n;
+            }
+            else{
+                if (n % 2) return S(n / 10);
+                else return n % 10 + S(n / 10);
+            }
         }
         
         int main(){
-           long long n = 12345678;
-           printf("%d", S(n));
-           return 0;
+            ll n = 12345678;
+            cout << S(n);
+            return 0;
         }
 
 > Output : 
