@@ -678,30 +678,47 @@ Bài tập ví dụ:
   + Trường hợp đơn giản nhất, n=1, ta chỉ cần chuyển 1 đĩa từ cọc A sang cọc C.
   + Nhiều hơn một chút, n=2, ta chuyển đĩa nhỏ nhất sang cọc B, chuyển đĩa còn lại sang cọc C, và cuối cùng chuyển đĩa nhỏ ở cọc B sang cọc C.
   + Bây giờ ta xét n đĩa (n>2). Giả sử ta đã có cách chuyển n-1 đĩa từ một cọc sang một cọc khác. Như vậy, để chuyển n đĩa từ cọc nguồn sang cọc đích, ta cần chuyển n-1 đĩa từ cọc nguồn sang cọc trung gian. Sau đó chuyển đĩa lớn nhất từ cọc nguồn sang cọc đích. Cuối cùng, chuyển n-1 từ cọc trung gian về cọc đích.
-- Nhận xét: Bài toán Tháp Hà Nội (Tower of Hanoi) với số đĩa là n có thể được giải với số bước tối thiểu là 2n−1. Do đó, với trường hợp 3 đĩa, bài toán Tháp Hà Nội (Tower of Hanoi) có thể được giải sau 23−1 = 7 bước.
+- Nhận xét: Bài toán Tháp Hà Nội (Tower of Hanoi) với số đĩa là n có thể được giải với số bước tối thiểu là 2^n−1. Do đó, với trường hợp 3 đĩa, bài toán Tháp Hà Nội (Tower of Hanoi) có thể được giải sau 2^3−1 = 7 bước.
 - Minh họa:
   
 ![image](https://github.com/minchangggg/DSA/assets/125820144/f4121413-0c3a-45ac-a7ab-ea35099805ec)
 
 - Code
 
-        #include<stdio.h>
-         
-        void TOH(int num, char x, char y, char z);
-         
+        #include <bits/stdc++.h>
+        using namespace std;
+        using ll = long long;
+        
+        void move(int num, char a, char c);
+        void TOH(int num, char a, char b, char c);
+        
         int main() {
-           int num;
-           printf("\nNhap so dia: ");
-           scanf("%d", &num);
-         
-           TOH(num - 1, 'A', 'B', 'C');
-           return (0);
+            cout << "\nNhap so dia: ";
+            int num = 0; cin >> num;
+            char a = 'A', b = 'B', c = 'C';
+            TOH(num, a, b, c);
+            return (0);
         }
-         
-        void TOH(int num, char x, char y, char z) {
-           if (num > 0) {
-              TOH(num - 1, x, z, y);
-              printf("\n%c -> %c", x, y);
-              TOH(num - 1, z, y, x);
-           }
+        
+        void move(int num, char a, char c){
+            cout << "Chuyen dia thu " << num << " tu " << a << " sang " << c << endl;
         }
+        
+        void TOH(int num, char a, char b, char c) {
+            if (num == 1) move(num, a, c);
+            else {
+                TOH(num - 1, a, c, b);
+                move(num, a, c);
+                TOH(num - 1, b, a, c);
+            }
+        }
+
+> Output
+
+        Chuyen dia thu 1 tu A sang C
+        Chuyen dia thu 2 tu A sang B
+        Chuyen dia thu 1 tu C sang B
+        Chuyen dia thu 3 tu A sang C
+        Chuyen dia thu 1 tu B sang A
+        Chuyen dia thu 2 tu B sang C
+        Chuyen dia thu 1 tu A sang C
